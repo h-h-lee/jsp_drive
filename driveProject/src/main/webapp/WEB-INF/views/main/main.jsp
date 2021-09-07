@@ -7,6 +7,6 @@
 <title>메인</title>
 </head>
 <body>
-<h2>메인</h2>
+<h2>2조 메인</h2>
 </body>
 </html>
