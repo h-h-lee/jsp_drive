@@ -2,7 +2,6 @@ package kr.controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,25 +23,25 @@ public class DispatcherServlet extends HttpServlet{
 
 	@Override
 	public void init(ServletConfig config)throws ServletException{
-		// "/WEB-INF/ActionMap.properties" ¹ÝÈ¯
+		// "/WEB-INF/ActionMap.properties" ï¿½ï¿½È¯
 		String propsPath = config.getInitParameter("propertiesPath");
 		
-		//web.xml¿¡ ¾Æ·¡¿Í °°ÀÌ properties ÆÄÀÏ ºÐÇÒÇÒ °æ¿ì
+		//web.xmlï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ properties ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         // /WEB-INF/ActionMap.properties,/WEB-INF/ActionMap2.properties
         String[] propsArray = propsPath.split(",");
         if(propsArray == null){
-        	//properties ÆÄÀÏÀÌ ºÐ¸®µÇ¾î ÀÖÁö ¾Ê¾Æµµ ¹è¿­·Î º¯È¯
+        	//properties ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¸ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Æµï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½È¯
         	propsArray = (String[])Arrays.asList(propsPath).toArray();
         }
         
-        Properties pr = new Properties();//¸í·É¾î¿Í Ã³¸®Å¬·¡½ºÀÇ ¸ÅÇÎÁ¤º¸¸¦ ÀúÀåÇÒ Properties°´Ã¼ »ý¼º
+        Properties pr = new Properties();//ï¿½ï¿½É¾ï¿½ï¿½ Ã³ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Propertiesï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		
         for(String props : propsArray){
         	FileInputStream fis = null;
         	try {
         		String path = config.getServletContext().getRealPath(props);
-        		fis = new FileInputStream(path); //ActionMap.propertiesÆÄÀÏÀÇ ³»¿ëÀ» ÀÐ¾î¿È
-            		pr.load(fis);//ActionMap.propertiesÆÄÀÏÀÇ Á¤º¸¸¦  Properties°´Ã¼¿¡ ÀúÀå
+        		fis = new FileInputStream(path); //ActionMap.propertiesï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½
+            		pr.load(fis);//ActionMap.propertiesï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  Propertiesï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         	} catch (IOException e) {
             		throw new ServletException(e);
         	} finally {
@@ -50,20 +49,20 @@ public class DispatcherServlet extends HttpServlet{
         	} 	
         }
         System.out.println("-----------------------------");
-		//Properties °´Ã¼¿¡¼­ key ±¸ÇÏ±â
+		//Properties ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ key ï¿½ï¿½ï¿½Ï±ï¿½
 		Iterator<?> keyIter = pr.keySet().iterator();
 		while(keyIter.hasNext()){
 			String command = (String)keyIter.next(); //key
 			String className = pr.getProperty(command); //value
 			
 			try {
-				//¹®ÀÚ¿­À» ÀÌ¿ëÇØ Å¬·¡½º¸¦ Ã£¾Æ Class Å¸ÀÔÀ¸·Î ¹ÝÈ¯
+				//ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ Class Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 				Class<?> commandClass = Class.forName(className);
-				//°´Ã¼·Î »ý¼º
+				//ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				Object commandInstance = commandClass.getDeclaredConstructor().newInstance();
 				
 				System.out.println(command + "," + commandInstance);
-				//HashMap¿¡ key¿Í value·Î µî·Ï
+				//HashMapï¿½ï¿½ keyï¿½ï¿½ valueï¿½ï¿½ ï¿½ï¿½ï¿½
 				commandMap.put(command, (Action)commandInstance);
 			} catch (Exception e) {
 				throw new ServletException(e);
@@ -94,22 +93,22 @@ public class DispatcherServlet extends HttpServlet{
 			command = command.substring(request.getContextPath().length());
 		}
 		
-		//HashMap¿¡ key¸¦ ³Ö¾î¼­ value(¸ðµ¨ °´Ã¼)¸¦ ¾òÀ½
+		//HashMapï¿½ï¿½ keyï¿½ï¿½ ï¿½Ö¾î¼­ value(ï¿½ï¿½ ï¿½ï¿½Ã¼)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		com = commandMap.get(command);
 		
 		try{
-			//µ¥ÀÌÅÍ¸¦ »ý¼ºÇØ¼­ request¿¡ ÀúÀåÇÏ°í 
-			//jsp °æ·Î ¹ÝÈ¯
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ 
+			//jsp ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 			view = com.execute(request, response);
 		}catch(Exception e){
 			throw new ServletException(e);
 		}
 		
-		if(view.startsWith("redirect:")){//¸®´ÙÀÌ·ºÆ®
+		if(view.startsWith("redirect:")){//ï¿½ï¿½ï¿½ï¿½ï¿½Ì·ï¿½Æ®
 			view = view.substring("redirect:".length());
 			response.sendRedirect(request.getContextPath()+view);
 		}else{
-			//forward ¹æ½ÄÀ¸·Î view(jsp) È£Ãâ
+			//forward ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ view(jsp) È£ï¿½ï¿½
 			RequestDispatcher dispatcher =
 					request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);

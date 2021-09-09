@@ -13,17 +13,20 @@
 	<a href="#"><img src="${pageContext.request.contextPath}/images/main/logo.png" ></a>
 	<div class="header-menu">
 		<ul>
-		<c:if test="${empty member_num || empty admin_num}">
-			<li><a href="#">로그인</a></li>
-			<li><a href="#">회원가입</a></li>
+		
+		<c:if test="${empty member_id && empty admin_num}">
+			<li><a href="${pageContext.request.contextPath}/member/memberLoginForm.do">로그인</a></li>
+			<li><a href="${pageContext.request.contextPath}/member/memberJoinForm.do">회원가입</a></li>
 		</c:if>
-		<c:if test="${!empty member_num && member_auth == 1}">
-			<li><a href="#">${name}님</a></li>
-			<li><a href="#">로그아웃</a></li>
+		
+		<c:if test="${!empty member_id && member_auth == 1}">
+			<li><a href="#">${member_id}님 [회원]</a></li>
+			<li><a href="${pageContext.request.contextPath}/member/memberLogout.do">로그아웃</a></li>
 		</c:if>
+		
 		<c:if test="${!empty admin_num}">
-			<li><a href="#">${name}님</a></li>
-			<li><a href="#">로그아웃</a></li>
+			<li><a href="#">${admin_id}님 [관리자]</a></li>
+			<li><a href="${pageContext.request.contextPath}/admin/adminLogout.do">로그아웃</a></li>
 		</c:if>
 			
 		</ul>

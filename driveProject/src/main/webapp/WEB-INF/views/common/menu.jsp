@@ -35,7 +35,7 @@
 			</ul>
 		</li>
 		<c:if test="${!empty member_num && empty admin_num}">
-			<li><a href="#">마이 페이지</a>
+			<li><a href="${pageContext.request.contextPath}/member/memberMyPageForm.do">마이 페이지</a>
 				<ul class="sub">
 					<li><a href="#">회원정보관리</a></li>
 					<li><a href="#">수강신청내역</a></li>
