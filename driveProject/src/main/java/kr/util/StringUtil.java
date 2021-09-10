@@ -2,40 +2,38 @@ package kr.util;
 
 public class StringUtil {
 	/*
-	 * HTMLÀ» Çã¿ëÇÏ¸é¼­ ÁÙ ¹Ù²Ş 
+	 * HTMLë¥¼ í—ˆìš©í•˜ë©´ì„œ ì¤„ë°”ê¿ˆ
 	 */
 	public static String useBrHtml(String str) {
 		if(str == null) return null;
 		
 		return str.replaceAll("\r\n", "<br>")
-					.replaceAll("\r", "<br>")
-					.replaceAll("\n", "<br>");
+				  .replaceAll("\r", "<br>")
+				  .replaceAll("\n", "<br>");
 	}
 	/*
-	 * HTML¸¦ Çã¿ëÇÏÁö ¾ÊÀ¸¸é¼­ ÁÙ¹Ù²Ş
+	 * HTMLë¥¼ í—ˆìš©í•˜ì§€ ì•Šìœ¼ë©´ì„œ ì¤„ë°”ê¿ˆ
 	 */
 	public static String useBrNoHtml(String str) {
 		if(str == null) return null;
 		
 		return str.replaceAll("<", "&lt;")
-				.replaceAll(">", "&gt;")
-				.replaceAll("\r\n", "<br>")
-				.replaceAll("\r", "<br>")
-				.replaceAll("\n", "<br>");
+				  .replaceAll(">", "&gt;")
+				  .replaceAll("\r\n", "<br>")
+				  .replaceAll("\r", "<br>")
+				  .replaceAll("\n", "<br>");
 	}
-	
 	/*
-	 * HTML¸¦ Çã¿ëÇÏÁö ¾ÊÀ½ 
+	 * HTMLë¥¼ í—ˆìš©í•˜ì§€ ì•ŠìŒ
 	 */
 	public static String useNoHtml(String str) {
-		if(str==null) return null;
+		if(str == null) return null;
 		
 		return str.replaceAll("<", "&lt;")
-				.replaceAll(">", "&gt;");
+				  .replaceAll(">", "&gt;");
 	}
-	
 	/*
-	 * ÀÏÁ¤ ¹®ÀÚ¿­ ÀÌÈÄ¿¡ ...À¸·Î Ã³¸®
+	 * ì¼ì • ë¬¸ìì—´ì´í›„ì— ...ìœ¼ë¡œ ì²˜ë¦¬
 	 */
 	public static String shortWords(int length, String content) {
 		if(content == null) return null;
@@ -45,5 +43,6 @@ public class StringUtil {
 		}
 		return content;
 	}
-	
 }
+
+
