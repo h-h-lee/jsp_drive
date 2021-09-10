@@ -13,10 +13,10 @@
 	<ul class="menu-main">
 		<li><a href="#">학원 안내</a>
 			<ul class="sub">
-				<li><a href="#">학원 소개</a></li>
-				<li><a href="#">찾아오시는 길</a></li>
+				<li><a href="${pageContext.request.contextPath}/notice/introduce.do">학원 소개</a></li>
+				<li><a href="${pageContext.request.contextPath}/notice/directions.do">찾아오시는 길</a></li>
 				<li><a href="#">강사 소개</a></li>
-				<li><a href="#">공지사항</a></li>
+				<li><a href="${pageContext.request.contextPath}/notice/list.do">공지사항</a></li>
 			</ul>
 		</li>
 		<li><a href="#">과정 안내</a>
