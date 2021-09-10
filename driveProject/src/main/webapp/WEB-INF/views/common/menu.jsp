@@ -24,9 +24,9 @@
 				<li><a href="#">과정 소개</a></li>
 			</ul>
 		</li>
-		<li><a href="#">수강 안내</a>
+		<li><a href="${pageContext.request.contextPath}/application/registerAppForm.do">수강 안내</a>
 			<ul class="sub">
-				<li><a href="#">수강 신청</a></li>
+				<li><a href="${pageContext.request.contextPath}/application/registerAppForm.do">수강 신청</a></li>
 			</ul>
 		</li>
 		<li><a href="#">상담 안내</a>
@@ -38,7 +38,7 @@
 			<li><a href="${pageContext.request.contextPath}/member/memberMyPageForm.do">마이 페이지</a>
 				<ul class="sub">
 					<li><a href="#">회원정보관리</a></li>
-					<li><a href="#">수강신청내역</a></li>
+					<li><a href="${pageContext.request.contextPath}/application/listApp.do">수강신청내역</a></li>
 					<li><a href="#">상담신청내역</a></li>
 				</ul>
 			</li>
@@ -47,7 +47,7 @@
 			<li><a href="#">마이 페이지</a>
 				<ul class="sub">
 					<li><a href="#">회원정보관리</a></li>
-					<li><a href="#">수강신청내역</a></li>
+					<li><a href="${pageContext.request.contextPath}/application/listApp.do">수강신청내역</a></li>
 					<li><a href="#">상담신청내역</a></li>
 				</ul>
 			</li>
@@ -57,7 +57,7 @@
 				<ul class="sub">
 					<li><a href="#">관리자 관리</a></li>
 					<li><a href="#">과정 관리</a></li>
-					<li><a href="#">수강신청내역관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/application/listAllApp.do">수강신청내역관리</a></li>
 					<li><a href="#">상담신청내역관리</a></li>
 				</ul>
 			</li>
