@@ -83,6 +83,7 @@ CREATE TABLE consulting(
     consulting_date    DATE            NOT NULL, 
     consulting_time    VARCHAR2(20)    NOT NULL, 
     con_date	       DATE	       DEFAULT SYSDATE NOT NULL,
+    con_state		   NUMBER(1,0) DEFAULT 0 NOT NULL,  --0:접수 1:대기 2:완료
     CONSTRAINT consulting_pk PRIMARY KEY (consulting_num),
     CONSTRAINT consulting_fk foreign key(member_num) references member(member_num)
 )

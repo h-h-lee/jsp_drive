@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/main/java/kr/admin/action/LoginAction.java=UTF-8
+encoding//src/main/java/kr/course/action/DeleteAction.java=UTF-8
+encoding//src/main/java/kr/course/action/DetailAction.java=UTF-8
+encoding//src/main/java/kr/course/action/ListAction.java=UTF-8
+encoding//src/main/java/kr/course/action/ModifyAction.java=UTF-8
+encoding//src/main/java/kr/course/action/WriteAction.java=UTF-8
+encoding//src/main/java/kr/member/action/LoginAction.java=UTF-8
+encoding//src/main/webapp/WEB-INF/admin.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/member.properties=UTF-8
+encoding//src/main/webapp/sql/table.sql=MS949

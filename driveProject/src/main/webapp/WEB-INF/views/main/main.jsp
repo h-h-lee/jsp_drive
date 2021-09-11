@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>일반 메뉴</title>
+<title>메인</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
 </head>
@@ -17,7 +17,7 @@
 
 <!-- carousel 시작 -->
 <div id="main-carousel">
-	<div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+	<div id="carouselIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
 		<ol class="carousel-indicators">
 			<li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
 			<li data-target="#carouselIndicators" data-slide-to="1"></li>
@@ -25,21 +25,46 @@
 			<li data-target="#carouselIndicators" data-slide-to="3"></li>
 			<li data-target="#carouselIndicators" data-slide-to="4"></li>
 		</ol>
-		<div class="carousel-inner">
-			<div class="carousel-item active">
+		<div class="carousel-inner carousel_top">
+			<div class="carousel-item active carousel_top">
 				<img src="${pageContext.request.contextPath}/images/main/main1.png" class="d-block w-100">
+				<div class="text">
+					1:1 맞춤 친절 교육 서비스<br>
+					자동차운전전문학원<br>
+					1종, 2종/자동, 대형, 자체시험, 시내연수<br>
+				</div>
 			</div>
 			<div class="carousel-item" >
 				<img src="${pageContext.request.contextPath}/images/main/main2.png" class="d-block w-100">
+				<div class="text">
+					1:1 맞춤 친절 교육 서비스<br>
+					자동차운전전문학원<br>
+					1종, 2종/자동, 대형, 자체시험, 시내연수<br>
+				</div>
 			</div>
 			<div class="carousel-item" >
 				<img src="${pageContext.request.contextPath}/images/main/main3.png" class="d-block w-100">
+				<div class="text">
+					1:1 맞춤 친절 교육 서비스<br>
+					자동차운전전문학원<br>
+					1종, 2종/자동, 대형, 자체시험, 시내연수<br>
+				</div>
 			</div>
 			<div class="carousel-item">
 				<img src="${pageContext.request.contextPath}/images/main/main4.png" class="d-block w-100">
+				<div class="text">
+					1:1 맞춤 친절 교육 서비스<br>
+					자동차운전전문학원<br>
+					1종, 2종/자동, 대형, 자체시험, 시내연수<br>
+				</div>
 			</div>
 			<div class="carousel-item">
 				<img src="${pageContext.request.contextPath}/images/main/main5.png" class="d-block w-100">
+				<div class="text">
+					1:1 맞춤 친절 교육 서비스<br>
+					자동차운전전문학원<br>
+					1종, 2종/자동, 대형, 자체시험, 시내연수<br>
+				</div>
 			</div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselIndicators" data-slide="prev">
