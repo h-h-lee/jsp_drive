@@ -20,12 +20,12 @@
 		</c:if>
 		
 		<c:if test="${!empty member_id && member_auth == 1}">
-			<li><a href="#">${member_id}님 [회원]</a></li>
+			<li>${member_id}님 [회원]</li>
 			<li><a href="${pageContext.request.contextPath}/member/memberLogout.do">로그아웃</a></li>
 		</c:if>
 		
 		<c:if test="${!empty admin_num}">
-			<li><a href="#">${admin_id}님 [관리자]</a></li>
+			<li>${admin_id}님 [관리자]</li>
 			<li><a href="${pageContext.request.contextPath}/admin/adminLogout.do">로그아웃</a></li>
 		</c:if>
 			
