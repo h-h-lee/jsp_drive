@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.consulting.vo.ConsultingVO;
+import kr.consultingDetail.vo.ConsultingDetailVO;
 import kr.util.DBUtil;
 
 public class ConsultingDAO {
@@ -42,7 +43,7 @@ public class ConsultingDAO {
 	}
 	
 	//상담 예약 목록(일반 회원)
-	public List<ConsultingVO> ListConsulting(int member_num) throws Exception{
+	public List<ConsultingVO> ListConsulting(int member_num, int start, int end) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -51,9 +52,19 @@ public class ConsultingDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM consulting WHERE member_num = ? ORDER BY consulting_num desc";
+			sql = "SELECT * FROM(SELECT a.*, ROWNUM rnum FROM "
+					+ "(SELECT * FROM member M "
+					+ "INNER JOIN member_detail D "
+					+ "ON m.member_num = d.member_num "
+					+ "INNER JOIN Consulting C "
+					+ "ON c.member_num = d.member_num "
+					+ "where m.member_num = ? "
+					+ "ORDER BY c.consulting_num desc)a)"
+					+ "WHERE rnum>=? AND rnum<=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, member_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			rs=pstmt.executeQuery();
 			list = new ArrayList<ConsultingVO>();
 			
@@ -177,7 +188,7 @@ public class ConsultingDAO {
 	}
 	
 	//상담 목록(관리자)
-	public List<ConsultingVO> ListAdminConsulting() throws Exception{
+	public List<ConsultingVO> ListAdminConsulting(int start, int end) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -186,9 +197,20 @@ public class ConsultingDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM consulting";
+			sql = "SELECT * FROM(SELECT a.*, ROWNUM rnum FROM "
+					+ "(SELECT * FROM member M "
+					+ "INNER JOIN member_detail D "
+					+ "ON m.member_num = d.member_num "
+					+ "INNER JOIN Consulting C "
+					+ "ON c.member_num = d.member_num "
+					+ "ORDER BY c.consulting_num desc)a)"
+					+ "WHERE rnum>=? AND rnum<=?";
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
 			rs=pstmt.executeQuery();
+			
 			list = new ArrayList<ConsultingVO>();
 			
 			while(rs.next()) {
@@ -196,7 +218,10 @@ public class ConsultingDAO {
 				consulting.setConsulting_num(rs.getInt("consulting_num"));
 				consulting.setConsulting_date(rs.getDate("consulting_date"));
 				consulting.setConsulting_time(rs.getString("consulting_time"));
+				consulting.setCon_state(rs.getInt("con_state"));
 				consulting.setCon_date(rs.getDate("con_date"));
+				consulting.setId(rs.getString("id"));
+				consulting.setMember_num(rs.getInt("member_num"));
 				
 				list.add(consulting);
 			}
@@ -234,5 +259,70 @@ public class ConsultingDAO {
 	}
 	
 	//상담 상태변경(관리자)
+	public void UpdateConsultingAdmin(int consulting_num, int con_state) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE consulting SET con_state=? WHERE consulting_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, con_state);
+			pstmt.setInt(2, consulting_num);
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//상담 상세 정보(관리자)
+	public ConsultingDetailVO DetailConsultingAdmin(int consulting_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		ConsultingDetailVO consultingDetail = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql ="SELECT * FROM member M "
+					+ "INNER JOIN member_detail D "
+					+ "ON m.member_num = d.member_num "
+					+ "INNER JOIN Consulting C "
+					+ "ON c.member_num = d.member_num "
+					+ "WHERE c.consulting_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, consulting_num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				consultingDetail = new ConsultingDetailVO();
+				consultingDetail.setConsulting_num(consulting_num);
+				consultingDetail.setConsulting_date(rs.getDate("consulting_date"));
+				consultingDetail.setConsulting_time(rs.getString("consulting_time"));
+				consultingDetail.setCon_state(rs.getInt("con_state"));
+				consultingDetail.setCon_date(rs.getDate("con_date"));
+				consultingDetail.setId(rs.getString("id"));
+				consultingDetail.setName(rs.getString("name"));
+				consultingDetail.setBirth(rs.getString("birth"));
+				consultingDetail.setPhone(rs.getString("phone"));
+				consultingDetail.setEmail(rs.getString("email"));
+				consultingDetail.setZipcode(rs.getString("zipcode"));
+				consultingDetail.setAddress1(rs.getString("address1"));
+				consultingDetail.setAddress2(rs.getString("address2"));
+
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return consultingDetail;
+	}
 
 }
