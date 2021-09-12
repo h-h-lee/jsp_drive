@@ -174,7 +174,7 @@ public class CourseDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "SELECT COUNT(*) FROM course;";
+			sql = "SELECT COUNT(*) FROM course";
 			
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -195,7 +195,7 @@ public class CourseDAO {
 	}
 	
 	//과정목록
-	public List<CourseVO> getListBoard(int start, int end)throws Exception{
+	public List<CourseVO> getListCourse(int start, int end)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
