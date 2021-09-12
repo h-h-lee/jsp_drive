@@ -21,7 +21,7 @@
 		</li>
 		<li><a href="#">과정 안내</a>
 			<ul class="sub">
-				<li><a href="#">과정 소개</a></li>
+				<li><a href="${pageContext.request.contextPath}/course/listCourse.do">과정 소개</a></li>
 			</ul>
 		</li>
 		<li><a href="${pageContext.request.contextPath}/application/registerAppForm.do">수강 안내</a>
