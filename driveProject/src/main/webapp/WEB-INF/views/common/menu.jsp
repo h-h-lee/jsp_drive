@@ -59,7 +59,7 @@
 					<li><a href="#">관리자 관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/teacher/list.do">강사 관리</a></li>
 					<li><a href="#">과정 관리</a></li>
-					<li><a href="#">수강신청내역관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/application/listAllApp.do">수강신청내역관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/consulting/adminList.do">상담신청내역관리</a></li>
 				</ul>
 			</li>

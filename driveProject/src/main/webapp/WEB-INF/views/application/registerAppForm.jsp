@@ -18,7 +18,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- menu -->
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
-	<!-- 본문 -->
+	<!-- 본문 시작 -->
 	<div id="main-width">
 		<h4 class="my-4 font-weight-bold">수강신청</h4>
 		<!-- 안내사항 시작 -->
@@ -34,8 +34,8 @@
 	 	<!-- 안내사항 끝 -->
 		<div class="card my-3">
 		    <div class="card-body object-center my-3 text-center">
-		    	<c:if test="${count==null}">
-					<div>모집중인 과정이 없습니다.</div>
+		    	<c:if test="${count==0}">
+					<div>모집 중인 과정이 없습니다.</div>
 				</c:if>
 				<c:if test="${count>0}">
 				<table class="table table-hover text-center">
@@ -51,7 +51,7 @@
 					<c:forEach var="course" items="${list}">
 					<tr>
 						<td>${course.course_name}</td>
-						<td>${course.teacher_name }</td>
+						<td>강사명</td>
 						<td><fmt:formatNumber value="${course.tuition}" type="number"/>원</td>
 						<td><button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='registerApp.do?course_num=${course.course_num}'"
 							<c:if test="${!empty admin_num}">disabled="disabled"</c:if>
@@ -65,6 +65,7 @@
 			<div>${pagingHtml}</div>
 		</div>
 	</div>
+	<!-- 본문 끝 -->
 	<!-- Bootstrap JS -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>

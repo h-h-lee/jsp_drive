@@ -44,6 +44,40 @@ public class ApplicationDAO {
 		}
 	}
 	
+	//수강신청 중복 체크
+	public ApplicationVO checkApp(int app_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		ApplicationVO app = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM application WHERE course_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, app_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				app = new ApplicationVO();
+				app.setApp_num(rs.getInt("app_num"));
+				app.setApp_date(rs.getDate("app_date"));
+				app.setApp_result(rs.getInt("app_result"));
+				app.setCourse_num(rs.getInt("course_num"));
+				app.setMember_num(rs.getInt("member_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return app;
+	}
+	
 	//수강신청 정보
 		public ApplicationVO getApp(int app_num) throws Exception{
 			Connection conn = null;

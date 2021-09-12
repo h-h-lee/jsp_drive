@@ -60,6 +60,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- 본문 끝 -->
 	<!-- Bootstrap JS -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>

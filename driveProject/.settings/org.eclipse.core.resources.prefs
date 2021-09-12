@@ -5,6 +5,7 @@ encoding//src/main/java/kr/course/action/DetailAction.java=UTF-8
 encoding//src/main/java/kr/course/action/ListAction.java=UTF-8
 encoding//src/main/java/kr/course/action/ModifyAction.java=UTF-8
 encoding//src/main/java/kr/course/action/WriteAction.java=UTF-8
+encoding//src/main/java/kr/course/dao/CourseDAO.java=UTF-8
 encoding//src/main/java/kr/member/action/LoginAction.java=UTF-8
 encoding//src/main/java/kr/member/vo/MemberVO.java=UTF-8
 encoding//src/main/webapp/WEB-INF/admin.properties=UTF-8

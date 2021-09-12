@@ -14,11 +14,9 @@
 <body>
 	<!-- header -->
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
 	<!-- menu -->
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
-	
-	<!-- 수강신청 취소 완료 시작 -->
+	<!-- 본문 시작-->
 	<div id="main-width">
 		<h4 class="my-4 font-weight-bold">수강신청 취소</h4>
 		<div class="card bg-light text-dark my-3">
@@ -31,6 +29,7 @@
 			</div>
 	 	</div>
 	</div>
+	<!-- 본문 끝-->
 	<!-- Bootstrap JS -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>

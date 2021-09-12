@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,12 +17,17 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- menu -->
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
-	<!-- 본문 -->
+	<!-- 본문 시작 -->
 	<div id="main-width">
 		<h4 class="my-4 font-weight-bold">수강신청</h4>
 		<div class="card bg-light text-dark my-3">
 	    	<div class="card-body text-center my-3">
+	    		<c:if test="${check==true}">
 	    		수강신청이 완료되었습니다.
+	    		</c:if>
+	    		<c:if test="${check==false}">
+	    		이미 수강신청하신 과정입니다.
+	    		</c:if>
 	    		<div class="mt-3">
 					<input type="button" value="수강신청 내역" class="btn btn-primary btn-sm" onclick="location.href='listApp.do'">
 					<input type="button" value="홈으로" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
@@ -29,6 +35,7 @@
 			</div>
 	 	</div>
  	</div>
+ 	<!-- 본문 끝 -->
 	<!-- Bootstrap JS -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>

@@ -26,13 +26,20 @@ public class RegisterAppAction implements Action{
 		
 		int course_num = Integer.parseInt(request.getParameter("course_num"));
 		
-		ApplicationVO app = new ApplicationVO();
-		app.setMember_num(member_num);
-		app.setCourse_num(course_num);
-		
-		//수강신청 등록
+		//수강신청 중복 체크
 		ApplicationDAO dao = ApplicationDAO.getinstance();
-		dao.insertApp(app);
+		boolean check = false;
+		if(dao.checkApp(course_num)==null) {
+			check = true;
+			
+			//수강신청 등록
+			ApplicationVO app = new ApplicationVO();
+			app.setMember_num(member_num);
+			app.setCourse_num(course_num);
+			dao.insertApp(app);
+		}
+		
+		request.setAttribute("check", check);
 		
 		return "/WEB-INF/views/application/registerApp.jsp";
 	}
