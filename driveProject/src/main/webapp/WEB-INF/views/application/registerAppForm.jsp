@@ -51,7 +51,7 @@
 					<c:forEach var="course" items="${list}">
 					<tr>
 						<td>${course.course_name}</td>
-						<td>강사명</td>
+						<td>강사명(수정예정)</td>
 						<td><fmt:formatNumber value="${course.tuition}" type="number"/>원</td>
 						<td><button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='registerApp.do?course_num=${course.course_num}'"
 							<c:if test="${!empty admin_num}">disabled="disabled"</c:if>

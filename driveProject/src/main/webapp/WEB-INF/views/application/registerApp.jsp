@@ -26,7 +26,7 @@
 	    		수강신청이 완료되었습니다.
 	    		</c:if>
 	    		<c:if test="${check==false}">
-	    		이미 수강신청하신 과정입니다.
+	    		이미 신청하신 과정입니다.
 	    		</c:if>
 	    		<div class="mt-3">
 					<input type="button" value="수강신청 내역" class="btn btn-primary btn-sm" onclick="location.href='listApp.do'">
