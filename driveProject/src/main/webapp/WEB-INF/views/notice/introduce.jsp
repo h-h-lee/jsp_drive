@@ -132,7 +132,7 @@ h3{
 		<br><br><h2>친절한 전문 강사진</h2><br><br>
 		베테랑 전문강사 및 1대1 맞춤교육 최고의 합격율, 편안한 교육환경, 신속한 면허취득, 상호 신뢰, 교육의욕 고취, 안전운전 기술 습득<br><br>
 	</div>	
-	  <div class="square2">
+	  <%-- <div class="square2">
 		 <footer id="footer">
 		 <div class="address">
 		 	상호 : 주식회사 서울자동차운전전문학원 l 대표자명: 이승훈 l 서울특별시 강서구 남부순환로 222 (외발산동)<br>
@@ -144,6 +144,6 @@ h3{
 			<span class="text">CALL CENTER<br>02-2665-6961</span>
 		</div>
 		</footer> 
-	  </div>
+	  </div> --%>
 </body>
 </html>

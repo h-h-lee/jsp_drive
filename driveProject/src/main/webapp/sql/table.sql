@@ -46,7 +46,7 @@ CREATE TABLE notice(
     notice_num    NUMBER           NOT NULL, 
     title         VARCHAR2(20)     NOT NULL, 
     content       CLOB    		   NOT NULL, 
-    reg_date      VARCHAR2(20)     DEFAULT SYSDATE NOT NULL, 
+    reg_date      DATE		     DEFAULT SYSDATE NOT NULL, 
     filename      VARCHAR2(150)    NULL, 
     hit		      NUMBER           DEFAULT 0 NOT NULL,
     admin_num     NUMBER           NOT NULL, 

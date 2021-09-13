@@ -8,18 +8,18 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	//이벤트 연결
-	$('#write_form').submit(function(){
-		if($('#title').val().trim()==''){
-			alert('제목을 입력하세요.');
-			$('#title').val('').focus();
-			return false;
-		}
-		if($('#content').val().trim()==''){
-			alert('내용을 입력하세요.');
-			$('#content').val('').focus();
-			return false;
+	$(document).ready(function(){
+		//이벤트 연결
+		$('#write_form').submit(function(){
+			if($('#title').val().trim()==''){
+				alert('제목을 입력하세요.');
+				$('#title').val('').focus();
+				return false;
+			}
+			if($('#content').val().trim()==''){
+				alert('내용을 입력하세요.');
+				$('#content').val('').focus();
+				return false;
 		}
 	});
 });
@@ -33,8 +33,7 @@ $(document).ready(function(){
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	
 	<div class="notice-main">
-	<h2>공지사항 글쓰기</h2>
-	<h4>서울자동차운전전문학원의 공지사항을 작성해보세요.</h4>
+	<h2>게시판 글 작성</h2>		
 	<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
 		<ul>
 			<li>

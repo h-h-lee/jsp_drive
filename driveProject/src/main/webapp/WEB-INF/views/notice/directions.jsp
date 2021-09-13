@@ -184,7 +184,7 @@ h3{
 			<p class="d">5호선 우장산역	4번 출구에서 마을버스 강서05번을 타고 서울자동차학원 정류장 하차</p><br><br>
 	</div>
 	
-	<br><br> <div class="square2">
+	<%-- <br><br> <div class="square2">
 		 <footer id="footer">
 		 <div class="address">
 		 	상호 : 주식회사 서울자동차운전전문학원 l 대표자명: 이승훈 l 서울특별시 강서구 남부순환로 222 (외발산동)<br>
@@ -193,6 +193,6 @@ h3{
 		</div>	
 			<img src="${pageContext.request.contextPath}/images/notice/전화.png" class="call">
 			CALL CENTER<br>02-2665-6961</footer> 
-	  </div>	
+	  </div>	 --%>
 </body>
 </html>

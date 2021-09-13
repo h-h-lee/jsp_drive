@@ -31,7 +31,7 @@ public class NoticeDAO {
 			//目池记钱肺何磐 目池记 且寸
 			conn = DBUtil.getConnection();
 			//SQL巩 累己
-			sql = "INSERT INTO zboard (notice_num,title,content,filename,admin_num) VALUES (zboard_seq.nextval,?,?,?,?)";
+			sql = "INSERT INTO notice (notice_num,title,content,filename,admin_num) VALUES (notice_seq.nextval,?,?,?,?)";
 			
 			//PreparedStatement 按眉 积己
 			pstmt = conn.prepareStatement(sql);
@@ -116,7 +116,6 @@ public class NoticeDAO {
 				notice.setFilename(rs.getString("filename"));
 				notice.setContent(rs.getString("content"));
 				notice.setAdmin_num(rs.getInt("admin_num"));
-				notice.setId(rs.getString("id"));
 				
 				list.add(notice);
 			}
