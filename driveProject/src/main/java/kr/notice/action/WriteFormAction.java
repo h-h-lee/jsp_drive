@@ -20,5 +20,4 @@ public class WriteFormAction implements Action{
 		//로그인 된 경우
 		return "/WEB-INF/views/notice/writeForm.jsp";
 	}
-
 }

@@ -36,5 +36,4 @@ public class WriteAction implements Action{
 		
 		return "/WEB-INF/views/notice/write.jsp";
 	}
-
 }

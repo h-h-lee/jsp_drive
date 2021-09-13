@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 목록</title>
+<title>게시판 목록</title>
 <style type="text/css">
 h2{
 	color:gray;

@@ -167,7 +167,6 @@ public class NoticeDAO {
 			//자원정리
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		
 		return notice;
 	}
 	
