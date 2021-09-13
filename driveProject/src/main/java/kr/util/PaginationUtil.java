@@ -1,17 +1,17 @@
 package kr.util;
 
 public class PaginationUtil {
-	private int startCount;	 // ÇÑ ÆäÀÌÁö¿¡¼­ º¸¿©ÁÙ °Ô½Ã±ÛÀÇ ½ÃÀÛ ¹øÈ£
-	private int endCount;	 // ÇÑ ÆäÀÌÁö¿¡¼­ º¸¿©ÁÙ °Ô½Ã±ÛÀÇ ³¡ ¹øÈ£
-	private StringBuffer pagingHtml;// ÆäÀÌÁö Ç¥½Ã ¹®ÀÚ¿­
+	private int startCount;	 // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	private int endCount;	 // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È£
+	private StringBuffer pagingHtml;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½
 
 	/**
-	 * currentPage : ÇöÀçÆäÀÌÁö
-	 * totalCount : ÀüÃ¼ °Ô½Ã¹° ¼ö
-	 * rowCount : ÇÑ ÆäÀÌÁöÀÇ  °Ô½Ã¹°ÀÇ ¼ö
-	 * pageCount : ÇÑ È­¸é¿¡ º¸¿©ÁÙ ÆäÀÌÁö ¼ö
-	 * pageUrl : È£Ãâ ÆäÀÌÁö url
-	 * addKey : ºÎ°¡ÀûÀÎ key ¾øÀ» ¶§´Â null Ã³¸® (&num=23Çü½ÄÀ¸·Î Àü´ÞÇÒ °Í)
+	 * currentPage : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * totalCount : ï¿½ï¿½Ã¼ ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½
+	 * rowCount : ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ ï¿½ï¿½
+	 * pageCount : ï¿½ï¿½ È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	 * pageUrl : È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ url
+	 * addKey : ï¿½Î°ï¿½ï¿½ï¿½ï¿½ï¿½ key ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ null Ã³ï¿½ï¿½ (&num=23ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
 	 * */
 	public PaginationUtil(int currentPage, int totalCount, int rowCount,
 			int pageCount, String pageUrl) {
@@ -28,43 +28,43 @@ public class PaginationUtil {
 	public PaginationUtil(String keyfield, String keyword, int currentPage, int totalCount, int rowCount,
 			int pageCount,String pageUrl,String addKey) {
 		
-		if(addKey == null) addKey = ""; //ºÎ°¡Å°°¡ null ÀÏ¶§ ""Ã³¸®
+		if(addKey == null) addKey = ""; //ï¿½Î°ï¿½Å°ï¿½ï¿½ null ï¿½Ï¶ï¿½ ""Ã³ï¿½ï¿½
 		
-		// ÀüÃ¼ ÆäÀÌÁö ¼ö
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		int totalPage = (int) Math.ceil((double) totalCount / rowCount);
 		if (totalPage == 0) {
 			totalPage = 1;
 		}
-		// ÇöÀç ÆäÀÌÁö°¡ ÀüÃ¼ ÆäÀÌÁö ¼öº¸´Ù Å©¸é ÀüÃ¼ ÆäÀÌÁö ¼ö·Î ¼³Á¤
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if (currentPage > totalPage) {
 			currentPage = totalPage;
 		}
-		// ÇöÀç ÆäÀÌÁöÀÇ Ã³À½°ú ¸¶Áö¸· ±ÛÀÇ ¹øÈ£ °¡Á®¿À±â.
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 		startCount = (currentPage - 1) * rowCount + 1;
 		endCount = currentPage * rowCount;
-		// ½ÃÀÛ ÆäÀÌÁö¿Í ¸¶Áö¸· ÆäÀÌÁö °ª ±¸ÇÏ±â.
-		int startPage = (int) ((currentPage - 1) / pageCount) * pageCount + 1;
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½.
+		int startPage = (currentPage - 1) / pageCount * pageCount + 1;
 		int endPage = startPage + pageCount - 1;
-		// ¸¶Áö¸· ÆäÀÌÁö°¡ ÀüÃ¼ ÆäÀÌÁö ¼öº¸´Ù Å©¸é ÀüÃ¼ ÆäÀÌÁö ¼ö·Î ¼³Á¤
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
-		// ÀÌÀü block ÆäÀÌÁö
+		// ï¿½ï¿½ï¿½ï¿½ block ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		pagingHtml = new StringBuffer();
 		pagingHtml.append("<ul class='pagination justify-content-center'>");
 		if (currentPage > pageCount) {
-			if(keyword==null){//°Ë»ö ¹Ì»ç¿ë½Ã
+			if(keyword==null){//ï¿½Ë»ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½
 				pagingHtml.append("<li class='page-item'>");
 				pagingHtml.append("<a class='page-link' href='"+pageUrl+"?pageNum="+ (startPage - 1) + addKey +"'>");
 			}else{
 				pagingHtml.append("<li class='page-item'>");
 				pagingHtml.append("<a class='page-link' href='"+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (startPage - 1) + addKey +"'>");
 			}
-			pagingHtml.append("ÀÌÀü");
+			pagingHtml.append("ï¿½ï¿½ï¿½ï¿½");
 			pagingHtml.append("</a></li>");
 		}
 		
-		//ÆäÀÌÁö ¹øÈ£, ÇöÀç ÆäÀÌÁö Ã³¸®
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 		for (int i = startPage; i <= endPage; i++) {
 			if (i > totalPage) {
 				break;
@@ -75,7 +75,7 @@ public class PaginationUtil {
 				pagingHtml.append(i);
 				pagingHtml.append("</a></li>");
 			} else {
-				if(keyword==null){//°Ë»ö ¹Ì»ç¿ë½Ã
+				if(keyword==null){//ï¿½Ë»ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½
 					pagingHtml.append("<li class='page-item'>");
 					pagingHtml.append("<a class='page-link' href='"+pageUrl+"?pageNum=");
 				}else{
@@ -88,16 +88,16 @@ public class PaginationUtil {
 				pagingHtml.append("</a></li>");
 			}
 		}
-		// ´ÙÀ½ block ÆäÀÌÁö
+		// ï¿½ï¿½ï¿½ï¿½ block ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if (totalPage - startPage >= pageCount) {
-			if(keyword==null){//°Ë»ö ¹Ì»ç¿ë½Ã
+			if(keyword==null){//ï¿½Ë»ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½
 				pagingHtml.append("<li class='page-item'>");
 				pagingHtml.append("<a class='page-link' href='" + pageUrl + "?pageNum=" + (endPage + 1) + addKey +"'>");
 			}else{
 				pagingHtml.append("<li class='page-item'>");
 				pagingHtml.append("<a class='page-link' href='"+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (endPage + 1) + addKey +"'>");
 			}
-			pagingHtml.append("´ÙÀ½");
+			pagingHtml.append("ï¿½ï¿½ï¿½ï¿½");
 			pagingHtml.append("</a></li>");
 		}
 		pagingHtml.append("</ul>");
