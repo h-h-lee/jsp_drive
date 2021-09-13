@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 
 import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
+import oracle.jdbc.proxy.annotation.Pre;
 
 /**
  * FileName : MemberLoginDAO.java
@@ -87,8 +88,39 @@ public class MemberDAO {
 			DBUtil.executeClose(rs, pstmt1, conn);
 			
 		}
+	}
+	
+	public MemberVO checkId(String id) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		String sql = null;
 		
-		
+		MemberVO memberVO = null;
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM member WHERE id = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				memberVO = new MemberVO();
+				
+				memberVO.setId(rs.getString("id"));
+			}
+			
+			
+		}catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return memberVO;
 	}
 	
 	
@@ -216,6 +248,42 @@ public class MemberDAO {
 			throw new Exception(e);
 		}finally {
 			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+	}
+	
+	public void memberDelete(String id, int member_num) throws Exception{
+		
+		Connection conn= null;
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			conn.setAutoCommit(false);
+			
+			//member auth값 변경 0-탈퇴회원
+			sql = "UPDATE member SET auth=0 WHERE id=?";
+			pstmt1 = conn.prepareStatement(sql);
+			pstmt1.setString(1, id);
+			pstmt1.executeUpdate();
+			
+			sql = "DELETE FROM member_detail WHERE member_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, member_num);
+			pstmt2.executeUpdate();
+			
+			conn.commit();
+			
+		}catch (Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt2, conn);
+			DBUtil.executeClose(null, pstmt1, conn);
+			
 		}
 		
 	}

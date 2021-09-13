@@ -33,7 +33,7 @@ public class LoginAction implements Action {
 		boolean check = false;
 		
 			
-		if(passwd!=null) {
+		if(passwd!=null) {//비밀번호 일치 여부 체크
 			check = memberVO.isCheckPassword(passwd);
 		}
 		
@@ -53,6 +53,6 @@ public class LoginAction implements Action {
 		
 		
 		//인증 실패시 호출
-		return "/WEB-INF/views/memberLogin.jsp";
+		return "/WEB-INF/views/member/memberLogin.jsp";
 	}
 }

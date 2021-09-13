@@ -4,8 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.consulting.dao.ConsultingDAO;
-import kr.consulting.vo.ConsultingVO;
 import kr.controller.Action;
 
 public class RegisterFormAction implements Action{
@@ -16,7 +14,7 @@ public class RegisterFormAction implements Action{
 		HttpSession session = request.getSession();
 		Integer member_num = (Integer)session.getAttribute("member_num");
 		
-		//¼¼¼Ç¿¡ ÀúÀåµÈ °ªÀÌ ¾øÀ¸¸é ·Î±×ÀÎ ÆäÀÌÁö È£Ãâ
+		//ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
 		if(member_num == null) {
 			return "redirect:/member/memberLoginForm.do";
 		}

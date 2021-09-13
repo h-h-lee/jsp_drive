@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberCSS_TEST/login_style.css"> --%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+
 <script>
     function sample4_execDaumPostcode() {
         new daum.Postcode({
@@ -57,6 +59,114 @@
         }).open();
     }
 </script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	$('#member_ModifyForm').submit(function(){
+	
+		if($('#passwd1').val().trim()==''){
+			alert('패스워드를 입력하세요!');
+			$('#passwd1').focus();
+			$('#passwd1').val('');
+			return false;
+		}
+		
+		if($('#passwd2').val().trim()==''){
+			alert('패스워드 확인을 입력하세요!');
+			$('#passwd2').focus();
+			$('#passwd2').val('');
+			return false;
+		}
+		
+		
+        var n_RegExp = /^[가-힣]{2,15}$/; //이름 유효성검사 정규식
+
+		if($('#name').val().trim()==''){
+			alert('이름을 입력하세요!');
+			$('#name').focus();
+			$('#name').val('');
+			return false;
+		}
+        
+        if(!n_RegExp.test($('#name').val())){
+            alert("이름은 한글만 입력해주세요.(특수문자,영어,숫자 사용불가)");
+            return false;
+        }
+        
+		if($('#zipcode').val().trim()==''){
+			alert('우편번호를 입력하세요!');
+			$('#zipcode').focus();
+			$('#zipcode').val('');
+			return false;
+		}
+		
+		if($('#address1').val().trim()==''){
+			alert('지번주소를 입력하세요!');
+			$('#address1').focus();
+			$('#address1').val('');
+		
+			return false;
+		}
+
+		if($('#address2').val().trim()==''){
+			alert('지번주소를 입력하세요!');
+			$('#address2').focus();
+			$('#address2').val('');
+		
+			return false;
+		}        
+
+		if($('#email').val().trim()===''){
+			alert('이메일 입력하세요!');
+			$('#email').focus();
+			return false;
+		}
+		
+		var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/); //이메일 유효성
+		if(!getMail.test($('#email').val())){ 
+			alert('이메일형식에 맞게 입력해주세요'); 
+			$('#email').val(''); 
+			$('#email').focus(); 
+			return false; 
+		}
+		if($('#birth').val().trim()==''){
+			alert('생년월일을 입력하세요!');
+			$('#birth').focus();
+			$('#birth').val('');
+			return false;
+		}
+
+		if($('#phone').val().trim()==''){
+			alert('휴대폰번호를 입력하세요!');
+			$('#phone').focus();
+			$('#phone').val('');
+			return false;
+		}		
+		
+		
+	});
+	
+    $('#passwd2').focusout(function () {
+        var passwd1 = $('#passwd1').val();
+        var passwd2 = $('#passwd2').val();
+  
+        if ( passwd1 != '' && passwd2 == '' ) {
+            null;
+        } else if (passwd1 != '' || passwd2 != '') {
+            if (passwd1 == passwd2) {
+                $('#alert-success').css('display', 'inline-block');
+                $('#alert-danger').css('display', 'none');
+            } else {
+                alert('비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.');
+                $('#alert-success').css('display', 'none');
+                $('#alert-danger').css('display', 'inline-block');
+            }
+        }
+    });	
+});
+
+</script>
 </head>
 <body>
 	<!-- header 시작 -->
@@ -73,7 +183,7 @@
 		<h3>회원정보 수정</h3>
 		<br>
 		
-<form class="member_joinForm" method="post" action="myPageModify.do">
+<form id="member_ModifyForm" method="post" action="myPageModify.do">
 
 			<div class="form-group" >
 				<b><label for="id" class="col-lg-2 control-label">아이디</label></b>
@@ -89,7 +199,7 @@
 			<div class="form-group" id="divPassword">
 				<b><label for="passwd1" class="col-lg-2 control-label">패스워드</label></b>
 				<div class="col-lg-10">
-					<input type="password" class="form-control" id="passwd1" name="passwd1"  placeholder="패스워드" maxlength="30"  >
+					<input type="password" class="form-control" id="passwd1" name="passwd1"  placeholder="패스워드" maxlength="30" value="${member.passwd }" >
 				</div>
 			</div>
 			
@@ -98,7 +208,10 @@
 			<div class="form-group" id="divPasswordCheck">
 				<b><label for="passwd2"class="col-lg-2 control-label">패스워드 확인</label></b>
 				<div class="col-lg-10">
-					<input type="password" class="form-control" id="passwd2" name="passwd2"  placeholder="패스워드 확인" maxlength="30" >
+					<input type="password" class="form-control" id="passwd2" name="passwd2"  placeholder="패스워드 확인" maxlength="30" value="${member.passwd }">
+   					<span id="alert-success" style="display: none; color:blue">비밀번호가 일치합니다.</span>
+    				<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
+
 				</div>
 			</div>
 			
