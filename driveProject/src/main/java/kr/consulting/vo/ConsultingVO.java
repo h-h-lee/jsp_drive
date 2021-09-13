@@ -9,8 +9,15 @@ public class ConsultingVO {
 	private String consulting_time;
 	private Date con_date;
 	private int con_state;
+	private String id;
 	
-	
+
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getCon_state() {
 		return con_state;
 	}

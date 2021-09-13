@@ -23,8 +23,12 @@ public class UpdateFormAction implements Action{
 		ConsultingDAO dao = ConsultingDAO.getIntance();
 		ConsultingVO consulting = dao.DetailConsulting(consulting_num);
 		
-		request.setAttribute("consulting", consulting);
+		//로그인한 회원과 상담 신청한 회원이 일치하지 않으면
+		if(member_num != consulting.getMember_num()) {
+			return "redirect:/consulting/memberList.do";
+		}
 		
+		request.setAttribute("consulting", consulting);
 	
 		return "/WEB-INF/views/consulting/member/UpdateConsultingMemberForm.jsp";
 	}

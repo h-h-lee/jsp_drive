@@ -10,7 +10,8 @@
 </head>
 <body>
 <div id="header">
-	<a href="#"><img src="${pageContext.request.contextPath}/images/main/logo.png" ></a>
+	<a href="${pageContext.request.contextPath}/main/main.do">
+	<img src="${pageContext.request.contextPath}/images/main/logo.png" ></a>
 	<div class="header-menu">
 		<ul>
 		
