@@ -11,7 +11,7 @@
 <body>
 <div id="menu">
 	<ul class="menu-main">
-		<li><a href="#">학원 안내</a>
+		<li><a href="${pageContext.request.contextPath}/notice/introduce.do">학원 안내</a>
 			<ul class="sub">
 				<li><a href="${pageContext.request.contextPath}/notice/introduce.do">학원 소개</a></li>
 				<li><a href="${pageContext.request.contextPath}/notice/directions.do">찾아오시는 길</a></li>
@@ -21,7 +21,7 @@
 		</li>
 		<li><a href="#">과정 안내</a>
 			<ul class="sub">
-				<li><a href="#">과정 소개</a></li>
+				<li><a href="${pageContext.request.contextPath}/course/listCourse.do">과정 소개</a></li>
 			</ul>
 		</li>
 		<li><a href="${pageContext.request.contextPath}/application/registerAppForm.do">수강 안내</a>
@@ -31,7 +31,7 @@
 		</li>
 		<li><a href="${pageContext.request.contextPath}/consulting/registerForm.do">상담 안내</a>
 			<ul class="sub">
-				<li><a href="${pageContext.request.contextPath}/consulting/registerForm.do">상담 신청</a></li>
+				<li><a href="${pageContext.request.contextPath}/consulting/registerForm.do">상담 예약</a></li>
 			</ul>
 		</li>
 		<c:if test="${!empty member_num && empty admin_num}">
@@ -59,8 +59,8 @@
 					<li><a href="#">관리자 관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/teacher/list.do">강사 관리</a></li>
 					<li><a href="#">과정 관리</a></li>
-					<li><a href="#">수강신청내역관리</a></li>
-					<li><a href="#">상담신청내역관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/application/listAllApp.do">수강신청내역관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/consulting/adminList.do">상담신청내역관리</a></li>
 				</ul>
 			</li>
 		</c:if>

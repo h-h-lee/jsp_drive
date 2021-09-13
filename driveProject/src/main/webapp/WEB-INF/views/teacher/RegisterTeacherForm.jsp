@@ -34,7 +34,7 @@ $(document).ready(function(){
 			$('#phone').val('');
 			return false;		
 		}else if(!regExpPhone.test($('#phone').val().trim())){ //정규식을 이용한 핸드폰번호 유효성 검사
-			alert('연락처 형식이 일치하지 않습니다.');
+			alert('000-0000-0000 형식으로 입력해주세요.');
 			return false;
 		}
 		
@@ -61,13 +61,11 @@ $(document).ready(function(){
 			reader.readAsDataURL(my_photo);
 			
 			reader.onload=function(){
-				photo_path = $('.my-photo').attr('src');//이미지 미리보기 하기 전 이미지 저장
+				photo_path = $('.my-photo').attr('src');
 				$('.my-photo').attr('src',reader.result);
 			};
 		}
 	});//end of change
-	
-	
 });
 </script>
 </head>
@@ -86,10 +84,11 @@ $(document).ready(function(){
 <div class="photo-div">
 <img width="260px" height="310px" class="my-photo">
 </div>
-<div class="filebox" align="center">
-  	<label for="photo">사진 업로드</label>
-  	<input type="file" id="photo" name="photo" accept="image/gif,image/png,image/jpeg">
+	<div class="filebox" align="center">
+	  	<label for="photo">사진 업로드</label>
+	  	<input type="file" id="photo" name="photo" accept="image/gif,image/png,image/jpeg">
 </div>
+
 	<div align="center">
 		<input type="text" class="form-control input_width" id="name" name="name" placeholder="이름을 입력해 주세요">
 		<input type="text" class="form-control input_width" id="phone" name="phone" placeholder="하이픈(-) 포함 연락처를 입력해 주세요">
