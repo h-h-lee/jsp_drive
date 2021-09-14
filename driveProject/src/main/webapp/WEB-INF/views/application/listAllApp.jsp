@@ -16,16 +16,15 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		//검색어 유효성 체크
-		$(#search_form).submit(function(){
+		$(document).on('submit', '#search_form',function(){
 			if($('#keyfield').val() != 'r'){
 				if($('#keyword').val().trim()==''){
 					alert('검색어를 입력하세요!');
 					$('#keyword').val('').focus();
 					return false;
 				}
-			});
+			};
 		});
-
 		//신청결과 필드
 		$(document).on('change','#keyfield',function(){
 			var keyfield = $(this).val();
