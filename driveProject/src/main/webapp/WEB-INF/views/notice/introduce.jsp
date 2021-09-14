@@ -132,18 +132,6 @@ h3{
 		<br><br><h2>친절한 전문 강사진</h2><br><br>
 		베테랑 전문강사 및 1대1 맞춤교육 최고의 합격율, 편안한 교육환경, 신속한 면허취득, 상호 신뢰, 교육의욕 고취, 안전운전 기술 습득<br><br>
 	</div>	
-	  <div class="square2">
-		 <footer id="footer">
-		 <div class="address">
-		 	상호 : 주식회사 서울자동차운전전문학원 l 대표자명: 이승훈 l 서울특별시 강서구 남부순환로 222 (외발산동)<br>
-			Tel. 02-2665-6961 Fax. 02-2665-5958 E-mail: su803@seouldriver.co.kr l 학원 지정 번호 11-80<br>
-			통신판매신고번호 : 제 2020-서울강서-0322호 l 사업자번호 : 312-86-07443 
-		</div>	
-		<div class="phone">
-			<img src="${pageContext.request.contextPath}/images/notice/전화.png" class="call">
-			<span class="text">CALL CENTER<br>02-2665-6961</span>
-		</div>
-		</footer> 
-	  </div> 
+	  <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

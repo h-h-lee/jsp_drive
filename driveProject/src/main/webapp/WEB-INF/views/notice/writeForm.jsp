@@ -11,10 +11,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <style type="text/css">
 h2{
-	color:gray;
 	text-align:center;
 }
 .container{
+	text-align:center;
+}
+.table table-striped{
 	text-align:center;
 }
 </style>
@@ -41,19 +43,18 @@ h2{
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- menu -->
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
-	
+	<br>
 	<div class="notice-main">
-	<br><h2>게시판 글 작성</h2><br>		
 	<div class="container">
 		<div class="row">
 			<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
-			  <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+			 <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 	    		 <tr>
-					<th colspan="2" style="background-color: #eeeeee;">게시판 글쓰기 양식</th>
+					<th colspan="2" style="background-color: #eeeeee; font-size:30px;">게시판 글쓰기 양식</th>
 				</tr>
 				</thead>
-				<tbody>
+				<tbody style="text-align:center;">
 				<tr>
 					<td><input type="text" class="form-control" placeholder="글 제목" name="title" maxlength="50"></td>
 				</tr>
@@ -66,7 +67,9 @@ h2{
 				</tbody>
 			</table>
 			<!-- 글쓰기 버튼 생성 -->
-			<input type="submit" class="btn btn-primary pull-right" value="글쓰기"><br><br>
+			<div class="write" align="right">
+				<input type="submit" class="btn btn-primary pull-right" value="글쓰기"><br><br>
+			</div>
 		</form>
 		</div>
 	</div>

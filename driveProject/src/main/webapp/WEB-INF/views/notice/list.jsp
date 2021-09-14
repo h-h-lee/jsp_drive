@@ -8,13 +8,18 @@
 <title>게시판 목록</title>
 <style type="text/css">
 h2{
-	color:gray;
 	text-align:center;
 }
 .paging{
 	text-align:center;
 }
-
+.notice-display{
+	font-size:20px;
+	text-align:center;
+}
+.btn-div{
+	margin-right:100px;
+}
 </style>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
@@ -27,7 +32,7 @@ h2{
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	
 <div class="notice-main">
-	<br><h2>게시판 목록</h2><br>
+	<br><h2>게시판 목록</h2><br><br><br><br>
 	<c:if test="${count == 0}">
 	<div class="notice-display">
 		등록된 게시물이 없습니다.
@@ -55,14 +60,13 @@ h2{
 				</tr>
 				</c:forEach>
 			</table>
-			<!-- 글쓰기 버튼 생성 -->
-			<a href="writeForm.do" class="btn btn-primary pull-right">글쓰기</a>
 		</div>
 	</div>
-	<div class="paging">
-		${pagingHtml}
-	</div><br><br>
   </c:if>
+  <!-- 글쓰기 버튼 생성 --><br><br><br><br><br><br>
+			<div class="btn-div" align="right">
+				<input type="button" class="btn btn-primary pull-right" value="글쓰기" onclick="location.href='writeForm.do'"> 
+			</div><br><br><br><br>
 </div>
 <!-- Bootstrap JS -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
