@@ -20,7 +20,6 @@ public class MyPageFormAction implements Action{
 
 		if(member_id==null) {
 			
-			System.out.println("왜 널이냐~~"+member_id);
 			return "redirect:/member/memberLoginForm.do";
 		}
 		

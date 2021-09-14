@@ -26,7 +26,6 @@ public class AdminManageListForm implements Action{
 		AdminDAO adminDAO = AdminDAO.getInstance();
 		List<AdminVO> list = adminDAO.adminList();
 		
-		System.out.println("과연 리스트 개수는...? "+list.size());
 		request.setAttribute("adminList", list);
 		return "/WEB-INF/views/admin/adminManageListForm.jsp";
 	}

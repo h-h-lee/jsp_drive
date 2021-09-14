@@ -101,7 +101,7 @@ margin-left:600px;
 			<br>
 			
   			<div class="form-group" id="divEmail">
-				<b><label for="passwd1" class="col-lg-2 control-label">로그인된 본인 비밀번호 입력</label></b>
+				<b><label for="passwd1" class="col-lg-5 control-label">로그인중인 본인(관리자) 비밀번호 입력</label></b>
 				<div class="col-lg-7">
 					<input type="password" class="form-control" id="passwd1" name="passwd1" placeholder="비밀번호" maxlength="8"><br>
 				</div>

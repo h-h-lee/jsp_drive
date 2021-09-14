@@ -40,9 +40,7 @@ public class MyPageModifyAction implements Action{
 			memberVO.setPhone(request.getParameter("phone"));
 			memberVO.setMember_num(Integer.parseInt(request.getParameter("member_num")));
 			
-			System.out.println("이름 제대로 불러오냐..? "+request.getParameter("name"));
 			
-			System.out.println("값넘어오냐.....?"+Integer.parseInt(request.getParameter("member_num")));
 			MemberDAO memberDAO = MemberDAO.getInstance();
 			
 			memberDAO.myPageModify(memberVO);

@@ -27,48 +27,49 @@ margin-left:200px;
 $(document).ready(function(){
 	var idChecked = 0;
 	
-// 	$('#id_check').click(function(){
-// 		if($('#admin_id').val().trim()==''){
-// 			alert('아이디를 입력하세요');
-// 			$('#admin_id').focus();
-// 			$('#admin_id').val('');
-// 			return ;
-// 		}
-// 		$('#message_id').text('');
+	$('#id_check').click(function(){
+		if($('#admin_id').val().trim()==''){
+			alert('아이디를 입력하세요');
+			$('#admin_id').focus();
+			$('#admin_id').val('');
+			return ;
+		}
+		$('#message_id').text('');
 		
-// 		$.ajax({
-// 			url:'checkDupliatedId2.do',
-// 			type:'post',
-// 			data:{admin_id:$('#admin_id').val()},
-// 			dataType:'json',
-// 			cache:false,
-// 			timeout:30000,
-// 			success:function(param){
-// 				if(param.result=='idNotFound'){
-// 					idChecked=1;
-// 					$('#message_id').css('color','blue').text('등록가능한 ID');
-// 				}else if(param.result=='isDuplicated'){
-// 					idChecked=0;
-// 					$('#message_id').css('color','red').text('중복된 ID');
-// 					$('#admin_id').val('').focus();
-// 				}else{
-// 					idCheck=0;
-// 					alert('아이디 중복 체크 오류 발생');
-// 				}
-// 			},
-// 			error:function(){
-// 				idChecked=0;
-// 				alert('아이디 중복 체크 오류 발생');				
-// 			}
-// 		});
+		$.ajax({
+			url:'checkDupliatedId2.do',
+			type:'post',
+			data:{admin_id:$('#admin_id').val()},
+			dataType:'json',
+			cache:false,
+			timeout:30000,
+			success:function(param){
+				if(param.result=='isNotFound'){
+					idChecked=1;
+					$('#message_id').css('color','blue').text('등록가능한 ID');
+				}else if(param.result=='isDuplicated'){
+					idChecked=0;
+					$('#message_id').css('color','red').text('중복된 ID');
+					$('#admin_id').val('').focus();
+				}else{
+					idCheck=0;
+					alert('아이디 중복 체크 오류 발생');
+				}
+			},
+			error:function(){
+				alert('1');
+				idChecked=0;
+				alert('아이디 중복 체크 오류 발생');				
+			}
+		});
 		
-// 	});
+	});
 	
 	//아이디 중복 안내 메시지 초기화 및 아이디 중복 값 초기화
-// 	$('#adminAddForm #admin_id').keydown(function(){
-// 		idChecked=0;
-// 		$('#message_id').text('');
-// 	});
+	$('#adminAddForm #admin_id').keydown(function(){
+		idChecked=0;
+		$('#message_id').text('');
+	});
 	
 	var getCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/); //4~12자의 영문 대소문자와 숫자로만 입력
 
@@ -86,10 +87,10 @@ $(document).ready(function(){
 			return false; 
 		}
 		
-// 		if(idChecked==0){
-// 			alert('아이디 중복 체크 필수!');
-// 			return false;
-// 		}
+		if(idChecked==0){
+			alert('아이디 중복 체크 필수!');
+			return false;
+		}
 		
 		if($('#admin_name').val().trim()==''){
 			alert('이름 입력하세요!');
@@ -104,7 +105,38 @@ $(document).ready(function(){
 			$('#admin_passwd').val('');
 			return false;
 		}
+		
+		if($('#passwd2').val().trim()==''){
+			alert('비밀번호 확일을 입력하세요');
+			$('#passwd2').val('').focus();
+			return false;
+		}	
+		
+		if($('#admin_passwd').val()!=$('#passwd2').val()){
+			alert('비밀번호와 비밀번호확인 불일치!');
+			$('#passwd2').val('').focus();
+			return false;
+		}
+		
 	});
+	
+    $('#passwd2').focusout(function () {
+        var admin_passwd = $('#admin_passwd').val();
+        var passwd2 = $('#passwd2').val();
+  
+        if ( admin_passwd != '' && passwd2 == '' ) {
+            null;
+        } else if (admin_passwd != '' || passwd2 != '') {
+            if (admin_passwd == passwd2) {
+                $('#alert-success').css('display', 'inline-block');
+                $('#alert-danger').css('display', 'none');
+            } else {
+                alert('비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.');
+                $('#alert-success').css('display', 'none');
+                $('#alert-danger').css('display', 'inline-block');
+            }
+        }
+    });
 });
 </script>
 
@@ -164,11 +196,24 @@ $(document).ready(function(){
 			
 			<br>
 			<div class="form-group" id="divPassword">
-				<b><label for="passwd1" class="col-lg-2 control-label">패스워드</label></b>
+				<b><label for="passwd1" class="col-lg-2 control-label">비밀번호</label></b>
 				<div class="col-lg-10">
 					<input type="password" class="form-control" id="admin_passwd" name="admin_passwd"  placeholder="패스워드" maxlength="30">
 				</div>
 			</div><br>
+			
+			<div class="form-group" id="divPassword">
+				<b><label for="passwd2" class="col-lg-2 control-label">비밀번호 확인</label></b>
+				<div class="col-lg-10">
+					<input type="password" class="form-control" id="passwd2" name="passwd2"  placeholder="비밀번호 확인" maxlength="30">
+					<span id="alert-success" style="display: none; color:blue">비밀번호가 일치합니다.</span>
+    				<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
+	
+				</div>
+			</div><br>
+			
+			
+			
 			
 				<div class="col-lg-offset-2 col-lg-10">
 <!-- 					<button type="submit" class="btn btn-primary">로그인</button> -->

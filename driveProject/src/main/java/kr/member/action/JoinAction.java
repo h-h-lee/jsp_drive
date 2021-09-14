@@ -25,14 +25,6 @@ public class JoinAction implements Action{
 		
 		
 		
-		System.out.println("아이디"+request.getParameter("id"));
-		System.out.println("비번"+request.getParameter("passwd1"));
-		System.out.println("이름...."+request.getParameter("name"));
-		System.out.println("우편번호...."+request.getParameter("zipcode"));
-		System.out.println("주소1...."+request.getParameter("address1"));
-		System.out.println("주소2...."+request.getParameter("address2"));
-		System.out.println("이메일...."+request.getParameter("email"));
-		
 //		String->Date로 변환
 		
 		

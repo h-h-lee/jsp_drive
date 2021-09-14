@@ -6,9 +6,29 @@
 <meta charset="UTF-8">
 <title>로그인</title>
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-<link rel="stylesheet" href="style.css">
-<!-- <link rel="stylesheet" href="./css/login_style.css"> -->
+<link rel="stylesheet" href="../css/style.css">
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$('#loginForm').submit(function(){
+			if($('#admin_id').val().trim()==''){
+				alert('아이디를 입력하세요');
+				$('#admin_id').focus();
+				$('#admin_id').val('');
+				return false;
+			}
+			
+			if($('#admin_passwd').val().trim()==''){
+				alert('비밀번호를 입력하세요');
+				$('#admin_passwd').focus();
+				$('#admin_passwd').val('');
+				return false;
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- header 시작 -->
@@ -31,7 +51,7 @@
 </div>
 
 
-<form class="loginForm" method="post" action="adminLoginAction.do">
+<form id="loginForm" method="post" action="adminLoginAction.do">
 
 <div>
   <div class="mb-3">

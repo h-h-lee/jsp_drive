@@ -30,7 +30,6 @@ public class AdminAddAction implements Action{
 			adminVO.setAdmin_passwd(request.getParameter("admin_passwd"));
 			adminVO.setAdmin_auth(Integer.parseInt(request.getParameter("admin_auth")));
 
-			System.out.println("1이 출력 되야 정상임 !!! -->"+Integer.parseInt(request.getParameter("admin_auth")));
 			
 			AdminDAO adminDAO = AdminDAO.getInstance();
 			adminDAO.adminAdd(adminVO);

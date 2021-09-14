@@ -27,7 +27,6 @@ public class MemberDeleteAction implements Action{
 		String id2 = request.getParameter("id2");
 		String passwd = request.getParameter("passwd1");
 		int member_num2 = Integer.parseInt(request.getParameter("member_num2"));
-		System.out.println("제대로 다 찍히는지...?"+id2+"\t"+passwd+"\t"+member_num2);
 
 		boolean check = false;
 		

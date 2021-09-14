@@ -19,6 +19,10 @@ margin-left:480px;
 .table{
 margin-left:40px;
 margin-right:300px;
+margin-top:30px;
+}
+.paging{
+margin-left:100px;
 }
 
 </style>
@@ -48,7 +52,7 @@ margin-right:300px;
 <!--   <a class="list-group-item list-group-item-action disabled">A disabled link item</a> -->
 <!-- </div> -->
 
-<div class="content">
+<div class="container-scroller">
 <div class="container">
     <div class="row">
         <div class="col-sm-20">
@@ -70,6 +74,7 @@ margin-right:300px;
       <th scope="col">이름</th>
       <th scope="col">휴대폰</th>
       <th scope="col">이메일</th>
+      <th scope="col">삭제</th>
     </tr>
   </thead>
   
@@ -90,8 +95,8 @@ margin-right:300px;
   </c:forEach>
 </c:if>
 </table>
-<div class="align-center">
-	${pagingHtml}
+<div class="align-center" id="paging">
+	${pagingHtml} 
 </div>
 <!--                 </form>    -->
                      

@@ -16,6 +16,7 @@ margin-left
 
 #table2{
 margin-left:160px;
+margin-top:30px;
 }
 </style>
 
@@ -36,19 +37,11 @@ margin-left:160px;
 	    
 <jsp:include page="/WEB-INF/views/admin/adminAside.jsp"/>
 <div id="container" class="clear">
-<!-- <div class="lnb"> -->
-<!--   <a href="#" class="list-group-item list-group-item-action active" aria-current="true">마이페이지</a> -->
-<!--   <a href="#" class="list-group-item list-group-item-action">관리자 관리</a> -->
-<!--   <a href="#" class="list-group-item list-group-item-action">A third link item</a> -->
-<!--   <a href="#" class="list-group-item list-group-item-action">A fourth link item</a> -->
-<!--   <a class="list-group-item list-group-item-action disabled">A disabled link item</a> -->
-<!-- </div> -->
-
-<div class="content">
+<div class="container-scroller">
 <div class="container">
     <div class="row">
-        <div class="col-sm-15">
-            <div class="col-sm-7"></div>
+        <div class="col-sm-18">
+            <div class="col-sm-18"></div>
                 <div class="col-sm-15" id="table2">
                     <h2 class="text-center">내 정보</h2>
                      

@@ -13,13 +13,15 @@
 <style type="text/css">
 
 #btn1{
-margin-left:480px;
+margin-left:900px;
 }
 
 .table{
 margin-left:40px;
 margin-right:300px;
+margin-top:20px;
 }
+
 
 </style>
 <script type="text/javascript">
@@ -46,17 +48,23 @@ function btn(){
 <jsp:include page="/WEB-INF/views/admin/adminAside.jsp"/>
 <div id="container" class="clear">
 
-<div class="content">
+<!-- <div class="content"> -->
+<!-- <div class="container"> -->
+<!--     <div class="row"> -->
+<!--         <div class="col-sm-15"> -->
+<!--             <div class="col-sm-5"></div> -->
+<!--                 <div class="col-sm-15"> -->
+<div class="container-scroller">
 <div class="container">
     <div class="row">
-        <div class="col-sm-15">
-            <div class="col-sm-5"></div>
-                <div class="col-sm-15">
-                    <h2 class="text-center">관리자 리스트</h2>
+        <div class="col-sm-20">
+            <div class="col-sm-22"></div>
+                <div class="col-sm-20">
+                    <h2 class="text-center" id="tSize">관리자 리스트</h2>
                     
                  
                  
-<input type="button" value="관리자 추가" id="btn1" class="btn btn-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/admin/adminAddForm.do'">
+<input type="button" value="관리자 추가" id="btn1" class="btn btn-primary btn-md" onclick="location.href='${pageContext.request.contextPath}/admin/adminAddForm.do'">
                     
 <!--                     <form action="MemberUpdateProc.jsp" method="post"> -->
 <table class="table">
@@ -66,7 +74,7 @@ function btn(){
       <th scope="col">아이디</th>
       <th scope="col">이름</th>
       <th scope="col">관리자 구분</th>
-      <th scope="col"></th>
+      <th scope="col">삭제</th>
     </tr>
   </thead>
   

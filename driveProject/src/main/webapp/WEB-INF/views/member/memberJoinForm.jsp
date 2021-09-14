@@ -111,6 +111,12 @@
 	
 	var getCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/); //4~12자의 영문 대소문자와 숫자로만 입력
 
+// 	var getPhone = RegExp(/^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/);
+	
+	var getPhone = RegExp(/01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/);
+
+	
+	
 	$('#member_joinForm').submit(function(){
 		
 		if($('#id').val().trim()==''){
@@ -219,6 +225,13 @@
 			alert('휴대폰번호를 입력하세요!');
 			$('#phone').focus();
 			$('#phone').val('');
+			return false;
+		}
+		
+		if(!getPhone.test($('#phone').val())){
+			alert('휴대폰 형식에 맞게 입력하세요. ex)010-XXXX-XXXX');
+			$('#phone').val('');
+			$('#phone').focus();
 			return false;
 		}
 		
@@ -388,7 +401,7 @@ display: inline-block;
 			<div class="form-group" id="divPhoneNumber">
 				<b><label for="phone" class="col-lg-2 control-label">휴대폰번호</label></b>
 				<div class="col-lg-7">
-					<input type="tel" class="form-control onlyNumber" id="phone" name="phone" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="20">
+					<input type="tel" class="form-control onlyNumber" id="phone" name="phone" placeholder="-를 포함하여 입력. ex)010-XXXX-XXXX" maxlength="20">
 				</div>
 			</div>
 
