@@ -19,17 +19,17 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	<!-- 본문 시작 -->
 	<div id="main-width">
-		<div id="menuinfo">수강신청</div>
-		<div class="card bg-light text-dark">
+		<div id="menuinfo">수강 신청</div>
+		<div class="card bg-light">
 	    	<div class="card-body object-center text-center">
 	    		<c:if test="${check==true}">
-	    		<div class="font-weight-bold text-primary my-5">수강신청이 완료되었습니다.</div>
+	    		<div class="text-primary my-5 empty-card">수강신청이 완료되었습니다.</div>
 	    		</c:if>
 	    		<c:if test="${check==false}">
-	    		<div class="font-weight-bold text-danger my-5">이미 신청하신 과정입니다.</div>
+	    		<div class="text-danger my-5 empty-card">이미 신청하신 과정입니다.</div>
 	    		</c:if>
 	    		<div>
-					<input type="button" value="수강신청 내역" class="btn btn-primary" onclick="location.href='listApp.do'">
+					<input type="button" value="수강신청내역" class="btn btn-primary" onclick="location.href='listApp.do'">
 					<input type="button" value="돌아가기" class="btn btn-secondary" onclick="location.href='registerAppForm.do'">
 				</div>
 			</div>

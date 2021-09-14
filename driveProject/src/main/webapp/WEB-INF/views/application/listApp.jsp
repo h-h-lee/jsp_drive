@@ -18,7 +18,7 @@
 		//수강신청 취소 확인
 		$(document).on('click', '#btn-cancel', function(){
 			var appnum = $(this).attr('data-appnum');
-			var choice = confirm('정말 취소하시겠습니까?');
+			var choice = confirm('수강 신청을 취소하시겠습니까?');
 			if(choice){
 				location.href='cancelApp.do?app_num=' + appnum;
 			}else{
@@ -35,18 +35,17 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	<!-- 본문 시작 -->
 	<div id="main-width">
-		<div id="menuinfo">수강신청 내역</div>
+		<div id="menuinfo">수강 신청 내역</div>
 		<div class="card">
 		    <div class="card-body object-center text-center">
 				<c:if test="${count==0}">
-				<div class="font-weight-bold my-5">신청하신 과정이 없습니다.</div>
+				<div class="my-5 text-danger empty-card">신청하신 과정이 없습니다.</div>
 				<div>
-				<input type="button" value="수강신청" class="btn btn-primary" onclick="location.href='registerAppForm.do'">
-				<input type="button" value="홈으로" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+				<input type="button" value="수강신청" class="btn btn-outline-primary" onclick="location.href='registerAppForm.do'">
 				</div>
 				</c:if>
 				<c:if test="${count>0}">
-				<table class="table table-hover">
+				<table class="table table-hover line-bottom">
 					<thead>
 					<tr>
 						<th width="30%">과정명</th>
@@ -67,7 +66,7 @@
 							<c:if test="${app.app_result==1}"><span class="badge badge-pill badge-primary">승인</span></c:if>
 							<c:if test="${app.app_result==2}"><span class="badge badge-pill badge-danger">미승인</span></c:if>
 						</td>
-						<td><button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='cancelApp.do?app_num=${app.app_num}'"
+						<td><button type="button" class="btn btn-outline-danger btn-sm" id="btn-cancel" data-appnum="${app.app_num}"
 							<c:if test="${app.app_result!=0}">disabled</c:if>
 							>수강신청 취소</button></td>
 					</tr>

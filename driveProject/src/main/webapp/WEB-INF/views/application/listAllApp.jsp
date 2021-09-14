@@ -46,7 +46,7 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	<!-- 본문 시작 -->
 	<div id="main-width">
-		<div id="menuinfo">수강신청내역 관리</div>
+		<div id="menuinfo">수강 신청 내역</div>
 		<div class="card">
 		    <div class="card-body object-center text-center">
 		    	<!-- 검색창 시작 -->
@@ -72,10 +72,10 @@
 				</form>
 				<!-- 검색창 끝 -->
 				<c:if test="${count==0}">
-				<div class="font-weight-bold my-5">수강신청 내역이 없습니다.</div>
+				<div class="my-5 text-danger empty-card">수강 신청 내역이 없습니다.</div>
 				</c:if>
 				<c:if test="${count>0}">
-				<table class="table table-hover">
+				<table class="table table-hover line-bottom">
 					<thead>
 					<tr>
 						<th width="30%">과정명</th>
@@ -98,7 +98,7 @@
 							<c:if test="${app.app_result==1}"><span class="badge badge-pill badge-primary">승인</span></c:if>
 							<c:if test="${app.app_result==2}"><span class="badge badge-pill badge-danger">미승인</span></c:if>
 						</td>
-						<td><button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='detailApp.do?app_num=${app.app_num}'">상세보기</button></td>
+						<td><button type="button" class="btn btn-outline-dark btn-sm" onclick="location.href='detailApp.do?app_num=${app.app_num}'">상세보기</button></td>
 					</tr>
 					</c:forEach>
 				</tbody>

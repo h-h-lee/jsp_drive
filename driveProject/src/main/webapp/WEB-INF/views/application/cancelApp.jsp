@@ -18,12 +18,12 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	<!-- 본문 시작-->
 	<div id="main-width">
-		<div id="menuinfo">수강신청 취소</div>
-		<div class="card bg-light text-dark">
+		<div id="menuinfo">수강 신청 취소</div>
+		<div class="card bg-light">
 	    	<div class="card-body object-center text-center">
-	    		<div class="font-weight-bold my-5">수강신청 취소가 완료되었습니다.</div>
+	    		<div class="my-5 empty-card">수강 신청 취소가 완료되었습니다.</div>
 	    		<div>
-					<input type="button" value="수강신청 내역" class="btn btn-primary" onclick="location.href='listApp.do'">
+					<input type="button" value="수강신청내역" class="btn btn-primary" onclick="location.href='listApp.do'">
 					<input type="button" value="돌아가기" class="btn btn-secondary" onclick="location.href='registerAppForm.do'">
 				</div>
 			</div>

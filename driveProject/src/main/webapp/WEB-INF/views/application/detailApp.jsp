@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>수강신청 및 회원정보 상세</title>
+<title>수강 신청 상세보기</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
 <!-- style.css -->
@@ -31,34 +31,36 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	<!-- 본문 시작 -->
 	<div id="main-width">
-		<div id="menuinfo">수강신청 상세정보</div>
+		<div id="menuinfo">수강 신청 상세보기</div>
 		<!-- 수강신청 정보 -->
 		<div class="card">
-			<h6 class="card-header"><b>수강신청 정보</b></h6>
-	    	<div class="card-body object-center">
-	    		<table class="table table-borderless">
+			<p class="card-header font-title">수강 신청 정보</p>
+	    	<div class="card-body object-half">
+	    		<table class="table table-borderless font-content">
 					<tbody>
 					<tr class="line-bottom">
 						<th>과정명</th>
-						<td colspan="3">${app.course_name}</td>
+						<td>${app.course_name}</td>
 					</tr>
 					<tr class="line-bottom">
 						<th>강사명</th>
-						<td colspan="3">${app.teacher_name }</td>
+						<td>${app.teacher_name }</td>
 					</tr>
-					<tr>
+					<tr class="line-bottom">
 						<th>신청일</th>
 						<td>${app.app_date}</td>
+					</tr>
+					<tr>
 						<th>신청결과</th>
 						<td>
 							<form class="form-inline" action="modifyAppResult.do" method="post">
 								<input type="hidden" name="app_num" value="${app.app_num}">
-								<select class="form-control form-control-sm" name="app_result" id="app_result">
+								<select class="form-control form-control-sm" name="app_result" id="app_result" style="width: 150px;">
 									<option value="0">신청완료</option>
 									<option value="1">승인</option>
 									<option value="2">미승인</option>
 								</select>
-								<input type="submit" value="변경" class="btn btn-outline-danger btn-sm ml-2">
+								<input type="submit" value="변경" class="btn btn-danger btn-sm ml-2">
 							</form>
 						</td>
 					</tr>
@@ -68,19 +70,27 @@
 	    </div>
 		<!-- 회원 정보 -->
 		<div class="card mt-3">
-			<h6 class="card-header font-weight-bold">수강생 정보</h6>
-	    	<div class="card-body object-center">
-	    		<table class="table table-borderless">
+			<p class="card-header font-title">회원 정보</p>
+	    	<div class="card-body object-half">
+	    		<table class="table table-borderless font-content">
 					<tbody>
+					<tr class="line-bottom">
+						<th>아이디</th>
+						<td>${member.id}</td>
+					</tr>
 					<tr class="line-bottom">
 						<th>이름</th>
 						<td>${member.name}</td>
+					</tr>
+					<tr class="line-bottom">
 						<th>생년월일</th>
 						<td>${member.birth }</td>
 					</tr>
 					<tr class="line-bottom">
 						<th>연락처</th>
 						<td>${member.phone}</td>
+					</tr>
+					<tr class="line-bottom">
 						<th>이메일</th>
 						<td>${member.email}</td>
 					</tr>
@@ -94,7 +104,7 @@
 	    </div>
     	<!-- 버튼 -->
     	<div class="text-center mt-3">
-			<input type="button" value="수강신청 내역" class="btn btn-primary" onclick="location.href='listAllApp.do'">
+			<input type="button" value="수강신청내역" class="btn btn-primary" onclick="location.href='listAllApp.do'">
 			<input type="button" value="홈으로" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 		</div>
 	</div>

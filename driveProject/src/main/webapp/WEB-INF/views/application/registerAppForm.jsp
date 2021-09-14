@@ -20,25 +20,44 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	<!-- 본문 시작 -->
 	<div id="main-width">
-		<div id="menuinfo">수강신청</div>
+		<div id="menuinfo">수강 신청</div>
 		<!-- 안내사항 시작 -->
 		<div class="card bg-light text-dark">
-	    	<div class="card-body object-center">
-	    		<h5 class="card-title text-danger font-weight-bold">&lt;안내사항&gt;</h5>
-      			<p class="card-text">
-      				도로주행 교육만 수강을 원하시는 경우 학원으로 문의바랍니다.<br>
-					※ 모든 금액은 부가세 포함입니다.
-      			</p>
+	    	<div class="card-body object-half">
+	    		<p class="card-title text-danger font-title">&lt;수강 안내사항&gt;</p>
+	    		<div class="mt-3 font-content">
+      			<table class="table">
+      				<tr>
+      					<th class="text-center" width="30%">입학자격</th>
+      					<td>
+      						- 만 18세 이상<br>
+							- 운전면허 결격사유가 없는 분
+      					</td>
+      				</tr>
+      				<tr>
+      					<th class="text-center">입학준비물</th>
+      					<td>
+      						- 신분증<br>
+							- 증명사진 3매
+      					</td>
+      				</tr>
+      				<tr>
+      					<td colspan="2">
+      						※ 수강신청내역은 '마이페이지 > 수강신청내역' 메뉴에서 확인하실 수 있습니다.<br>
+	      					※ 모든 금액은 부가세 포함입니다.
+      					</td>
+      			</table>
+      			</div>
 	    	</div>
 	 	</div>
 	 	<!-- 안내사항 끝 -->
 		<div class="card mt-3">
 		    <div class="card-body object-center text-center">
 		    	<c:if test="${count==0}">
-				<div class="font-weight-bold my-5">수강신청 중인 과정이 없습니다.</div>
+				<div class="my-5 text-danger empty-card">모집 중인 과정이 없습니다.</div>
 				</c:if>
 				<c:if test="${count>0}">
-				<table class="table table-hover text-center">
+				<table class="table table-hover text-center line-bottom">
 					<thead>
 					<tr>
 						<th width="30%">과정명</th>

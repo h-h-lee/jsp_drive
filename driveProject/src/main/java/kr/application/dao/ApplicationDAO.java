@@ -342,6 +342,7 @@ public class ApplicationDAO {
 			sql = "SELECT * FROM application A "
 					+ "JOIN course C ON A.course_num=C.course_num "
 					+ "JOIN teacher T ON C.teacher_num=T.teacher_num "
+					+ "JOIN member M ON A.member_num = M.member_num "
 					+ "JOIN member_detail D ON A.member_num=D.member_num WHERE app_num=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -362,7 +363,9 @@ public class ApplicationDAO {
 				
 				//회원 정보
 				MemberVO member = new MemberVO();
-				app.setMember_num(rs.getInt("member_num"));
+				member.setMember_num(rs.getInt("member_num"));
+				member.setAuth(rs.getInt("auth"));
+				member.setId(rs.getString("id"));
 				member.setName(rs.getString("name"));
 				member.setBirth(rs.getString("birth"));
 				member.setPhone(rs.getString("phone"));

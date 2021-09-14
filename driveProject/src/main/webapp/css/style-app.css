@@ -5,12 +5,34 @@
 	width: 95%;
 	margin: 3% auto;
 }
+.object-half{
+	width: 50%;
+	margin: 3% auto;
+}
 .paging{
-	margin-top: 30px;
+	margin-top: 40px;
 	margin-bottom: -15px;
 }
 
-/* 테두리 */
+/* 테이블 스타일 */
 .line-bottom{
 	border-bottom: 1px solid rgba(0,0,0,.125);
+}
+table.table{
+	margin-bottom: 0;
+}
+
+/* 폰트 스타일 */
+.font-title{
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+.font-content {
+	font-size: 16px;
+	line-height: 1.8em;
+}
+.empty-card {
+	font-size: 18px; 
+	font-weight: bold;
 }
