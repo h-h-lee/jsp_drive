@@ -71,6 +71,7 @@ text-align: center;
 	list-style:none;
 	float:left;
 	line-height: 100px;
+	color:#212121;
 }
 
 #header .header-menu ul>li::after{
@@ -78,7 +79,7 @@ text-align: center;
  padding-left:7px;
  content: "|";
   float: right;
-  color:#636466;
+  color:#212121;
   font-size: 14px;
   
 }
@@ -88,7 +89,7 @@ text-align: center;
 
 #header .header-menu li a{
 	padding:10px 15px;
-	color : #636466;
+	color:#212121;
 	font-size: 15px;
 	text-decoration: none;
 }

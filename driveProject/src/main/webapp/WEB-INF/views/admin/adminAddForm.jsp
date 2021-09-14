@@ -7,11 +7,10 @@
 <meta charset="UTF-8">
 <title>관리자 메인폼</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminCSS/adminStyle.css">
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <style type="text/css">
-
 #btn1{
 margin-left:480px;
 }
@@ -23,8 +22,91 @@ margin-right:300px;
 #admin_1{
 margin-left:200px;
 }
-
 </style>
+<script type="text/javascript">
+$(document).ready(function(){
+	var idChecked = 0;
+	
+// 	$('#id_check').click(function(){
+// 		if($('#admin_id').val().trim()==''){
+// 			alert('아이디를 입력하세요');
+// 			$('#admin_id').focus();
+// 			$('#admin_id').val('');
+// 			return ;
+// 		}
+// 		$('#message_id').text('');
+		
+// 		$.ajax({
+// 			url:'checkDupliatedId2.do',
+// 			type:'post',
+// 			data:{admin_id:$('#admin_id').val()},
+// 			dataType:'json',
+// 			cache:false,
+// 			timeout:30000,
+// 			success:function(param){
+// 				if(param.result=='idNotFound'){
+// 					idChecked=1;
+// 					$('#message_id').css('color','blue').text('등록가능한 ID');
+// 				}else if(param.result=='isDuplicated'){
+// 					idChecked=0;
+// 					$('#message_id').css('color','red').text('중복된 ID');
+// 					$('#admin_id').val('').focus();
+// 				}else{
+// 					idCheck=0;
+// 					alert('아이디 중복 체크 오류 발생');
+// 				}
+// 			},
+// 			error:function(){
+// 				idChecked=0;
+// 				alert('아이디 중복 체크 오류 발생');				
+// 			}
+// 		});
+		
+// 	});
+	
+	//아이디 중복 안내 메시지 초기화 및 아이디 중복 값 초기화
+// 	$('#adminAddForm #admin_id').keydown(function(){
+// 		idChecked=0;
+// 		$('#message_id').text('');
+// 	});
+	
+	var getCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/); //4~12자의 영문 대소문자와 숫자로만 입력
+
+	$('#adminAddForm').submit(function(){
+		if($('#admin_id').val().trim()==''){
+			alert('아이디를 입력하세요.');
+			$('#admin_id').focus();
+			$('#admin_id').val('');
+		}
+		
+		if(!getCheck.test($("#admin_id").val())){ 
+			alert("4~12자의 영문 대소문자와 숫자로만 입력"); 
+			$('#admin_id').val(''); 
+			$('#admin_id').focus(); 
+			return false; 
+		}
+		
+// 		if(idChecked==0){
+// 			alert('아이디 중복 체크 필수!');
+// 			return false;
+// 		}
+		
+		if($('#admin_name').val().trim()==''){
+			alert('이름 입력하세요!');
+			$('#admin_name').focus();
+			$('#admin_name').val('');
+			return false;
+		}
+		
+		if($('#admin_passwd').val().trim()==''){
+			alert('패스워드를 입력하세요!');
+			$('#admin_passwd').focus();
+			$('#admin_passwd').val('');
+			return false;
+		}
+	});
+});
+</script>
 
 </head>
 <body>
@@ -59,14 +141,16 @@ margin-left:200px;
                 <div class="col-sm-15" id="admin_1">
                     <h2 class="text-center">관리자 추가</h2>
 						<br>                    
-                    <form action="adminAdd.do" method="post">
+                    <form id="adminAddForm" action="adminAdd.do" method="post">
 					<input type="radio" name="admin_auth" value="1" checked>일반관리자
 					<br>
 					<br>
 			<div class="form-group" >
 				<b><label for="admin_id" class="col-lg-2 control-label">아이디</label></b>
 				<div class="col-lg-10">
-					<input type="text" class="form-control" id="admin_id" name="admin_id"  placeholder="20자이내의 " maxlength="20">
+					<input type="text" class="form-control" id="admin_id" name="admin_id"  placeholder="4~12자의 영문 대소문자와 숫자로만 입력 " maxlength="20">
+					<br><input type="button"  value="ID중복체크" id="id_check">
+					<span id="message_id"></span>
 				</div>
 			</div>
 			
@@ -74,7 +158,7 @@ margin-left:200px;
 			<div class="form-group" >
 				<b><label for="admin_name" class="col-lg-2 control-label">이름</label></b>
 				<div class="col-lg-10">
-					<input type="text" class="form-control" id="admin_name" name="admin_name"  placeholder="20자이내의 " maxlength="20">
+					<input type="text" class="form-control" id="admin_name" name="admin_name"  placeholder="이름 " maxlength="20">
 				</div>
 			</div>
 			

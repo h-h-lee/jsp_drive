@@ -86,16 +86,16 @@ margin-left:600px;
 <br>
 
 
-<form id="deleteForm" method="post" action="adminDeleteAction.do">
+<form id="deleteForm" method="post" action="memberDeleteAction.do">
 
   <div class="mb-3">
   <br>
   <h3>일반관리자 삭제</h3>
   <br>
   			<div class="form-group" id="divEmail">
-				<b><label for="id" class="col-lg-2 control-label">삭제할 관리자 아이디</label></b>
+				<b><label for="id" class="col-lg-2 control-label">삭제할 회원 아이디</label></b>
 				<div class="col-lg-7">
-					<input type="text" class="form-control" id="admin_id2" name="admin_id2" maxlength="8" readonly="readonly" value="${admin_id2}">
+					<input type="text" class="form-control" id="id2" name="id2" maxlength="8" readonly="readonly" value="${id2}">
 				</div>
 			</div>	
 			<br>
@@ -117,10 +117,10 @@ margin-left:600px;
 				</div>
 			</div>	
   
-  
+  <input type="hidden" value="${member_num2}" name="member_num2">
   		<br>
         <div class="bottomText">
-  <button type="submit" class="btn btn-danger">관리자 삭제</button>
+  <button type="submit" class="btn btn-danger">회원 삭제</button>
   <input type="button" class="btn btn-primary" value="취소" onclick="location.href='memberMyPageForm.do'">
   
       </div>

@@ -30,6 +30,8 @@ public class ModifyAppResultAction implements Action{
 		ApplicationDAO dao = ApplicationDAO.getinstance();
 		dao.setAppResult(app_num, app_result);
 		
+		request.setAttribute("app_num", app_num);
+		
 		return "/WEB-INF/views/application/modifyAppResult.jsp";
 	}
 }

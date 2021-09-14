@@ -30,9 +30,17 @@ public class RegisterAppAction implements Action{
 		app.setMember_num(member_num);
 		app.setCourse_num(course_num);
 		
-		//수강신청 등록
+		//수강신청 중복 체크
 		ApplicationDAO dao = ApplicationDAO.getinstance();
-		dao.insertApp(app);
+		boolean check = false;
+		if(dao.checkApp(app)==0) {
+			check = true;
+			
+			//수강신청 등록
+			dao.insertApp(app);
+		}
+		
+		request.setAttribute("check", check);
 		
 		return "/WEB-INF/views/application/registerApp.jsp";
 	}

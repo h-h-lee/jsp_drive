@@ -27,14 +27,14 @@ public class ListAction implements Action{
 		
 		List<CourseVO> list = null;
 		if(count > 0) {
-			list = dao.getListBoard(page.getStartCount(), page.getEndCount());
+			list = dao.getListCourse(page.getStartCount(), page.getEndCount());
 		}
 		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("pagingHtml", page.getPagingHtml());
 		
-		return "/WEB-INF/views/board/list.jsp";
+		return "/WEB-INF/views/course/list.jsp";
 	}
 
 }

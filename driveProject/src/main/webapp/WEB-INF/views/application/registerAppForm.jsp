@@ -18,13 +18,13 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- menu -->
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
-	<!-- 본문 -->
+	<!-- 본문 시작 -->
 	<div id="main-width">
-		<h4 class="my-4 font-weight-bold">수강신청</h4>
+		<div id="menuinfo">수강신청</div>
 		<!-- 안내사항 시작 -->
-		<div class="card bg-light text-dark my-3">
-	    	<div class="card-body object-center my-3">
-	    		<h6 class="card-title text-danger font-weight-bold">&lt;안내사항&gt;</h6>
+		<div class="card bg-light text-dark">
+	    	<div class="card-body object-center">
+	    		<h5 class="card-title text-danger font-weight-bold">&lt;안내사항&gt;</h5>
       			<p class="card-text">
       				도로주행 교육만 수강을 원하시는 경우 학원으로 문의바랍니다.<br>
 					※ 모든 금액은 부가세 포함입니다.
@@ -32,10 +32,10 @@
 	    	</div>
 	 	</div>
 	 	<!-- 안내사항 끝 -->
-		<div class="card my-3">
-		    <div class="card-body object-center my-3 text-center">
-		    	<c:if test="${count==null}">
-					<div>모집중인 과정이 없습니다.</div>
+		<div class="card mt-3">
+		    <div class="card-body object-center text-center">
+		    	<c:if test="${count==0}">
+				<div class="font-weight-bold my-5">수강신청 중인 과정이 없습니다.</div>
 				</c:if>
 				<c:if test="${count>0}">
 				<table class="table table-hover text-center">
@@ -50,8 +50,8 @@
 					<tbody>
 					<c:forEach var="course" items="${list}">
 					<tr>
-						<td>${course.course_name}</td>
-						<td>${course.teacher_name }</td>
+						<td class="text-primary">${course.course_name}</td>
+						<td>${map.get(course.teacher_num)}</td>
 						<td><fmt:formatNumber value="${course.tuition}" type="number"/>원</td>
 						<td><button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='registerApp.do?course_num=${course.course_num}'"
 							<c:if test="${!empty admin_num}">disabled="disabled"</c:if>
@@ -60,11 +60,12 @@
 					</c:forEach>
 					</tbody>
 				</table>
+				<div class="paging">${pagingHtml}</div>
 				</c:if>
 			</div>
-			<div>${pagingHtml}</div>
 		</div>
 	</div>
+	<!-- 본문 끝 -->
 	<!-- Bootstrap JS -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
