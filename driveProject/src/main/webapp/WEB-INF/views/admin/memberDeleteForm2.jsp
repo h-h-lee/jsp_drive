@@ -82,48 +82,51 @@ margin-left:600px;
 	
 <div id="main-width">
 <div id="menuinfo">
-	일반 관리자 삭제
+	회원 삭제
 </div>
 <br>
 <br>
 
-<div align="center">
-<form id="deleteForm" method="post" action="adminDeleteAction.do">
+
+<form id="deleteForm" method="post" action="memberDeleteAction.do">
+
   			<div class="form-group" id="divEmail">
-				<b><label for="id" class="col-lg-2 control-label" style="margin-right: 250px;">삭제할 관리자 아이디</label></b>
+				<b><label for="id" class="col-lg-2 control-label">삭제할 회원 아이디</label></b>
 				<div class="col-lg-7">
-					<input type="text" class="form-control" id="admin_id2" name="admin_id2" maxlength="8" readonly="readonly" value="${admin_id2}" style="width: 400px;">
+					<input type="text" class="form-control" id="id2" name="id2" maxlength="8" readonly="readonly" value="${id2}">
 				</div>
 			</div>	
 			<br>
 			
   			<div class="form-group" id="divEmail">
-				<b><label for="passwd1" class="col-lg-3 control-label" style="margin-right: 200px;">로그인된 본인 비밀번호 입력</label></b>
+				<b><label for="passwd1" class="col-lg-5 control-label">로그인중인 본인(관리자) 비밀번호 입력</label></b>
 				<div class="col-lg-7">
-					<input type="password" class="form-control" id="passwd1" name="passwd1" placeholder="비밀번호" maxlength="8" style="width: 400px;"><br>
+					<input type="password" class="form-control" id="passwd1" name="passwd1" placeholder="비밀번호" maxlength="8"><br>
 				</div>
 			</div>	
   			<div class="form-group" id="divEmail">
-				<b><label for="passwd2" class="col-lg-3 control-label"  style="margin-right: 300px;">비밀번호 확인</label></b>
+				<b><label for="passwd2" class="col-lg-2 control-label">비밀번호 확인</label></b>
 				<div class="col-lg-7">
-					<input type="password" class="form-control" id="passwd2" name="passwd2" placeholder="비밀번호 확인" maxlength="8" style="width: 400px;">
+					<input type="password" class="form-control" id="passwd2" name="passwd2" placeholder="비밀번호 확인" maxlength="8">
 <!-- 					<span id="message_pw"></span> -->
 					<span id="alert-success" style="display: none; color:blue">비밀번호가 일치합니다.</span>
     				<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
 					
 				</div>
 			</div>	
+  
+  <input type="hidden" value="${member_num2}" name="member_num2">
   		<br>
-        <div class="bottomText" style="text-align: center;">
-  <button type="submit" class="btn btn-danger">관리자 삭제</button>
+        <div class="bottomText">
+  <button type="submit" class="btn btn-danger">회원 삭제</button>
   <input type="button" class="btn btn-primary" value="취소" onclick="location.href='memberMyPageForm.do'">
   
       </div>
 </div>
   
 </form>
+
 </div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 </html>

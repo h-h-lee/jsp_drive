@@ -20,6 +20,18 @@ h2{
 .btn-div{
 	margin-right:100px;
 }
+
+.notice-main{
+	min-height: 100%;
+	position:relative;
+	padding-bottom: 215px;}
+	
+.main-div{
+	width:1200px; 
+	margin:0 auto; 
+	height: 200px;
+
+}
 </style>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
@@ -30,19 +42,30 @@ h2{
 
 	<!-- menu -->
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
-	
+
+<div class="main-div">
+<div id="menuinfo">
+	공지사항
+</div>
+</div>
 <div class="notice-main">
-	<br><h2>게시판 목록</h2><br><br><br><br>
 	<c:if test="${count == 0}">
 	<div class="notice-display">
-		등록된 게시물이 없습니다.
+		등록된 게시물이 없습니다.<br>
+		<input type="button" class="btn btn-primary pull-right" value="글쓰기" onclick="location.href='writeForm.do'"> 
 	</div>
 	</c:if> 
 	<c:if test="${count > 0}">
-	
+		<c:if test="${admin_num == null}">
+		</c:if>
+		<c:if test="${admin_num != null}">
+			<div align="right" style="margin-right: 390px;">
+				<input type="button" class="btn btn-primary pull-right" value="글쓰기" onclick="location.href='writeForm.do'"> 
+			</div>
+		</c:if>
 		<div class="container">
 		<div class="row">
-			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+			<table class="table" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
 						<th style="background-color: #eeeeee; text-align: center;">번호</th>
@@ -52,7 +75,7 @@ h2{
 					</tr>
 				</thead>
 				<c:forEach var="notice" items="${list}">
-				<tr>
+				<tr style="background: white;">
 					<td>${notice.notice_num}</td>
 					<td><a href="detail.do?notice_num=${notice.notice_num}">${notice.title}</a></td>
 					<td>${notice.reg_date}</td>
@@ -63,11 +86,8 @@ h2{
 		</div>
 	</div>
   </c:if>
-  <!-- 글쓰기 버튼 생성 --><br><br><br><br><br><br>
-			<div class="btn-div" align="right">
-				<input type="button" class="btn btn-primary pull-right" value="글쓰기" onclick="location.href='writeForm.do'"> 
-			</div><br><br><br><br>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 <!-- Bootstrap JS -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>

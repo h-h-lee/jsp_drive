@@ -152,20 +152,13 @@ $(document).ready(function(){
    <div class="wrap">
    <br>
 	    <header class="w">
-		    <h1>관리자 추가</h1>
+		    <h3>관리자 추가</h3>
 	    </header>
 	    
 <jsp:include page="/WEB-INF/views/admin/adminAside.jsp"/>
 <div id="container" class="clear">
-<!-- <div class="lnb"> -->
-<!--   <a href="#" class="list-group-item list-group-item-action active" aria-current="true">마이페이지</a> -->
-<!--   <a href="#" class="list-group-item list-group-item-action">관리자 관리</a> -->
-<!--   <a href="#" class="list-group-item list-group-item-action">A third link item</a> -->
-<!--   <a href="#" class="list-group-item list-group-item-action">A fourth link item</a> -->
-<!--   <a class="list-group-item list-group-item-action disabled">A disabled link item</a> -->
-<!-- </div> -->
 
-<div class="content">
+<div style="width: 1000px;">
 <div class="container">
     <div class="row">
         <div class="col-sm-15">
@@ -196,14 +189,14 @@ $(document).ready(function(){
 			
 			<br>
 			<div class="form-group" id="divPassword">
-				<b><label for="passwd1" class="col-lg-2 control-label">비밀번호</label></b>
+				<b><label for="passwd1" class="col-lg-3 control-label">비밀번호</label></b>
 				<div class="col-lg-10">
 					<input type="password" class="form-control" id="admin_passwd" name="admin_passwd"  placeholder="패스워드" maxlength="30">
 				</div>
 			</div><br>
 			
 			<div class="form-group" id="divPassword">
-				<b><label for="passwd2" class="col-lg-2 control-label">비밀번호 확인</label></b>
+				<b><label for="passwd2" class="col-lg-3 control-label">비밀번호 확인</label></b>
 				<div class="col-lg-10">
 					<input type="password" class="form-control" id="passwd2" name="passwd2"  placeholder="비밀번호 확인" maxlength="30">
 					<span id="alert-success" style="display: none; color:blue">비밀번호가 일치합니다.</span>
@@ -240,7 +233,8 @@ $(document).ready(function(){
     </div>
 
 
-
+    <div style="margin-bottom: 100px;"></div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
 </body>

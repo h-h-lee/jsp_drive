@@ -80,18 +80,14 @@ margin-left:600px;
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	<!-- menu 끝 -->
 	
+
+
 <div id="main-width">
-
-<br>
-<br>
-
-
-<form id="deleteForm" method="post" action="memberDelete.do">
-
-  <div class="mb-3">
-  <br>
-  <h3>회원 탈퇴</h3>
-  <br>
+<div id="menuinfo">
+	회원 탈퇴
+</div>
+<div style="margin-left: auto;">
+<form id="deleteForm" method="post" action="memberDelete.do" style="width: 800px; margin-left: 380px; margin-right: auto;">
   			<div class="form-group" id="divEmail">
 				<b><label for="id" class="col-lg-2 control-label">아이디</label></b>
 				<div class="col-lg-7">
@@ -115,19 +111,16 @@ margin-left:600px;
 					
 				</div>
 			</div>	
-  
-  
-  		<br>
-        <div class="bottomText">
-  <button type="submit" class="btn btn-danger">회원탈퇴</button>
-  <input type="button" class="btn btn-primary" value="취소" onclick="location.href='memberMyPageForm.do'">
-  
+	<div style="margin-left: 145px;">
+	  <button type="submit" class="btn btn-danger">회원탈퇴</button>
+	  <input type="button" class="btn btn-primary" value="취소" onclick="location.href='memberMyPageForm.do'">
+  </div>
+  </form>
       </div>
 </div>
   
-</form>
 
-</div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

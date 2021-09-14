@@ -15,11 +15,16 @@
 }	
 #notice{
 	font-size:30px;
-	background-color: #eeeeee; 
 	text-align: center;" 
 }
 .btn btn-primary{
 	line-height:2.2;
+}
+
+.main-div{
+	width:1200px; 
+	margin:0 auto; 
+	height: 200px;
 }
 </style>
 </head>
@@ -29,30 +34,29 @@
 
 	<!-- menu -->
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
-	
+<div class="main-div">
+<div id="menuinfo">
+	공지사항 상세 페이지
+</div>
+</div>
 	<!-- 게시판 글 보기 양식 영역 시작 -->
 	<div class="container">
 		<div class="row">
-			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-				<thead>
+			<table class="table table-bordered" style=" border: 1px solid #dddddd; font-size: 17px;">
 					<tr>
-						<th id="notice" colspan="2">게시판 글 보기</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td style="width: 20%;">글 제목</td>
-						<td colspan="2">${notice.title}</td>
+						<td style="text-align: center;">작성자 번호</td>
+						<td colspan="2">${notice.admin_num}</td>
 					</tr>
 					<tr>
-						<td>작성자</td>
-						<td colspan="2">${notice.id}</td>
+						<td style="width: 20%; text-align: center;">글 제목</td>
+						<td colspan="2" style="font-weight: 600;">${notice.title}</td>
 					</tr>
 					<tr>
-						<td>내용</td>
-						<td colspan="2" style="height: 200px; text-align: left;">${notice.content}</td>
+						<td style="text-align: center;">내용</td>
+						<td colspan="2" style="height: 200px; text-align: left;">${notice.content}<br>
+							<img src="${pageContext.request.contextPath}/upload/${notice.filename}">
+						</td>
 					</tr>
-				</tbody>
 			</table>
 			
 			<div class="btn-div" align="right">
@@ -76,6 +80,7 @@
 		</div>
 	</div>
 	<!-- 게시판 글 보기 양식 영역 끝 -->
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	<!-- Bootstrap JS -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>

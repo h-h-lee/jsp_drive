@@ -301,12 +301,9 @@ display: inline-block;
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
 	<!-- menu 끝 -->
 	<div id="main-width">
-		<br>
-		<br>
-		<br>
-		<br>
-		<h3>회원용 회원가입</h3>
-		<br>
+<div id="menuinfo">
+	회원용 회원가입
+</div>
 		
 <form id="member_joinForm" method="post" action="memberJoin.do">
 
@@ -615,19 +612,12 @@ display: inline-block;
 				</div>
 			</div>
 		</form>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
 		crossorigin="anonymous"></script>
+
 </body>
 </html>

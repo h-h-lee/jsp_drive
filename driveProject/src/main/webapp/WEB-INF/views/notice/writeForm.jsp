@@ -14,11 +14,23 @@ h2{
 	text-align:center;
 }
 .container{
+	text-align: center;
+	margin-bottom: 100px;
+}
+.table{
 	text-align:center;
 }
-.table table-striped{
-	text-align:center;
+
+.main-div{
+	width:1200px; 
+	margin:0 auto; 
+	height: 200px;
 }
+
+.notice-main{
+	width:1200px; 
+	margin : 0 auto;
+	position:relative;}
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -43,39 +55,34 @@ h2{
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<!-- menu -->
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
-	<br>
-	<div class="notice-main">
+<div class="main-div">
+<div id="menuinfo">
+	공지사항 글 등록
+</div>
+</div>
 	<div class="container">
-		<div class="row">
-			<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
+
+			<form id="write_form" action="write.do" method="post" enctype="multipart/form-data" style="width: 1050px;">
 			 <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-				<thead>
-	    		 <tr>
-					<th colspan="2" style="background-color: #eeeeee; font-size:30px;">게시판 글쓰기 양식</th>
-				</tr>
-				</thead>
-				<tbody style="text-align:center;">
 				<tr>
-					<td><input type="text" class="form-control" placeholder="글 제목" name="title" maxlength="50"></td>
+					<td><input type="text" class="form-control" placeholder="글 제목" name="title" id="title" maxlength="50"></td>
 				</tr>
 				<tr>
-					<td><textarea class="form-control" placeholder="글 내용" name="content" maxlength="2048" style="width:1000px;height: 350px;"></textarea></td>
+					<td><textarea class="form-control" placeholder="글 내용" name="content" id="content" style="width:1050px;height: 350px;"></textarea></td>
 				</tr>
 				<tr>
-					<td><input type="file" class="form-control" placeholder="파일" name="filename" maxlength="50" accept="image/gif,image/png,image/jpeg"></td>
+					<td><input type="file" class="form-control" placeholder="파일" name="filename" accept="image/gif,image/png,image/jpeg"></td>
 				</tr>
-				</tbody>
 			</table>
 			<!-- 글쓰기 버튼 생성 -->
-			<div class="write" align="right">
+			<div align="right">
 				<input type="submit" class="btn btn-primary pull-right" value="글쓰기"><br><br>
 			</div>
 		</form>
 		</div>
-	</div>
+
 	<!-- 게시판 글쓰기 양식 영역 끝 -->
-		
-</div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 <!-- Bootstrap JS -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>

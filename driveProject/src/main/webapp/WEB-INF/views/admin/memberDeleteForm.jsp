@@ -81,54 +81,42 @@ margin-left:600px;
 	<!-- menu 끝 -->
 	
 <div id="main-width">
-
-<br>
-<br>
-
-
-<form id="deleteForm" method="post" action="memberDeleteAction.do">
-
-  <div class="mb-3">
-  <br>
-  <h3>일반관리자 삭제</h3>
-  <br>
+<div id="menuinfo">
+	회원 삭제
+</div>
+<div style="margin-left: auto;">
+<form id="deleteForm" method="post" action="memberDeleteAction.do" style="width: 800px; margin-left: 380px; margin-right: auto;">
   			<div class="form-group" id="divEmail">
-				<b><label for="id" class="col-lg-2 control-label">삭제할 회원 아이디</label></b>
+				<b><label for="id" class="col-lg-3 control-label">삭제할 회원 아이디</label></b>
 				<div class="col-lg-7">
 					<input type="text" class="form-control" id="id2" name="id2" maxlength="8" readonly="readonly" value="${id2}">
 				</div>
 			</div>	
 			<br>
-			
   			<div class="form-group" id="divEmail">
-				<b><label for="passwd1" class="col-lg-5 control-label">로그인중인 본인(관리자) 비밀번호 입력</label></b>
+				<b><label for="passwd1" class="col-lg-5 control-label">로그인 중인 본인(관리자) 비밀번호 입력</label></b>
 				<div class="col-lg-7">
 					<input type="password" class="form-control" id="passwd1" name="passwd1" placeholder="비밀번호" maxlength="8"><br>
 				</div>
 			</div>	
   			<div class="form-group" id="divEmail">
-				<b><label for="passwd2" class="col-lg-2 control-label">비밀번호 확인</label></b>
+				<b><label for="passwd2" class="col-lg-3 control-label">비밀번호 확인</label></b>
 				<div class="col-lg-7">
 					<input type="password" class="form-control" id="passwd2" name="passwd2" placeholder="비밀번호 확인" maxlength="8">
 <!-- 					<span id="message_pw"></span> -->
 					<span id="alert-success" style="display: none; color:blue">비밀번호가 일치합니다.</span>
     				<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
-					
+					 <input type="hidden" value="${member_num2}" name="member_num2">
 				</div>
 			</div>	
-  
-  <input type="hidden" value="${member_num2}" name="member_num2">
-  		<br>
-        <div class="bottomText">
-  <button type="submit" class="btn btn-danger">회원 삭제</button>
-  <input type="button" class="btn btn-primary" value="취소" onclick="location.href='memberMyPageForm.do'">
-  
+	<div style="margin-left: 145px; margin-top: 15px;">
+	  <button type="submit" class="btn btn-danger">회원삭제</button>
+	  <input type="button" class="btn btn-primary" value="취소" onclick="location.href='memberMyPageForm.do'">
+  </div>
+  </form>
       </div>
 </div>
-  
-</form>
-
-</div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -10,10 +10,7 @@
 <link rel="stylesheet" href="style.css">
 
 <style type="text/css">
-.container{
-margin-top:60px;
-margin-left:500px;
-}
+
 </style>
 </head>
 <body>
@@ -23,73 +20,52 @@ margin-left:500px;
 	<!-- menu 시작 -->
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	<!-- menu 끝 -->
-       <br>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-13">
-            <div class="col-sm-2"></div>
-                <div class="col-sm-9">
-                    <h2 class="text-center">회원 정보</h2>
-                     
-<!--                     <form action="MemberUpdateProc.jsp" method="post"> -->
-                     
-                    <table class="table table-striped">
-                      <tr>
-                        <td>아이디</td>
-                        <td>${member.id }</td>
-                      </tr>
-                      <tr>
-                        <td>비밀번호</td>
-                        <td>${member.passwd }</td>
-                      </tr>
-                      <tr>
-                        <td>이름</td>
-                        <td>${member.name }</td>
-                      </tr>
-                      <tr>
-                        <td>휴대폰</td>
-                        <td>${member.phone }</td>
-                      </tr>
-                      <tr>
-                        <td>우편번호</td>
-                        <td>${member.zipcode }</td>
-                      </tr>
-                      
-                      <tr>
-                        <td>주소</td>
-                        <td>${member.address1}&nbsp;${member.address2}</td>
-                      </tr>
-                      
-<!--                       <tr> -->
-<!--                         <td>주소</td> -->
-<%--                         <td>${member.address2}</td> --%>
-<!--                       </tr> -->
-                      
-                      <tr>
-                        <td>이메일</td>
-                        <td>${member.email }</td>
-                      </tr>
-                       
-                    <tr>
-                        <td colspan="2" class="text-center">
-<%--                          <input type="hidden" name="member_id" value="${member_id }"> --%>
-                         <input type="hidden" name="member_num" value="${member.member_num }">
-                         <input type="button" value="회원 수정하기" class="btn btn-dark" onclick="location.href='myPageModifyForm.do'">
-                         <input type="button" value="회원 탈퇴하기" class="btn btn-danger" onclick="location.href='memberDeleteForm.do'">
-<!--  						<button type="button"  class="btn btn-outline-dark" onclick="location.href='MemberList.jsp'">회원 전체 보기</button> -->
-                         </td>    
-                    </tr>
-                           
-                    </table>
-<!--                 </form>    -->
-                     
-                </div>
-        </div> <!-- col-sm-12 -->
-    </div><!-- row -->
-</div> <!-- container end-->
-
-
-
-
+<div id="main-width">
+<div id="menuinfo">
+	회원정보
+</div>
+	<div class="row">
+	<div class="col-sm-6">
+	 	<table class="table" style="margin-left: 350px; margin-right: auto;">
+	 	<tr>
+			<td>아이디</td>
+			<td>${member.id }</td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td>${member.passwd }</td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td>${member.name }</td>
+		</tr>
+		<tr>
+			<td>휴대폰</td>
+			<td>${member.phone }</td>
+		</tr>
+		<tr>
+			<td>우편번호</td>
+			<td>${member.zipcode }</td>
+		</tr>            
+		<tr>
+			<td>주소</td>
+			<td>${member.address1}&nbsp;${member.address2}</td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+  			<td>${member.email }</td>
+		</tr>
+		 <tr>
+		 	<td colspan="2" class="text-center">
+		 		<input type="hidden" name="member_num" value="${member.member_num }">
+				<input type="button" value="회원 수정하기" class="btn btn-dark" onclick="location.href='myPageModifyForm.do'">
+				<input type="button" value="회원 탈퇴하기" class="btn btn-danger" onclick="location.href='memberDeleteForm.do'">
+	 		</td>
+	 	</tr>
+	 	</table>
+	</div>
+</div>
+</div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

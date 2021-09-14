@@ -15,7 +15,7 @@
 		<div class="footer-div-content">
 			<span>ABOUT</span>
 			<hr class="longhr"> 
-			자동차운전전문학원<br>
+			자동차운전면허학원<br>
 			부천시 원미구 평천로 651<br>
 			사업자등록번호 : 107-82-04832<br>
 			담당자 : 김길동<br>

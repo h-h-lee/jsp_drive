@@ -22,7 +22,7 @@ public class MemberManageListFormAction implements Action{
 		AdminDAO dao = AdminDAO.getInstance();
 		int count = dao.getMemberCount();
 		
-		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum),count,20,10,"memberManageListForm.do");
+		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum),count,10,10,"memberManageListForm.do");
 		
 		List<MemberVO> list = null;
 		if(count>0) {

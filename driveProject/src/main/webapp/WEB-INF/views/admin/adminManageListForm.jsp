@@ -42,7 +42,7 @@ function btn(){
    <div class="wrap">
    <br>
 	    <header class="w">
-		    <h1>관리자 메인</h1>
+		    <h3>관리자 메인</h3>
 	    </header>
 	    
 <jsp:include page="/WEB-INF/views/admin/adminAside.jsp"/>
@@ -64,7 +64,7 @@ function btn(){
                     
                  
                  
-<input type="button" value="관리자 추가" id="btn1" class="btn btn-primary btn-md" onclick="location.href='${pageContext.request.contextPath}/admin/adminAddForm.do'">
+<input type="button" style="margin-left: 30px;" value="관리자 추가" id="btn1" class="btn btn-primary btn-md" onclick="location.href='${pageContext.request.contextPath}/admin/adminAddForm.do'">
                     
 <!--                     <form action="MemberUpdateProc.jsp" method="post"> -->
 <table class="table">
@@ -119,6 +119,8 @@ function btn(){
 		    </div>
 	    </div>
     </div>
+        <div style="margin-bottom: 208px;"></div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 </html>
