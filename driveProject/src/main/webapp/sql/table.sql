@@ -44,7 +44,7 @@ CREATE TABLE teacher(
 --공지 테이블
 CREATE TABLE notice(
     notice_num    NUMBER           NOT NULL, 
-    title         VARCHAR2(20)     NOT NULL, 
+    title         VARCHAR2(50)     NOT NULL, 
     content       CLOB    		   NOT NULL, 
     reg_date      DATE		     DEFAULT SYSDATE NOT NULL, 
     filename      VARCHAR2(150)    NULL, 
