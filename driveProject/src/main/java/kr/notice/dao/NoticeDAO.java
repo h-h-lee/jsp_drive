@@ -3,6 +3,7 @@ package kr.notice.dao;
 import java.sql.Connection;
 
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class NoticeDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "INSERT INTO zboard (notice_num,title,content,filename,admin_num) VALUES (zboard_seq.nextval,?,?,?,?)";
+			sql = "INSERT INTO notice (notice_num,title,content,filename,admin_num) VALUES (notice_seq.nextval,?,?,?,?)";
 			
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -116,7 +117,6 @@ public class NoticeDAO {
 				notice.setFilename(rs.getString("filename"));
 				notice.setContent(rs.getString("content"));
 				notice.setAdmin_num(rs.getInt("admin_num"));
-				notice.setId(rs.getString("id"));
 				
 				list.add(notice);
 			}
@@ -168,7 +168,6 @@ public class NoticeDAO {
 			//자원정리
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		
 		return notice;
 	}
 	
@@ -200,6 +199,59 @@ public class NoticeDAO {
 	}
 	
 	//글 수정
-	
+	public void updateNotice(NoticeVO notice)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			if(notice.getFilename()!=null) {//새로 업로드된 파일이 있을 때
+				sql = "UPDATE notice SET title=?,content=?,filename=? WHERE notice_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, notice.getTitle());
+				pstmt.setString(2, notice.getContent());
+				pstmt.setString(3, notice.getFilename());
+				pstmt.setInt(4, notice.getNotice_num());
+			}else {//업로드된 파일이 없을 때
+				sql = "UPDATE notice SET title=?,content=? WHERE notice_num=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, notice.getTitle());
+				pstmt.setString(2, notice.getContent());
+				pstmt.setInt(3, notice.getNotice_num());
+			}
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//글 삭제
+	public void deleteNotice(int notice_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			//글 삭제
+			sql = "DELETE FROM notice WHERE notice_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_num);
+			pstmt.executeUpdate();
+					
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }

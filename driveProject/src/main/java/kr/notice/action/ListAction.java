@@ -37,5 +37,4 @@ public class ListAction implements Action{
 		
 		return "/WEB-INF/views/notice/list.jsp";
 	}
-
 }

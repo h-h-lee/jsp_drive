@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>글 상세 페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<style type="text/css">
+.detail-img{
+	max-width:500px;
+}	
+</style>
 </head>
 <body>
 	<!-- header -->
@@ -36,8 +41,8 @@
 	<div class="align-right">
 		작성일 : ${notice.reg_date}
 		<%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정,삭제 가능 --%>
-		<c:if test="${user_num == notice.admin_num}">
-		<input type="button" value="수정" onclick="location.href='updateForm.do?board_num=${board.board_num}'">
+		<c:if test="${admin_num == notice.admin_num}">
+		<input type="button" value="수정" onclick="location.href='updateForm.do?notice_num=${notice.notice_num}'">
 		<input type="button" value="삭제" id="delete_btn">	
 		<script type="text/javascript">
 			var delete_btn = document.getElementById('delete_btn');
@@ -45,7 +50,7 @@
 			delete_btn.onclick=function(){
 				var choice = confirm('삭제하시겠습니까?');
 				if(choice){
-					location.replace('delete.do?board_num=${board.board_num}');
+					location.replace('delete.do?notice_num=${notice.notice_num}');
 				}
 			};
 		</script>
