@@ -21,16 +21,16 @@
 	<div id="main-width">
 		<div id="menuinfo">수강신청</div>
 		<div class="card bg-light text-dark">
-	    	<div class="card-body text-center">
+	    	<div class="card-body object-center text-center">
 	    		<c:if test="${check==true}">
-	    		<div class="font-weight-bold my-5">수강신청이 완료되었습니다.</div>
+	    		<div class="font-weight-bold text-primary my-5">수강신청이 완료되었습니다.</div>
 	    		</c:if>
 	    		<c:if test="${check==false}">
 	    		<div class="font-weight-bold text-danger my-5">이미 신청하신 과정입니다.</div>
 	    		</c:if>
 	    		<div>
 					<input type="button" value="수강신청 내역" class="btn btn-primary" onclick="location.href='listApp.do'">
-					<input type="button" value="홈으로" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+					<input type="button" value="돌아가기" class="btn btn-secondary" onclick="location.href='registerAppForm.do'">
 				</div>
 			</div>
 	 	</div>

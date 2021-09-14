@@ -16,14 +16,16 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		//검색어 유효성 체크
-		$(document).on('submit','#search_form',function(){
+		$(#search_form).submit(function(){
 			if($('#keyfield').val() != 'r'){
-				$(this).val().trim()=='';
-				alert('검색어를 입력하세요!');
-				$(this).val('').focus();
-			}
+				if($('#keyword').val().trim()==''){
+					alert('검색어를 입력하세요!');
+					$('#keyword').val('').focus();
+					return false;
+				}
+			});
 		});
-		
+
 		//신청결과 필드
 		$(document).on('change','#keyfield',function(){
 			var keyfield = $(this).val();
@@ -48,11 +50,7 @@
 		<div id="menuinfo">수강신청내역 관리</div>
 		<div class="card">
 		    <div class="card-body object-center text-center">
-				<c:if test="${count==0}">
-				<div class="font-weight-bold my-5">수강신청 내역이 없습니다.</div>
-				</c:if>
-				<c:if test="${count>0}">
-				<!-- 검색창 시작 -->
+		    	<!-- 검색창 시작 -->
 				<form class="form-inline mb-4 justify-content-end" id="search_form" action="listAllApp.do" method="get">
 					<select class="form-control form-control-sm mr-1" name="keyfield" id="keyfield">
 						<option value="c">과정명</option>
@@ -60,7 +58,7 @@
 						<option value="m">회원명</option>
 						<option value="r">신청결과</option>
 					</select>
-					<div class="input-group input-group-sm">
+					<div class="input-group input-group-sm" style="width: 200px;">
 						<input type="text" class="form-control" name="keyword" id="keyword" placeholder="Search">
 						<!-- 신청결과 필드 -->
 						<select class="form-control form-control-sm mr-1" name="re_keyword" id="re_keyword" style="display:none;">
@@ -74,10 +72,14 @@
 					</div>
 				</form>
 				<!-- 검색창 끝 -->
+				<c:if test="${count==0}">
+				<div class="font-weight-bold my-5">수강신청 내역이 없습니다.</div>
+				</c:if>
+				<c:if test="${count>0}">
 				<table class="table table-hover">
 					<thead>
 					<tr>
-						<th>과정명</th>
+						<th width="30%">과정명</th>
 						<th>강사명</th>
 						<th>회원명</th>
 						<th>신청일</th>

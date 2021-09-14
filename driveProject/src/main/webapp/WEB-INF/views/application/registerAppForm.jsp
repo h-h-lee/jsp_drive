@@ -41,7 +41,7 @@
 				<table class="table table-hover text-center">
 					<thead>
 					<tr>
-						<th>과정명</th>
+						<th width="30%">과정명</th>
 						<th>강사명</th>
 						<th>수강료</th>
 						<th>수강신청</th>
