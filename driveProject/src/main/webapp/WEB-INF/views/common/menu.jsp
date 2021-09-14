@@ -56,7 +56,7 @@
 		<c:if test="${!empty admin_num && empty member_num}">
 			<li><a href="#">관리자 페이지</a>
 				<ul class="sub">
-					<li><a href="#">관리자 관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/mainAdminPageForm.do">관리자 관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/teacher/list.do">강사 관리</a></li>
 					<li><a href="#">과정 관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/application/listAllApp.do">수강신청내역관리</a></li>
