@@ -59,6 +59,8 @@ public class CourseDAO {
 			pstmt.setInt(2, course.getTeacher_num());
 			pstmt.setInt(3, course.getTuition());
 			
+			pstmt.executeUpdate();
+			
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
