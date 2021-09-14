@@ -15,11 +15,10 @@ public class WriteAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		MultipartRequest multi = FileUtil.createFile(request);
 		CourseVO course = new CourseVO();
-		course.setCourse_name(multi.getParameter("course_name"));
-		course.setTeacher_num(Integer.parseInt(multi.getParameter("teacher_num")));
-		course.setTuition(Integer.parseInt(request.getRemoteAddr()));
+		course.setCourse_name(request.getParameter("course_name"));
+		course.setTeacher_num(Integer.parseInt(request.getParameter("teacher_num")));
+		course.setTuition(Integer.parseInt(request.getParameter("tuition")));
 		
 		CourseDAO dao = CourseDAO.getInstance();
 		dao.insertCourse(course);

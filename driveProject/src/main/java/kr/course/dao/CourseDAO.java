@@ -55,10 +55,9 @@ public class CourseDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			//데이터 바인딩
-			pstmt.setInt(1, course.getCourse_num());
-			pstmt.setString(2, course.getCourse_name());
-			pstmt.setInt(3, course.getTeacher_num());
-			pstmt.setInt(4, course.getTuition());
+			pstmt.setString(1, course.getCourse_name());
+			pstmt.setInt(2, course.getTeacher_num());
+			pstmt.setInt(3, course.getTuition());
 			
 		}catch(Exception e) {
 			throw new Exception(e);

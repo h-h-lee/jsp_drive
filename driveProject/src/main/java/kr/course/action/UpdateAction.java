@@ -15,17 +15,12 @@ public class UpdateAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		MultipartRequest multi = FileUtil.createFile(request);
-		int course_num = Integer.parseInt(multi.getParameter("course_num"));
+		CourseVO course = new CourseVO();
+		course.setCourse_name(request.getParameter("course_name"));
+		course.setTeacher_num(Integer.parseInt(request.getParameter("teacher_num")));
+		course.setTuition(Integer.parseInt(request.getParameter("tuition")));
 		
 		CourseDAO dao = CourseDAO.getInstance();
-		
-		CourseVO course = new CourseVO();
-		course.setCourse_num(course_num);
-		course.setCourse_name(multi.getParameter("course_name"));
-		course.setTeacher_num(Integer.parseInt(multi.getParameter("teacher_num")));
-		course.setTuition(Integer.parseInt(request.getRemoteAddr()));
-		
 		dao.updateCourse(course);
 		
 		return "redirect:/course/detail.do";

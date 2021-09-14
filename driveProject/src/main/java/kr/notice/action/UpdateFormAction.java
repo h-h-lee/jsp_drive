@@ -12,25 +12,25 @@ import kr.notice.vo.NoticeVO;
 public class UpdateFormAction implements Action{
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		HttpSession session = request.getSession();
 		Integer admin_num = (Integer)session.getAttribute("admin_num");
-		if(admin_num == null) {//·Î±×ÀÎ µÇÁö ¾ÊÀº °æ¿ì
+		if(admin_num == null) {//ë¡œê·¸ì¸ ë˜ì§€ ì•Šì€ ê²½ìš°
 			return "redirect:/admin/adminLoginForm.do";
 		}
 		
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		NoticeDAO dao = NoticeDAO.getInstance();
 		NoticeVO notice = dao.getNotice(notice_num);
-		if(admin_num != notice.getAdmin_num()) {//·Î±×ÀÎÇÑ °ü¸®ÀÚ¿Í ÀÛ¼ºÀÚ °ü¸®ÀÚ¹øÈ£ ºÒÀÏÄ¡
+		if(admin_num != notice.getAdmin_num()) {//ë¡œê·¸ì¸í•œ ê´€ë¦¬ìì™€ ì‘ì„±ì ê´€ë¦¬ìë²ˆí˜¸ ë¶ˆì¼ì¹˜
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
-		//·Î±×ÀÎÀÌ µÇ¾îÀÖ°í ·Î±×ÀÎÇÑ °ü¸®ÀÚ¿Í ÀÛ¼ºÀÚ °ü¸®ÀÚ¹øÈ£ ÀÏÄ¡
+		//ë¡œê·¸ì¸ì´ ë˜ì–´ìˆê³  ë¡œê·¸ì¸í•œ ê´€ë¦¬ìì™€ ì‘ì„±ì ê´€ë¦¬ìë²ˆí˜¸ ì¼ì¹˜
 		request.setAttribute("notice", notice);
 		
 		return "/WEB-INF/views/notice/updateForm.jsp";
 	}
-
+	
 }
