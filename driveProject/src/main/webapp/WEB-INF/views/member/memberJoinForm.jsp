@@ -5,37 +5,27 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 회원가입</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-	crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css"> --%>
-	
-	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberCSS_TEST/login_style.css"> --%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function sample4_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                 var roadAddr = data.roadAddress; // 도로명 주소 변수
                 var extraRoadAddr = ''; // 참고 항목 변수
 
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
                 if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
                     extraRoadAddr += data.bname;
                 }
+                
                 // 건물명이 있고, 공동주택일 경우 추가한다.
                 if(data.buildingName !== '' && data.apartment === 'Y'){
                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
+                
                 // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
                 if(extraRoadAddr !== ''){
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
@@ -65,6 +55,230 @@
         }).open();
     }
 </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		
+	var idChecked=0;
+	
+	$('#id_check').click(function(){
+		if($('#id').val().trim()==''){
+		alert('아이디를 입력하세요');
+		$('#id').focus();
+		$('#id').val('');
+		return ;
+		}
+		
+		$('#message_id').text('');
+		
+		$.ajax({
+			url:'checkDuplicatedId.do',
+			type:'post',
+			data:{id:$('#id').val()},
+			dataType:'json',
+			cache:false,
+			timeout:30000,
+			success:function(param){
+				if(param.result=='idNotFound'){
+					idChecked = 1;
+					$('#message_id').css('color','blue').text('등록가능한 ID');
+				}else if(param.result=='idDuplicated'){
+					idChecked=0;
+					$('#message_id').css('color','red').text('중복된 ID');
+					$('#id').val('').focus();
+				}else{
+					idChecked=0;
+					alert('아이디 중복 체크 오류 발생');
+					}
+				},
+				error:function(){
+					idChecked=0;
+					alert('아이디 중복 체크 오류 발생');
+			}
+			
+		});
+	});
+	
+	//아이디 중복 안내 메시지 초기화 및 아이디 중복 값 초기화
+	$('#member_joinForm #id').keydown(function(){
+		idChecked=0;
+		$('#message_id').text('');
+	});
+	
+	
+	var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/); //이메일 유효성
+	
+	var getCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/); //4~12자의 영문 대소문자와 숫자로만 입력
+
+	$('#member_joinForm').submit(function(){
+		
+		if($('#id').val().trim()==''){
+			alert('아이디를 입력하세요!');
+			$('#id').focus();
+			$('#id').val('');
+			return false;
+		}
+		
+		if(!getCheck.test($("#id").val())){ 
+			alert("4~12자의 영문 대소문자와 숫자로만 입력"); 
+			$("#id").val(""); 
+			$("#id").focus(); 
+			return false; 
+		}
+
+		
+		
+		if(idChecked==0){
+			alert('아이디 중복 체크 필수!');
+			return false;
+		}
+		
+		if($('#passwd1').val().trim()==''){
+			alert('패스워드를 입력하세요!');
+			$('#passwd1').focus();
+			$('#passwd1').val('');
+			return false;
+		}
+		
+		if($('#passwd2').val().trim()==''){
+			alert('패스워드 확인을 입력하세요!');
+			$('#passwd2').focus();
+			$('#passwd2').val('');
+			return false;
+		}
+
+		
+		
+		if($("#id").val() == $("#passwd1").val()){ 
+			alert("아이디와 비밀번호가 같습니다"); 
+			$("#password").val(""); $("#password").focus(); 
+			return false; 
+		}
+
+        var n_RegExp = /^[가-힣]{2,15}$/; //이름 유효성검사 정규식
+
+		if($('#name').val().trim()==''){
+			alert('이름을 입력하세요!');
+			$('#name').focus();
+			$('#name').val('');
+			return false;
+		}
+        
+        if(!n_RegExp.test($('#name').val())){
+            alert("이름은 한글만 입력해주세요.(특수문자,영어,숫자 사용불가)");
+            return false;
+        }
+		
+		if($('#zipcode').val().trim()==''){
+			alert('우편번호를 입력하세요!');
+			$('#zipcode').focus();
+			$('#zipcode').val('');
+			return false;
+		}
+		
+		if($('#address1').val().trim()==''){
+			alert('지번주소를 입력하세요!');
+			$('#address1').focus();
+			$('#address1').val('');
+		
+			return false;
+		}
+
+		if($('#address2').val().trim()==''){
+			alert('지번주소를 입력하세요!');
+			$('#address2').focus();
+			$('#address2').val('');
+		
+			return false;
+		}
+		
+		if($('#email').val().trim()===''){
+			alert('이메일 입력하세요!');
+			$('#email').focus();
+			return false;
+		}
+
+		if(!getMail.test($('#email').val())){ 
+			alert('이메일형식에 맞게 입력해주세요'); 
+			$('#email').val(''); 
+			$('#email').focus(); 
+			return false; 
+		}
+		
+		if($('#birth').val().trim()==''){
+			alert('생년월일을 입력하세요!');
+			$('#birth').focus();
+			$('#birth').val('');
+			return false;
+		}
+		
+
+
+		if($('#phone').val().trim()==''){
+			alert('휴대폰번호를 입력하세요!');
+			$('#phone').focus();
+			$('#phone').val('');
+			return false;
+		}
+		
+		
+
+
+		var temp1= $("input[name='YN1']:checked").val();
+		if(temp1=='N'){
+			alert('회원가입 약관 미동의 시 가입 불가');
+			return false;
+		}
+		
+		var temp2 =$("input[name='YN2']:checked").val();
+		if(temp2=='N'){
+			alert('개인정보 수집 및 이용 미동의 시 가입 불가');
+			return false;
+		}
+		
+		
+// // 		function Click(){
+// 			if($("input:radio[name='YN']").is(":checked")==true){
+				
+// 				var noCh = $(":input:radio[name=YN]:checked").val();
+// 				if(noCh=='N'){
+// 					alert('개인정보 수집 및 이용 미동의 시 가입 불가');
+// 					return false;
+// 				}else{
+// 				      alert('개인정보 수집 및 이용 동의 시 참여 가능!);
+// 				      return false;
+// 				}
+//  			}
+// // 		}
+		});
+	
+	//패스워드 일치
+    $('#passwd2').focusout(function () {
+        var passwd1 = $('#passwd1').val();
+        var passwd2 = $('#passwd2').val();
+  
+        if ( passwd1 != '' && passwd2 == '' ) {
+            null;
+        } else if (passwd1 != '' || passwd2 != '') {
+            if (passwd1 == passwd2) {
+                $('#alert-success').css('display', 'inline-block');
+                $('#alert-danger').css('display', 'none');
+            } else {
+                alert('비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.');
+                $('#alert-success').css('display', 'none');
+                $('#alert-danger').css('display', 'inline-block');
+            }
+        }
+    });
+	});
+	
+</script>
+<style type="text/css">
+#id_left{
+display: inline-block;
+}
+</style>
 </head>
 <body>
 	<!-- header 시작 -->
@@ -81,23 +295,25 @@
 		<h3>회원용 회원가입</h3>
 		<br>
 		
-<form class="member_joinForm" method="post" action="memberJoin.do">
+<form id="member_joinForm" method="post" action="memberJoin.do">
 
 			<div class="form-group" >
 				<b><label for="id" class="col-lg-2 control-label">아이디</label></b>
-				<div class="col-lg-10">
-					<input type="text" class="form-control" id="id" name="id"  placeholder="20자이내의 " maxlength="20">
+				<div class="col-lg-5">
+					<input  type="text" class="form-control" id="id" name="id"  placeholder="4~12자의 영문 대소문자와 숫자로만 입력 " maxlength="20">
+					<br><input type="button" value="ID중복체크" id="id_check">
+					<span id="message_id"></span>
 				</div>
 			</div>
-			
+
 			<br>
 			
 
 
 			<div class="form-group" id="divPassword">
 				<b><label for="passwd1" class="col-lg-2 control-label">패스워드</label></b>
-				<div class="col-lg-10">
-					<input type="password" class="form-control" id="passwd1" name="passwd1"  placeholder="패스워드" maxlength="30">
+				<div class="col-lg-5">
+					<input type="password" class="form-control" id="passwd1" name="passwd1"  placeholder="4~12자의 영문 대소문자와 숫자로만 입력" maxlength="30">
 				</div>
 			</div>
 			
@@ -105,16 +321,18 @@
 			
 			<div class="form-group" id="divPasswordCheck">
 				<b><label for="passwd2"class="col-lg-2 control-label">패스워드 확인</label></b>
-				<div class="col-lg-10">
-					<input type="password" class="form-control" id="passwd2" name="passwd2"  placeholder="패스워드 확인" maxlength="30">
+				<div class="col-lg-5">
+					<input type="password" class="form-control" id="passwd2" name="passwd2"  placeholder="4~12자의 영문 대소문자와 숫자로만 입력" maxlength="30">
+    				<span id="alert-success" style="display: none; color:blue">비밀번호가 일치합니다.</span>
+    				<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
 				</div>
 			</div>
 			
 			<br>
 			
 			<div class="form-group" >
-				<b><label for="name" class="col-lg-2 control-label">이름</label></b>
-				<div class="col-lg-10">
+				<b><label  class="col-lg-5 control-label">이름</label></b>
+				<div class="col-lg-5">
 					<input type="text" class="form-control onlyAlphabetAndNumber" id="name" name="name" placeholder="이름" maxlength="20">
 				</div>
 			</div>
@@ -151,16 +369,15 @@
 
 			<div class="form-group" id="divEmail">
 				<b><label for="email" class="col-lg-2 control-label">이메일</label></b>
-				<div class="col-lg-10">
-					<input type="email" class="form-control" id="email" name="email"  placeholder="이메일" maxlength="40">
+				<div class="col-lg-8">
+					<input type="email" class="form-control" id="email" name="email"  placeholder="ex) test1234@domain.com" maxlength="40">
 				</div>
 			</div>
-			
-			
+			<br>
 			<div class="form-group" id="divEmail">
 				<b><label for="birth" class="col-lg-2 control-label">생년월일</label></b>
-				<div class="col-lg-10">
-					<input type="text" class="form-control" id="birth" name="birth" placeholder="생년월일" maxlength="20">
+				<div class="col-lg-7">
+					<input type="text" class="form-control" id="birth" name="birth" placeholder="ex)19990101" maxlength="8">
 				</div>
 			</div>			
 			
@@ -170,13 +387,13 @@
 			
 			<div class="form-group" id="divPhoneNumber">
 				<b><label for="phone" class="col-lg-2 control-label">휴대폰번호</label></b>
-				<div class="col-lg-10">
+				<div class="col-lg-7">
 					<input type="tel" class="form-control onlyNumber" id="phone" name="phone" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="20">
 				</div>
 			</div>
 
 
-<br><br><br>
+<br><br>
 
 
 
@@ -328,13 +545,13 @@
                   </textarea>
 					<div class="radio">
 						<label> 
-						<input type="radio" id="provisionYn"name="provisionYn" value="Y" autofocus="autofocus" checked>동의합니다.
+						<input type="radio" id="YN1" name="YN1" value="Y" autofocus="autofocus" checked>동의합니다.
 						</label>
 					</div>
 					
 					<div class="radio">
 						<label> 
-						<input type="radio" id="provisionYn"name="provisionYn" value="N"> 동의하지 않습니다.
+						<input type="radio" id="YN1" name="YN1" value="N"> 동의하지 않습니다.
 						</label>
 					</div>
 				</div>
@@ -363,36 +580,32 @@
 
 라. 동의 거부 권리 및 동의 거부에 따른 불이익
 위 개인정보의 수집 및 이용에 대한 동의를 거부할 수 있으나, 동의를 거부할 경우 회원 가입이 제한됩니다.
-
              </textarea>
 					<div class="radio">
 						<label> 
-						<input type="radio" id="memberInfoYn"name="memberInfoYn" value="Y" checked> 동의합니다.
+						<input type="radio" id="YN2"name="YN2" value="Y" checked> 동의합니다.
 						</label>
 					</div>
 					<div class="radio">
 						<label> 
-						<input type="radio" id="memberInfoYn" name="memberInfoYn" value="N"> 동의하지 않습니다.
+						<input type="radio" id="YN2" name="YN2" value="N"> 동의하지 않습니다.
 						</label>
 					</div>
 				</div>
 			</div>
-
+			<br>
 			<br>
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 <!-- 					<button type="submit" class="btn btn-primary">로그인</button> -->
-						<input type="submit" class="btn btn-primary" value="로그인">
+						<input type="submit" class="btn btn-primary" value="회원가입">
 				</div>
 			</div>
 		</form>
-
 		<br>
 		<br>
 		<br>
 		<br>
-		<br>
-		<br> <br>
 		<br>
 		<br>
 		<br>

@@ -31,11 +31,11 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	<!-- 본문 시작 -->
 	<div id="main-width">
-		<h4 class="my-4 font-weight-bold">수강신청 상세보기</h4>
+		<div id="menuinfo">수강신청 상세정보</div>
 		<!-- 수강신청 정보 -->
-		<div class="card my-3">
+		<div class="card">
 			<h6 class="card-header"><b>수강신청 정보</b></h6>
-	    	<div class="card-body object-center my-3">
+	    	<div class="card-body object-center">
 	    		<table class="table table-borderless">
 					<tbody>
 					<tr class="line-bottom">
@@ -67,7 +67,7 @@
 	    	</div>
 	    </div>
 		<!-- 회원 정보 -->
-		<div class="card my-3">
+		<div class="card mt-3">
 			<h6 class="card-header font-weight-bold">수강생 정보</h6>
 	    	<div class="card-body object-center">
 	    		<table class="table table-borderless">
@@ -93,9 +93,9 @@
 	    	</div>
 	    </div>
     	<!-- 버튼 -->
-    	<div class="text-center my-3">
-			<input type="button" value="수강신청 내역" class="btn btn-primary btn-sm" onclick="location.href='listAllApp.do'">
-			<input type="button" value="홈으로" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+    	<div class="text-center mt-3">
+			<input type="button" value="수강신청 내역" class="btn btn-primary" onclick="location.href='listAllApp.do'">
+			<input type="button" value="홈으로" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 		</div>
 	</div>
 	<!-- 본문 끝 -->

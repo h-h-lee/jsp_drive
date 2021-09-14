@@ -19,6 +19,7 @@ public class ApplicationDAO {
 	}
 	private ApplicationDAO() {}
 	
+
 	//수강신청 등록
 	public void insertApp(ApplicationVO app) throws Exception{
 		Connection conn = null;
@@ -182,7 +183,7 @@ public class ApplicationDAO {
 		}
 		return list;
 	}
-	
+
 	//수강신청 삭제
 	public void deleteApp(int app_num) throws Exception{
 		Connection conn = null;
@@ -209,20 +210,42 @@ public class ApplicationDAO {
 	
 	//관리자 모드
 	//총 레코드 수 - 전체 회원
-	public int getAppCountAll() throws Exception{
+	public int getAppCountAll(String keyfield, String keyword) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
+		String sub_sql = null;
 		int count = 0;
 		
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "SELECT count(*) FROM application";
+			//검색값 없을 때
+			if(keyfield==null || keyword.equals("")) {
+				sql = "SELECT COUNT(*) FROM application A JOIN course C ON A.course_num=C.course_num "
+						+ "JOIN teacher T ON C.teacher_num=T.teacher_num JOIN member_detail D ON A.member_num=D.member_num ORDER BY app_num DESC";
+				pstmt = conn.prepareStatement(sql);
+			}else {
+				if(keyfield.equals("c")) sub_sql="course_name LIKE ?";
+				else if(keyfield.equals("t")) sub_sql="teacher_name LIKE ?";
+				else if(keyfield.equals("m")) sub_sql="name LIKE ?";
+				else if(keyfield.equals("r")) sub_sql="app_result=?";
+				
+				sql = "SELECT COUNT(*) FROM application A JOIN course C ON A.course_num=C.course_num "
+						+ "JOIN teacher T ON C.teacher_num=T.teacher_num JOIN member_detail D ON A.member_num=D.member_num WHERE "
+						+ sub_sql + " ORDER BY app_num DESC";
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				if(keyfield.equals("r")) {
+					pstmt.setInt(1, Integer.parseInt(keyword));
+				}else {
+					pstmt.setString(1, "%" + keyword + "%");
+				}
+			}
 			
-			pstmt = conn.prepareStatement(sql);
-			
+			//SQL문 실행
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				count = rs.getInt(1);
@@ -237,28 +260,52 @@ public class ApplicationDAO {
 	}
 	
 	//수강신청 목록 - 전체 회원
-	public List<ApplicationVO> getAppListAll(int start, int end) throws Exception{
+	public List<ApplicationVO> getAppListAll(int start, int end, String keyfield, String keyword) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
+		String sub_sql = null;
 		List<ApplicationVO> list = null;
 		
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "SELECT * FROM (SELECT X.*, ROWNUM rnum FROM (SELECT * FROM application A "
-					+ "JOIN course C ON A.course_num=C.course_num "
-					+ "JOIN teacher T ON C.teacher_num=T.teacher_num "
-					+ "JOIN member_detail D ON A.member_num=D.member_num "
-					+ "ORDER BY app_num DESC) X) WHERE rnum>=? AND rnum<=?";
+			//검색값 없을 때
+			if(keyfield==null || keyword.equals("")) {
+				sql = "SELECT * FROM (SELECT X.*, ROWNUM rnum FROM (SELECT * FROM application A "
+						+ "JOIN course C ON A.course_num=C.course_num "
+						+ "JOIN teacher T ON C.teacher_num=T.teacher_num "
+						+ "JOIN member_detail D ON A.member_num=D.member_num "
+						+ "ORDER BY app_num DESC) X) WHERE rnum>=? AND rnum<=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+			}else {
+				if(keyfield.equals("c")) sub_sql="course_name LIKE ?";
+				else if(keyfield.equals("t")) sub_sql="teacher_name LIKE ?";
+				else if(keyfield.equals("m")) sub_sql="name LIKE ?";
+				else if(keyfield.equals("r")) sub_sql="app_result=?";
+				
+				sql = "SELECT * FROM (SELECT X.*, ROWNUM rnum FROM (SELECT * FROM application A "
+						+ "JOIN course C ON A.course_num=C.course_num "
+						+ "JOIN teacher T ON C.teacher_num=T.teacher_num "
+						+ "JOIN member_detail D ON A.member_num=D.member_num "
+						+ "WHERE " + sub_sql + " ORDER BY app_num DESC) X) WHERE rnum>=? AND rnum<=?";
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				if(keyfield.equals("r")) {
+					pstmt.setInt(1, Integer.parseInt(keyword));
+				}else {
+					pstmt.setString(1, "%" + keyword + "%");
+				}
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+			}
 			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
-			
+			//SQL문 실행
 			rs = pstmt.executeQuery();
-			
 			list = new ArrayList<ApplicationVO>();
 			while(rs.next()) {
 				ApplicationVO app = new ApplicationVO();
@@ -360,5 +407,35 @@ public class ApplicationDAO {
 			//자원정리
 			DBUtil.executeClose(null, pstmt, conn);
 		}
+	}
+	
+	//강사 맵
+	public HashMap<Integer,String> getTeacherMap() throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		HashMap<Integer,String> map = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM teacher ORDER BY teacher_num";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			map = new HashMap<Integer,String>();
+			while(rs.next()) {
+				map.put(rs.getInt("teacher_num"), rs.getString("teacher_name"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return map;
 	}
 }

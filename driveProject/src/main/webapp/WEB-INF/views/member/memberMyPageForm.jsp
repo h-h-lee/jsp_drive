@@ -9,6 +9,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="style.css">
 
+<style type="text/css">
+.container{
+margin-top:60px;
+margin-left:400px;
+}
+</style>
 </head>
 <body>
 	<!-- header 시작 -->
@@ -66,9 +72,10 @@
                        
                     <tr>
                         <td colspan="2" class="text-center">
-                         <input type="hidden" name="id" value="${member.id }">
+<%--                          <input type="hidden" name="member_id" value="${member_id }"> --%>
                          <input type="hidden" name="member_num" value="${member.member_num }">
                          <input type="button" value="회원 수정하기" class="btn btn-dark" onclick="location.href='myPageModifyForm.do'">
+                         <input type="button" value="회원 탈퇴하기" class="btn btn-danger" onclick="location.href='memberDeleteForm.do'">
 <!--  						<button type="button"  class="btn btn-outline-dark" onclick="location.href='MemberList.jsp'">회원 전체 보기</button> -->
                          </td>    
                     </tr>

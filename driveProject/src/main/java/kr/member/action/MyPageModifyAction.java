@@ -30,7 +30,7 @@ public class MyPageModifyAction implements Action{
 		}else {//수정할 데이터 받기
 			MemberVO memberVO = new MemberVO();
 			
-			memberVO.setPasswd(request.getParameter("passwd"));
+			memberVO.setPasswd(request.getParameter("passwd1"));
 			memberVO.setName(request.getParameter("name"));
 			memberVO.setZipcode(request.getParameter("zipcode"));
 			memberVO.setAddress1(request.getParameter("address1"));

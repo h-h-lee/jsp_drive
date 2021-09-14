@@ -60,7 +60,7 @@ public class PaginationUtil {
 				pagingHtml.append("<li class='page-item'>");
 				pagingHtml.append("<a class='page-link' href='"+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (startPage - 1) + addKey +"'>");
 			}
-			pagingHtml.append("이전");
+			pagingHtml.append("prev");
 			pagingHtml.append("</a></li>");
 		}
 		
@@ -97,7 +97,7 @@ public class PaginationUtil {
 				pagingHtml.append("<li class='page-item'>");
 				pagingHtml.append("<a class='page-link' href='"+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (endPage + 1) + addKey +"'>");
 			}
-			pagingHtml.append("다음");
+			pagingHtml.append("next");
 			pagingHtml.append("</a></li>");
 		}
 		pagingHtml.append("</ul>");

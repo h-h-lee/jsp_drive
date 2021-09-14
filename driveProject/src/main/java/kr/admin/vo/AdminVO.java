@@ -12,7 +12,7 @@ public class AdminVO {
 	private String admin_id;  //관리자 아이디
 	private String admin_name; //관리자 이름
 	private String admin_passwd; //관리자 비밀번호
-	private String admin_auth; // auth 1:일반관리자 2:최고관리자 
+	private int admin_auth; // auth 1:일반관리자 2:최고관리자 
 	
 	
 	//비밀번호 일치여부 체크
@@ -47,10 +47,10 @@ public class AdminVO {
 	public void setAdmin_passwd(String admin_passwd) {
 		this.admin_passwd = admin_passwd;
 	}
-	public String getAdmin_auth() {
+	public int getAdmin_auth() {
 		return admin_auth;
 	}
-	public void setAdmin_auth(String admin_auth) {
+	public void setAdmin_auth(int admin_auth) {
 		this.admin_auth = admin_auth;
 	}
 	

@@ -33,7 +33,7 @@ public class LoginAction implements Action {
 		boolean check = false;
 		
 			
-		if(passwd!=null) {
+		if(passwd!=null) {//비밀번호 일치 여부 체크
 			check = memberVO.isCheckPassword(passwd);
 		}
 		
@@ -46,13 +46,12 @@ public class LoginAction implements Action {
 			session.setAttribute("member_passwd", memberVO.getPasswd());
 			session.setAttribute("member_auth", memberVO.getAuth());
 			
-			System.out.println("멤버넘 세션 뭐지....?"+session.getAttribute("member_num"));
 			//인증 성공시 호출
 			return "redirect:/main/main.do";
 		}
 		
 		
 		//인증 실패시 호출
-		return "/WEB-INF/views/memberLogin.jsp";
+		return "/WEB-INF/views/member/memberLogin.jsp";
 	}
 }

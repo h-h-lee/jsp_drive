@@ -11,6 +11,33 @@
 <!-- style.css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style-app.css" type="text/css">
+<!-- jquery -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//검색어 유효성 체크
+		$(document).on('submit', '#search_form',function(){
+			if($('#keyfield').val() != 'r'){
+				if($('#keyword').val().trim()==''){
+					alert('검색어를 입력하세요!');
+					$('#keyword').val('').focus();
+					return false;
+				}
+			};
+		});
+		//신청결과 필드
+		$(document).on('change','#keyfield',function(){
+			var keyfield = $(this).val();
+			if(keyfield == 'r'){
+				$('#keyword').hide();
+				$('#re_keyword').show();
+			}else{
+				$('#re_keyword').hide();
+				$('#keyword').show();
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -19,44 +46,65 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	<!-- 본문 시작 -->
 	<div id="main-width">
-		<h4 class="my-4 font-weight-bold">전체 수강신청 내역</h4>
-		<div class="card my-3">
-		    <div class="card-body object-center my-3 text-center">
-				<c:if test="${count==0}">
-					수강신청 내역이 없습니다.
-					<div class="mt-3">
-					<input type="button" value="홈으로" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+		<div id="menuinfo">수강신청내역 관리</div>
+		<div class="card">
+		    <div class="card-body object-center text-center">
+		    	<!-- 검색창 시작 -->
+				<form class="form-inline mb-4 justify-content-end" id="search_form" action="listAllApp.do" method="get">
+					<select class="form-control form-control-sm mr-1" name="keyfield" id="keyfield">
+						<option value="c">과정명</option>
+						<option value="t">강사명</option>
+						<option value="m">회원명</option>
+						<option value="r">신청결과</option>
+					</select>
+					<div class="input-group input-group-sm" style="width: 200px;">
+						<input type="text" class="form-control" name="keyword" id="keyword" placeholder="Search">
+						<!-- 신청결과 필드 -->
+						<select class="form-control form-control-sm mr-1" name="re_keyword" id="re_keyword" style="display:none;">
+							<option value="0">신청완료</option>
+							<option value="1">승인</option>
+							<option value="2">미승인</option>
+						</select>
+						<div class="input-group-append">
+							<button class="btn btn-dark" type="submit">검색</button>  
+						</div>
 					</div>
+				</form>
+				<!-- 검색창 끝 -->
+				<c:if test="${count==0}">
+				<div class="font-weight-bold my-5">수강신청 내역이 없습니다.</div>
 				</c:if>
 				<c:if test="${count>0}">
-					<table class="table table-hover">
-						<thead>
-						<tr>
-							<th>과정</th>
-							<th>신청자</th>
-							<th>신청일</th>
-							<th>신청결과</th>
-							<th>상세보기</th>
-						</tr>
-						</thead>
-						<tbody>
-						<c:forEach var="app" items="${list}">
-						<tr>
-							<td>${app.course_name}</td>
-							<td>${app.name}</td>
-							<td>${app.app_date}</td>
-							<td>
-							<c:if test="${app.app_result==0}">신청완료</c:if>
-							<c:if test="${app.app_result==1}">승인</c:if>
-							<c:if test="${app.app_result==2}">미승인</c:if>
-							</td>
-							<td><button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='detailApp.do?app_num=${app.app_num}'">상세보기</button></td>
-						</tr>
-						</c:forEach>
-					</tbody>
-					</table>
-			<div class="my-3">${pagingHtml}</div>
-			</c:if>
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th width="30%">과정명</th>
+						<th>강사명</th>
+						<th>회원명</th>
+						<th>신청일</th>
+						<th>신청결과</th>
+						<th>상세보기</th>
+					</tr>
+					</thead>
+					<tbody>
+					<c:forEach var="app" items="${list}">
+					<tr>
+						<td>${app.course_name}</td>
+						<td>${app.teacher_name}</td>
+						<td class="text-primary">${app.name}</td>
+						<td>${app.app_date}</td>
+						<td>
+							<c:if test="${app.app_result==0}"><span class="badge badge-pill badge-secondary">신청완료</span></c:if>
+							<c:if test="${app.app_result==1}"><span class="badge badge-pill badge-primary">승인</span></c:if>
+							<c:if test="${app.app_result==2}"><span class="badge badge-pill badge-danger">미승인</span></c:if>
+						</td>
+						<td><button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='detailApp.do?app_num=${app.app_num}'">상세보기</button></td>
+					</tr>
+					</c:forEach>
+				</tbody>
+				</table>
+				<div class="paging">${pagingHtml}</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
