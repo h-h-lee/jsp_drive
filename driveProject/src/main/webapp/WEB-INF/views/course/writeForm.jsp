@@ -5,10 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>과정 등록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/teacherCss/teacherStyle.css" type="text/css">
-<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		//이벤트 연결
@@ -40,7 +37,6 @@
 <jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>과정 등록</h2>
 	<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
 		<ul>

@@ -10,21 +10,28 @@ import kr.course.dao.CourseDAO;
 import kr.course.vo.CourseVO;
 import kr.util.FileUtil;
 
-public class WriteAction implements Action{
+public class UpdateAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		MultipartRequest multi = FileUtil.createFile(request);
+		int course_num = Integer.parseInt(multi.getParameter("course_num"));
+		
+		CourseDAO dao = CourseDAO.getInstance();
+		
 		CourseVO course = new CourseVO();
+		course.setCourse_num(course_num);
 		course.setCourse_name(multi.getParameter("course_name"));
 		course.setTeacher_num(Integer.parseInt(multi.getParameter("teacher_num")));
 		course.setTuition(Integer.parseInt(request.getRemoteAddr()));
 		
-		CourseDAO dao = CourseDAO.getInstance();
-		dao.insertCourse(course);
+		dao.updateCourse(course);
 		
-		return "/WEB-INF/views/course/write.jsp";
+		return "redirect:/course/detail.do";
 	}
 
 }
+
+
+

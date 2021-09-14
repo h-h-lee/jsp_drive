@@ -17,7 +17,7 @@ public class DeleteAction implements Action{
 		HttpSession session = request.getSession();
 		Integer admin_num = (Integer)session.getAttribute("admin_num");
 		
-		//¼¼¼Ç¿¡ ÀúÀåµÈ °ªÀÌ ¾øÀ¸¸é °ü¸®ÀÚ ·Î±×ÀÎ ÆäÀÌÁö È£Ãâ
+		//ì„¸ì…˜ì— ì €ì¥ëœ ê°’ì´ ì—†ìœ¼ë©´ ê´€ë¦¬ì ë¡œê·¸ì¸ í˜ì´ì§€ í˜¸ì¶œ
 		if(admin_num == null) {
 			return "redirect:/admin/adminLoginForm.do";
 		}
@@ -26,13 +26,13 @@ public class DeleteAction implements Action{
 		
 		TeacherDAO dao = TeacherDAO.getInstance();
 		
-		//ÆÄÀÏ »èÁ¦¸¦ À§ÇØ °­»ç »ó¼¼Á¤º¸ ºÒ·¯¿È
+		//íŒŒì¼ ì‚­ì œë¥¼ ìœ„í•´ ê°•ì‚¬ ìƒì„¸ì •ë³´ ë¶ˆëŸ¬ì˜´
 		TeacherVO teacher = dao.getTeacher(teacher_num);
 				
-		//°­»ç »èÁ¦
+		//ê°•ì‚¬ ì‚­ì œ
 		dao.deleteTeacher(teacher_num);
 				
-		//ÆÄÀÏ »èÁ¦
+		//íŒŒì¼ ì‚­ì œ
 		FileUtil.removeFile(request, teacher.getTeacher_profile());
 		
 		

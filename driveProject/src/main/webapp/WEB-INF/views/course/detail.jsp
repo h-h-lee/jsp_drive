@@ -25,7 +25,7 @@
 	과정 관리
 </div>
 <div>
-	<input type="button" value="과정 등록" onclick="location.href='write.do'">
+	<input type="button" value="과정 등록" onclick="location.href='writeForm.do'">
 	<br><br>
 </div>
 <c:if test='${count == 0}'>
