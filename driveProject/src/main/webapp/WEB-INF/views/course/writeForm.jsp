@@ -18,6 +18,11 @@
 				$('#course_name').val('').focus();
 				return false;
 			}
+			if($('#teacher_num').val().trim()==''){
+				alert('강사번호를 입력하세요');
+				$('#teacher_num').val('').focus();
+				return false;
+			}
 			if($('#tuition').val().trim()==''){
 				alert('수강료를 입력하세요');
 				$('#tuition').val('').focus();
@@ -42,6 +47,10 @@
 			<li>
 				<label for="title">과정명</label>
 				<input type="text" name="title" id="title" maxlength="30">
+			</li>
+			<li>
+				<label for="teacher">강사번호</label>
+				<input type="number" name="teacher" id="teacher" maxlength="10">
 			</li>
 			<li>
 				<label for="tuition">수강료</label>
