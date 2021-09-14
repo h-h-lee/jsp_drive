@@ -33,7 +33,7 @@
 				<table class="table table-hover">
 					<thead>
 					<tr>
-						<th>과정명</th>
+						<th width="30%">과정명</th>
 						<th>강사명</th>
 						<th>신청일</th>
 						<th>신청결과</th>
@@ -47,9 +47,9 @@
 						<td>${app.teacher_name}</td>
 						<td>${app.app_date}</td>
 						<td>
-						<c:if test="${app.app_result==0}">신청완료</c:if>
-						<c:if test="${app.app_result==1}">승인</c:if>
-						<c:if test="${app.app_result==2}">미승인</c:if>
+							<c:if test="${app.app_result==0}"><span class="badge badge-pill badge-secondary">신청완료</span></c:if>
+							<c:if test="${app.app_result==1}"><span class="badge badge-pill badge-primary">승인</span></c:if>
+							<c:if test="${app.app_result==2}"><span class="badge badge-pill badge-danger">미승인</span></c:if>
 						</td>
 						<td><button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='cancelApp.do?app_num=${app.app_num}'"
 							<c:if test="${app.app_result!=0}">disabled</c:if>
