@@ -26,9 +26,11 @@ public class UpdateAction implements Action{
 
 		request.setCharacterEncoding("utf-8");
 		MultipartRequest multi =FileUtil.createFile(request);
-		
-		
+		int teacher_num=Integer.parseInt(multi.getParameter("teacher_num"));
 		String photo = multi.getFilesystemName("photo");
+		
+		TeacherDAO dao = TeacherDAO.getInstance();
+		
 		
 		if( photo == null || photo.equals("") || photo.equals("null") ) {	//프로필 사진 변경 안할 시
 			TeacherVO teacher = new TeacherVO();
@@ -37,10 +39,12 @@ public class UpdateAction implements Action{
 			teacher.setTeacher_phone(multi.getParameter("phone"));
 			teacher.setTeacher_email(multi.getParameter("email"));
 			
-		TeacherDAO dao = TeacherDAO.getInstance();
 			dao.updateTeacher(teacher);
 			
-		}else {																//프로필 사진 변경 시
+		}else {	//프로필 사진 변경 시
+			//이전 프로필 사진 불러옴
+			TeacherVO teacher_old = dao.getTeacher(teacher_num);
+			
 			TeacherVO teacher = new TeacherVO();
 			teacher.setTeacher_num(Integer.parseInt(multi.getParameter("teacher_num")));
 			teacher.setTeacher_name(multi.getParameter("name"));
@@ -48,7 +52,10 @@ public class UpdateAction implements Action{
 			teacher.setTeacher_phone(multi.getParameter("phone"));
 			teacher.setTeacher_email(multi.getParameter("email"));
 			
-			TeacherDAO dao = TeacherDAO.getInstance();
+			//이전프로필 사진 삭제
+			FileUtil.removeFile(request, teacher_old.getTeacher_profile());
+			
+			//프로필 업데이트
 			dao.allUpdateTeacher(teacher);
 			
 		}

@@ -74,7 +74,7 @@ $("input[id^='delete']").on('click', function(e) {
 	</div>
 </c:if>
 </div>
-
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 
 </html>

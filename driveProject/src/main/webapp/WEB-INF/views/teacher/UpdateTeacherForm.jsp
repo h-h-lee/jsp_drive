@@ -99,7 +99,7 @@ $(document).ready(function(){
   	<label for="photo">사진 업로드</label>
   	<input type="file" id="photo" name="photo" accept="image/gif,image/png,image/jpeg">
 </div>
-	<div align="center">
+	<div align="center" style="width: 300px; margin: 0 auto;" >
 		<input type="text" class="form-control input_width" id="name" name="name" value="${teacher.teacher_name}" placeholder="이름을 입력해 주세요">
 		<input type="text" class="form-control input_width" id="phone" name="phone" value="${teacher.teacher_phone}" placeholder="하이픈(-) 포함 연락처를 입력해 주세요">
 		<input type="email" class="form-control input_width" id="email" name="email" value="${teacher.teacher_email}" placeholder="이메일 주소를 입력해주세요">
@@ -112,5 +112,7 @@ $(document).ready(function(){
 </form>
 
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
 </body>
 </html>

@@ -8,11 +8,11 @@
 	font-family: 'Noto Sans KR';
 }
 
+
 /* carousel 크기 및 패딩값 */
-#main-carousel{
-	margin-top:3px;
-	width:100%;
-	height:700px;
+.carousel-inner{
+	width:1903px;
+	height: 570px;
 }
 
 /* carousel 상위 컨테이너*/
@@ -39,6 +39,9 @@ text-align: center;
 #main-width{
 	width:1200px;
 	margin:0 auto;
+	min-height: 100%;
+	position:relative;
+	padding-bottom: 150px;
 }
 
 /*메뉴 설명 스타일*/
@@ -107,7 +110,7 @@ text-align: center;
 
 #menu{ /* 메뉴바 전체 색상, 높이*/
 	background: #0d82eb;
-	height:55px;
+	height:56px;
 }
 
 #menu ul{ /* 메뉴바 사이즈*/
@@ -116,7 +119,7 @@ text-align: center;
 }
 
 #menu .menu-main>li { /*메뉴바*/
-	z-index:1;
+	z-index:3;
 	font-size:18px;
 	float : left;
 	width: 20%;
@@ -160,6 +163,154 @@ text-align: center;
 }
 /*menu(학원안내, 과정안내, 수강안내 ....) 스타일 끝*/
 
+/*중간 메뉴 스타일 시작*/
+.middle-menu-style{
+	width:1902.5px;
+	height:auto;
+	background: #2c567a;
+	padding-top: 13px;
+}
+
+.middle-menu-call{
+	width:320px;
+	height: 60px;
+	background: #2c567a;
+	margin: 0 auto;
+	
+}
+
+.middle-menu-call img{
+	margin-top:13px;
+	margin-left:2px;
+	width: 40px;
+	height: auto;
+	border-radius: 5px;
+	float: left;
+}
+
+.middle-menu-call h3{
+	margin-top:9px;
+	margin-left:12px;
+	font-size:33px;
+	color: white;
+	float: left;
+}
+
+/*퀵메뉴*/
+.middle-quick-menu-div{
+	background: #2c567a;
+	height:160px;
+}
+
+.middle-quick-menu-inner{
+	margin-top:10px; 
+	margin-left:80px; 
+	text-align: center;
+}
+
+.middle-quick-menu-content{
+	display:inline-block; 
+	margin-right: 135px; 
+}
+
+middle-quick-menu-content img {
+	height: auto;
+}
+
+.middle-text{
+	padding-top: 15px;
+	color:white;
+}
+
+/*공지사항 스타일*/
+.notice-div{
+	width:1902.5px;
+	height:470px;
+	background: #fafafa;
+	margin: 0 auto;
+}
+
+.notice-info{
+	padding-top:60px;
+	width:1902.5px;
+	height:130px;
+	margin:0 auto;
+	text-align:center;
+	display: table-cell;
+	font-size: 28px;
+	font-weight: 600;
+}
+.notice-table-div{
+	width:850px;
+	margin: 0 auto;
+}
+
+.notice-table-div table td{
+	height:53px;
+	padding-left: 20px;
+	font-size: 17px;
+}
+
+.notice-div hr{
+	margin-left:527px;
+	width:850px;
+	background:black;
+	margin-top: 0;
+	margin-bottom: 0;
+	height: 1px;
+	
+}
+.notice-table{
+	background: white;
+}
+
+.notice-table-date{
+	width:160px;
+	color:#919191;
+	margin-right: 3px;
+}
+
 /*footer 스타일*/
+footer {
+	width:1902.5px;
+	height:240px;
+	background: #393939;
+	margin: 0 auto;
+	position: absolute;
+}
 
+.footer-div{
+	padding-top:40px;
+	margin-left: 190px;
+	text-align: center;
+	background: #393939;
+	height: 240px;
+}
 
+.footer-div-content{
+	color:white;
+	text-align:left;
+	display:inline-block;
+	margin-right: 130px;
+	height: 170px;
+}
+
+.footer-div-content .longhr{
+	width:330px;
+	background:white;
+	  margin-top: 0;
+   margin-bottom: 20px;
+}
+
+.footer-div-content .shorthr{
+	width:190px;
+	background:white;
+	margin-top: 0;
+   	margin-bottom: 20px;
+}
+
+.footer-div-content span{
+	color:white;
+	font-size: 17px;
+	font-weight: 600;
+}
