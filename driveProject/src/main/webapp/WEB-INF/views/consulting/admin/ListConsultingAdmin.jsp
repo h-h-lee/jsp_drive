@@ -111,5 +111,6 @@ $(document).ready(function() {
 		<div class="my-3">${pagingHtml}</div>
 	</c:if>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

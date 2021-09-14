@@ -65,6 +65,7 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	<!-- 본문 끝 -->
 	<!-- Bootstrap JS -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>

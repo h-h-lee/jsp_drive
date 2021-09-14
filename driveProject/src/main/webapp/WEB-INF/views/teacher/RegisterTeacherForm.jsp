@@ -89,7 +89,7 @@ $(document).ready(function(){
 	  	<input type="file" id="photo" name="photo" accept="image/gif,image/png,image/jpeg">
 </div>
 
-	<div align="center">
+	<div align="center" style="width: 300px; margin: 0 auto;" >
 		<input type="text" class="form-control input_width" id="name" name="name" placeholder="이름을 입력해 주세요">
 		<input type="text" class="form-control input_width" id="phone" name="phone" placeholder="하이픈(-) 포함 연락처를 입력해 주세요">
 		<input type="text" class="form-control input_width" id="email" name="email" placeholder="이메일 주소를 입력해주세요">
@@ -98,9 +98,9 @@ $(document).ready(function(){
 		<button type="submit" id="join-submit" class="btn btn-primary">강사등록<i class="fa fa-check spaceLeft" style="color:white; margin-left: 3px;"></i></button>
 		<button type="button" class="btn btn-warning" onclick="location.href='${pageContext.request.contextPath}/teacher/list.do'">목록으로<i class="fa fa-times spaceLeft" style="color:white;margin-left: 3px;"></i></button>
 	</div>
-
 </form>
 
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

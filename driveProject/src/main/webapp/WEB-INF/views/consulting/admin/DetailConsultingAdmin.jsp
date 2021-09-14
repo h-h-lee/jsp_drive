@@ -93,5 +93,6 @@ table {
 		<button class="btn btn-success" onclick="location.href='adminList.do'">목록으로</button>
 	</div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
