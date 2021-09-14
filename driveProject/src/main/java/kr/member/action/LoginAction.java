@@ -46,7 +46,6 @@ public class LoginAction implements Action {
 			session.setAttribute("member_passwd", memberVO.getPasswd());
 			session.setAttribute("member_auth", memberVO.getAuth());
 			
-			System.out.println("멤버넘 세션 뭐지....?"+session.getAttribute("member_num"));
 			//인증 성공시 호출
 			return "redirect:/main/main.do";
 		}

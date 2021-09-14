@@ -22,12 +22,7 @@ margin-right:300px;
 }
 
 </style>
-<script type="text/javascript">
-function btn(){ 
-	alert('최고관리자는 삭제가 불가능 합니다.'); 
-	}
 
-</script>
 </head>
 <body>
 	<!-- header 시작 -->
@@ -45,62 +40,59 @@ function btn(){
 	    
 <jsp:include page="/WEB-INF/views/admin/adminAside.jsp"/>
 <div id="container" class="clear">
+<!-- <div class="lnb"> -->
+<!--   <a href="#" class="list-group-item list-group-item-action active" aria-current="true">마이페이지</a> -->
+<!--   <a href="#" class="list-group-item list-group-item-action">관리자 관리</a> -->
+<!--   <a href="#" class="list-group-item list-group-item-action">A third link item</a> -->
+<!--   <a href="#" class="list-group-item list-group-item-action">A fourth link item</a> -->
+<!--   <a class="list-group-item list-group-item-action disabled">A disabled link item</a> -->
+<!-- </div> -->
 
 <div class="content">
 <div class="container">
     <div class="row">
-        <div class="col-sm-15">
-            <div class="col-sm-5"></div>
-                <div class="col-sm-15">
-                    <h2 class="text-center">관리자 리스트</h2>
-                    
-                 
-                 
-<input type="button" value="관리자 추가" id="btn1" class="btn btn-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/admin/adminAddForm.do'">
+        <div class="col-sm-20">
+            <div class="col-sm-22"></div>
+                <div class="col-sm-20">
+                    <h2 class="text-center">회원 리스트</h2>
                     
 <!--                     <form action="MemberUpdateProc.jsp" method="post"> -->
 <table class="table">
+<c:if test="${count==0 }">
+	등록된 회원이 없습니다.
+</c:if>
+
+<c:if test="${count>0 }">
   <thead>
     <tr>
 <!--       <th scope="col">#</th> -->
       <th scope="col">아이디</th>
       <th scope="col">이름</th>
-      <th scope="col">관리자 구분</th>
-      <th scope="col"></th>
+      <th scope="col">휴대폰</th>
+      <th scope="col">이메일</th>
     </tr>
   </thead>
   
-  <c:forEach var="list" items="${adminList}">
+  <c:forEach var="list" items="${list}">
   <tbody>
     <tr>
 <!--       <th scope="row">1</th> -->
-      <td>${list.admin_id}</td>
-      <td>${list.admin_name }</td>
+      <td>${list.id}</td>
+      <td>${list.name }</td>
+      <td>${list.phone }</td>
+      <td>${list.email }</td>
       
-      <c:if test="${list.admin_auth==1}">
-      <td>일반관리자</td>
-      </c:if>
-       <c:if test="${list.admin_auth==2}">
-      <td>최고관리자</td>
-      </c:if>     
       
-      <c:if test="${list.admin_auth==1}">
-	  <td><input type="button"  class="btn btn-danger btn-sm" value="삭제" onclick="location.href='${pageContext.request.contextPath}/admin/adminDelete.do?admin_num2=${list.admin_num}&admin_name2=${list.admin_name}&admin_id2=${list.admin_id }'" ></td>      
-
-<%-- 	  <td><input type="button"  class="btn btn-danger btn-sm" value="삭제" onclick="idDelete('${list.admin_num}');" ></td>       --%>
-	  <input type="hidden" name="admin_num2" value="${list.admin_num}">
-	  <input type="hidden" name="admin_name" value="${list.admin_name}">
-	  <input type="hidden" name="admin_id2" value="${list.admin_name}">
-	  
-<%-- 	  <td>${list.admin_num}</td> --%>
-      </c:if>
-      <c:if test="${list.admin_auth==2 }">
-	  <td><input type="button"  class="btn btn-danger btn-sm" value="삭제불가능" onclick="javascript:btn()" ></td>      
-      </c:if>
+	  <td><input type="button"  class="btn btn-danger btn-sm" value="삭제" onclick="location.href='${pageContext.request.contextPath}/admin/memberDeleteForm.do?member_num2=${list.member_num}&id2=${list.id}&name2=${list.name}'" ></td>      
+	  <input type="hidden" name="admin_num2" value="${list.member_num}">
     </tr>
   </tbody>
   </c:forEach>
+</c:if>
 </table>
+<div class="align-center">
+	${pagingHtml}
+</div>
 <!--                 </form>    -->
                      
                 </div>
@@ -109,8 +101,14 @@ function btn(){
 </div> <!-- container end-->
 		   
 		    </div>
+		    
+		    
 	    </div>
     </div>
+
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
 </body>
 </html>

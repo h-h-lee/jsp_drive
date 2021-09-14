@@ -26,6 +26,7 @@ public class LoginAction implements Action{
 		
 		System.out.println(admin_id);
 		System.out.println("널이라고...?"+admin_passwd);
+		
 		AdminDAO adminDAO = AdminDAO.getInstance();
 		
 		AdminVO adminVO = adminDAO.adminLogin(admin_id);
@@ -38,15 +39,13 @@ public class LoginAction implements Action{
 		}
 		
 
-		System.out.println("~~~~~~~~~~~~~~~~~22");
 		if(check) { //비밀번호 일치시
 			
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("admin_num", adminVO.getAdmin_num());
 			session.setAttribute("admin_id", adminVO.getAdmin_id());
-			session.setAttribute("admin_auth", adminVO.getAdmin_auth());			System.out.println("~~~~~~~~~~~~~~~~~3333");
-			System.out.println("관리자세션 admin_num 넘어오냐~~ ~~~~~"+session.getAttribute("admin_num"));
+			session.setAttribute("admin_auth", adminVO.getAdmin_auth());			
 			
 			return "redirect:/main/main.do"; //로그인 성공시 
 		}

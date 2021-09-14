@@ -8,7 +8,12 @@
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
 <!-- <link rel="stylesheet" href="./css/login_style.css"> -->
-
+<style type="text/css">
+.page-main{
+margin-top:230px;
+margin-left:380px;
+}
+</style>
 </head>
 <body>
 	<!-- header 시작 -->
@@ -24,7 +29,7 @@
 	<h2>회원가입</h2>
 	<div class="align-center">
 		회원가입이 완료 되었습니다.
-		<input type="button" value="홈으로" onclick="href.location='${pageContext.request.contextPath}/main/main.do'">
+		<input type="button"  class="btn btn-primary btn-lg" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 	</div>
 </div>
 
