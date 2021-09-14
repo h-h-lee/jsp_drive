@@ -159,7 +159,6 @@ public class NoticeDAO {
 				notice.setReg_date(rs.getDate("reg_date"));
 				notice.setFilename(rs.getString("filename"));
 				notice.setAdmin_num(rs.getInt("admin_num"));
-				notice.setId(rs.getString("id"));
 			}
 			
 		}catch(Exception e) {
