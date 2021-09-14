@@ -11,19 +11,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/teacherCss/teacherStyle.css" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#write').on('click', function() {
-			var choice = confirm('과정을 등록하시겠습니까?');
-			if(choice){
-				var course_num = $(this).attr('id');
-				location.replace('writeCourse.do?course_num='+course_num);
-			}else {
-				return false;
-			}
-  		});
- 	});
-</script>
 </head>
 <body>
 <!-- header -->
@@ -33,11 +20,6 @@
 <jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 <div id="main-width">
 	<div id="menuinfo">과정 목록</div>
-	<c:if test="${admin_auth >= 1}">
-		<div>
-			<input type="button" onclick="location.href='writeForm.jsp'" value="과정 등록">
-		</div>
-	</c:if>
 	<c:if test='${count == 0}'>
 		<div class="card my-3">
 			<div class="card-body my-5 text-center">
@@ -45,7 +27,7 @@
 			</div>
 		</div>
 	</c:if>
-
+	
 	<c:if test="${count > 0}">
 		<div class="row card-text">
 			<c:forEach var="course" items="${list}">
@@ -66,5 +48,6 @@
 		</div>
 	</c:if>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

@@ -33,7 +33,7 @@
 			<hr class="shorthr">
 				<a href="${pageContext.request.contextPath}/notice/introduce.do" style="color: white; text-decoration: none;">학원소개<br></a>
 				<a href="${pageContext.request.contextPath}/notice/list.do" style="color: white; text-decoration: none;">공지사항<br></a>
-				<a href="${pageContext.request.contextPath}/course/listCourse.do" style="color: white; text-decoration: none;">과정안내<br></a>
+				<a href="${pageContext.request.contextPath}/course/list.do" style="color: white; text-decoration: none;">과정안내<br></a>
 				<a href="${pageContext.request.contextPath}/application/registerAppForm.do" style="color: white; text-decoration: none;">수강안내<br></a>
 				<a href="${pageContext.request.contextPath}/consulting/registerForm.do" style="color: white; text-decoration: none;">상담안내<br></a>
 		</div>

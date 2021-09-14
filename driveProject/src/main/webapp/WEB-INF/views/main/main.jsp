@@ -104,7 +104,7 @@
 				<h5 class="middle-text">강사소개</h5>
 			</div>
 		</a>
-		<a href="${pageContext.request.contextPath}/course/listCourse.do">
+		<a href="${pageContext.request.contextPath}/course/list.do">
 			<div class="middle-quick-menu-content">
 				<img src="${pageContext.request.contextPath}/images/main/card.png" width="100">
 				<h5 class="middle-text">과정안내</h5>

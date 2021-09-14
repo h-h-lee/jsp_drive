@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script>
 	alert('과정 등록 완료');
-	location.href='listCourse.do';
+	location.href='detail.do';
 </script>

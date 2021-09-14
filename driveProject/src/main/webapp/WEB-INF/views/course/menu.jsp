@@ -21,7 +21,7 @@
 		</li>
 		<li><a href="#">과정 안내</a>
 			<ul class="sub">
-				<li><a href="${pageContext.request.contextPath}/course/listCourse.do">과정 소개</a></li>
+				<li><a href="${pageContext.request.contextPath}/course/list.do">과정 소개</a></li>
 			</ul>
 		</li>
 		<li><a href="${pageContext.request.contextPath}/application/registerAppForm.do">수강 안내</a>
@@ -58,7 +58,7 @@
 				<ul class="sub">
 					<li><a href="#">관리자 관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/teacher/list.do">강사 관리</a></li>
-					<li><a href="#">과정 관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/course/detail.do">과정 관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/application/listAllApp.do">수강신청내역관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/consulting/adminList.do">상담신청내역관리</a></li>
 				</ul>

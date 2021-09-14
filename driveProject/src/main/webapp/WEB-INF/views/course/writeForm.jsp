@@ -42,7 +42,7 @@
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>과정 등록</h2>
-	<form id="write_form" action="writeCourse.do" method="post" enctype="multipart/form-data">
+	<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
 		<ul>
 			<li>
 				<label for="title">과정명</label>
@@ -59,7 +59,7 @@
 		</ul>
 		<div class="align-center">
 			<input type="submit" value="등록">
-			<input type="button" value="목록" onclick="location.href='listCourse.do'">
+			<input type="button" value="목록" onclick="location.href='detail.do'">
 		</div>
 	</form>
 </div>

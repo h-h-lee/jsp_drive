@@ -203,27 +203,22 @@ public class CourseDAO {
 		String sql = null;
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			
-			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-				+ "(SELECT * FROM course b JOIN course m ON b.course_num = m.course_num "
+				+ "(SELECT * FROM course b JOIN teacher m ON b.teacher_num = m.teacher_num "
 				+ "ORDER BY b.course_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			
-			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			//?에 데이터 바인딩
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			
-			//SQL문 실행해서 결과행을 ResultSet에 담음
 			rs = pstmt.executeQuery();
 			list = new ArrayList<CourseVO>();
 			while(rs.next()) {
 				CourseVO course = new CourseVO();
 				course.setCourse_num(rs.getInt("course_num"));
-				course.setCourse_name(StringUtil.useNoHtml(rs.getString("course_name"))); //HTML를 허용하지 않음
+				course.setCourse_name(rs.getString("course_name"));
 				course.setTeacher_num(rs.getInt("teacher_num"));
 				course.setTuition(rs.getInt("tuition"));
 				

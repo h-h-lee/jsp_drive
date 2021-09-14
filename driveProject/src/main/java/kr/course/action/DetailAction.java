@@ -1,11 +1,17 @@
 package kr.course.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.course.dao.CourseDAO;
 import kr.course.vo.CourseVO;
+import kr.teacher.dao.TeacherDAO;
+import kr.teacher.vo.TeacherVO;
+import kr.util.PagingUtil;
 import kr.util.StringUtil;
 
 public class DetailAction implements Action{
@@ -13,19 +19,23 @@ public class DetailAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		//과정번호 반환
-		int course_num = Integer.parseInt(request.getParameter("course_num"));
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum==null)pageNum = "1";
 		
 		CourseDAO dao = CourseDAO.getInstance();
+		int count = dao.getCourseCount();
 		
-		CourseVO course = dao.getCourse(course_num);
+		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum),count,8,10,"detail.do");
 		
-		//HTML를 허용하지 않음
-		course.setCourse_name(StringUtil.useNoHtml(course.getCourse_name()));
+		List<CourseVO>list = null;
 		
-		course.setTuition(course.getTuition());
+		if(count > 0) {
+			list = dao.getListCourse(page.getStartCount(), page.getEndCount());
+		}
 		
-		request.setAttribute("course", course);
+		request.setAttribute("count", count);
+		request.setAttribute("list", list);
+		request.setAttribute("pagingHtml", page.getPagingHtml());
 		
 		return "/WEB-INF/views/course/detail.jsp";
 	}
