@@ -11,6 +11,22 @@
 <!-- style.css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style-app.css" type="text/css">
+<!-- jquery -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//수강신청 취소 확인
+		$(document).on('click', '#btn-cancel', function(){
+			var appnum = $(this).attr('data-appnum');
+			var choice = confirm('정말 취소하시겠습니까?');
+			if(choice){
+				location.href='cancelApp.do?app_num=' + appnum;
+			}else{
+				return false;
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- header -->

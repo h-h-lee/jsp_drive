@@ -19,7 +19,6 @@ public class ApplicationDAO {
 	}
 	private ApplicationDAO() {}
 	
-
 	//수강신청 등록
 	public void insertApp(ApplicationVO app) throws Exception{
 		Connection conn = null;
@@ -29,7 +28,7 @@ public class ApplicationDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "INSERT INTO application VALUES(Application_seq.nextval,?,?,SYSDATE,0)";
+			sql = "INSERT INTO application(app_num,member_num,course_num,app_result,app_date) VALUES(Application_seq.nextval,?,?,0,SYSDATE)";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, app.getMember_num());
@@ -45,13 +44,13 @@ public class ApplicationDAO {
 		}
 	}
 	
-	//수강신청 중복 체크
-	public int checkApp(ApplicationVO app) throws Exception{
+	//수강신청 중복 체크 - true: 미중복, false:중복
+	public boolean checkApp(ApplicationVO app) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		int check = 0;
+		boolean check = false;
 		
 		try {
 			conn = DBUtil.getConnection();
@@ -64,7 +63,9 @@ public class ApplicationDAO {
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				check=rs.getInt(1);
+				if(rs.getInt(1) == 0) {
+					check = true;
+				}
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -110,7 +111,7 @@ public class ApplicationDAO {
 			return app;
 		}
 	
-	//총 레코드 수 - 회원별
+	//총 레코드 수 - 일반회원
 	public int getAppCount(int member_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -139,7 +140,7 @@ public class ApplicationDAO {
 		return count;
 	}
 	
-	//수강신청 목록 - 회원별
+	//수강신청 목록 - 일반회원
 	public List<ApplicationVO> getAppList(int member_num, int start, int end) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -208,8 +209,7 @@ public class ApplicationDAO {
 		}
 	}
 	
-	//관리자 모드
-	//총 레코드 수 - 전체 회원
+	//총 레코드 수 - 관리자
 	public int getAppCountAll(String keyfield, String keyword) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -259,7 +259,7 @@ public class ApplicationDAO {
 		return count;
 	}
 	
-	//수강신청 목록 - 전체 회원
+	//전체 수강신청 목록 - 관리자
 	public List<ApplicationVO> getAppListAll(int start, int end, String keyfield, String keyword) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -328,7 +328,7 @@ public class ApplicationDAO {
 		return list;
 	}
 	
-	//수강신청 상세 - 과정명, 강사명, 회원명 JOIN
+	//수강신청 상세(과정명, 강사명, 회원명 JOIN) - 관리자
 	public HashMap<String,Object> getAppDetail(int app_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -384,7 +384,7 @@ public class ApplicationDAO {
 		return hmap;
 	}
 	
-	//수강신청 결과 부여
+	//수강신청 결과 변경 - 관리자
 	public void setAppResult(int app_num, int app_result) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -409,7 +409,7 @@ public class ApplicationDAO {
 		}
 	}
 	
-	//강사 맵
+	//강사 맵 : 강사번호로 강사이름 찾을 용도
 	public HashMap<Integer,String> getTeacherMap() throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;

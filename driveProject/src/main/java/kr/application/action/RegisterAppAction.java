@@ -32,10 +32,8 @@ public class RegisterAppAction implements Action{
 		
 		//수강신청 중복 체크
 		ApplicationDAO dao = ApplicationDAO.getinstance();
-		boolean check = false;
-		if(dao.checkApp(app)==0) {
-			check = true;
-			
+		boolean check = dao.checkApp(app);
+		if(check) {
 			//수강신청 등록
 			dao.insertApp(app);
 		}
