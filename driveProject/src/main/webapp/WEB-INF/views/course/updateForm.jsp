@@ -61,7 +61,7 @@
 						</li>
 						<li>
 							<label for="teacher_num">강사번호</label>
-							<input type="number" name="teacher_num" id="teacher_num" maxlength="10">
+							<input type="number" name="teacher_num" id="teacher_num" value="${course.teacher_num}" maxlength="10">
 						</li>
 						<li>
 							<label for="tuition">수강료</label>

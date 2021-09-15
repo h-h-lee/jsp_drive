@@ -138,7 +138,7 @@ public class CourseDAO {
 		try {
 			conn = getConnection();
 			
-			sql = "SELECT * FROM course WHERE num=?";
+			sql = "SELECT * FROM course WHERE course_num=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			

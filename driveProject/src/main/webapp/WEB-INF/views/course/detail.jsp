@@ -11,7 +11,19 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/teacherCss/teacherStyle.css" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
-
+<script type="text/javascript">
+$(document).ready(function() {
+	$("input[id^='delete']").on('click', function(e) {
+		var choice = confirm('해당 과정을 삭제하시겠습니까?');
+		if(choice){
+			var course_num = $(this).attr('id').substring(7);
+			location.replace('delete.do?course_num='+course_num);
+		}else {
+			return;
+		}
+	  });
+	 });
+</script>
 </head>
 
 <body>

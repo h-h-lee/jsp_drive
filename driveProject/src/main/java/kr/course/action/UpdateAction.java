@@ -15,7 +15,10 @@ public class UpdateAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		int course_num = Integer.parseInt(request.getParameter("course_num"));
+		
 		CourseVO course = new CourseVO();
+		course.setCourse_num(course_num);
 		course.setCourse_name(request.getParameter("course_name"));
 		course.setTeacher_num(Integer.parseInt(request.getParameter("teacher_num")));
 		course.setTuition(Integer.parseInt(request.getParameter("tuition")));
@@ -23,7 +26,7 @@ public class UpdateAction implements Action{
 		CourseDAO dao = CourseDAO.getInstance();
 		dao.updateCourse(course);
 		
-		return "redirect:/course/detail.do";
+		return "/WEB-INF/views/course/update.jsp";
 	}
 
 }

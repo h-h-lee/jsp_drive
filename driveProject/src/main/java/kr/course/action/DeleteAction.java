@@ -24,14 +24,9 @@ public class DeleteAction implements Action{
 		int course_num = Integer.parseInt(request.getParameter("course_num"));
 		
 		CourseDAO dao = CourseDAO.getInstance();
-		
-		CourseVO course = dao.getCourse(course_num);
-		
 		dao.deleteCourse(course_num);
 		
-		FileUtil.removeFile(request, course.getCourse_name());
-		
-		return "redirect:/board/detail.do";
+		return "/WEB-INF/views/course/delete.jsp";
 	}
 	
 }
