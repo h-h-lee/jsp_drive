@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 목록</title>
+<title>게시판 목록 리스트</title>
 <style type="text/css">
 h2{
 	text-align:center;
