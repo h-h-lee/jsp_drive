@@ -36,8 +36,8 @@ $(document).ready(function() {
 <div id="menuinfo">
 	과정 관리
 </div>
-<div>
-	<input type="button" value="과정 등록" onclick="location.href='writeForm.do'" class="btn btn-primary">
+<div class="btn-div" align="right">
+	<input type="button" class="btn btn-outline-primary btn-lg" value="과정 등록" onclick="location.href='writeForm.do'" class="btn btn-primary">
 	<br><br>
 </div>
 <c:if test='${count == 0}'>
@@ -55,22 +55,20 @@ $(document).ready(function() {
 		<c:forEach var="course" items="${list}">
 	 		<div class="col-3 mb-4" >
 				<div class="card card-width">
-					<div class="card-body card-body-height">
-	              			<br>
-	           				<p>과정번호: ${course.course_num}</p>
-	               			<p>과정명: ${course.course_name}</p>
-	              			<p>강사번호: ${course.teacher_num}</p>
-	              			<p>수강료: <fmt:formatNumber value="${course.tuition}" pattern="#,###"/> 원</p>
-	              			<br>
-	              		<input type="button" class="btn btn-info" value="수정" onclick="location.href='updateForm.do?course_num=${course.course_num}'">
-	              		<input type="button" class="btn btn-danger deleteBtn" value="삭제" id="delete_${course.course_num}">
-					</div>
+	              	<br>
+	           		<p>과정번호: ${course.course_num}</p>
+	               	<p>과정명: ${course.course_name}</p>
+	              	<p>강사번호: ${course.teacher_num}</p>
+	              	<p>수강료: <fmt:formatNumber value="${course.tuition}" pattern="#,###"/> 원</p>
+	              	<br>
+	              	<input type="button" class="btn btn-info" value="수정" onclick="location.href='updateForm.do?course_num=${course.course_num}'">
+	              	<input type="button" class="btn btn-danger deleteBtn" value="삭제" id="delete_${course.course_num}">
 				</div>
 			</div>
 		</c:forEach>
 	</div>
 	<br><br><br>
-	<div class="align-center">
+	<div align="center">
 		${pagingHtml}
 	</div>
 </c:if>

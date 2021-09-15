@@ -19,34 +19,38 @@
 <!-- menu -->
 <jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 <div id="main-width">
-	<div id="menuinfo">과정 목록</div>
-	<c:if test='${count == 0}'>
-		<div class="card my-3">
-			<div class="card-body my-5 text-center">
-				<div class="text-danger" style="font-size: 18px; font-weight: bold;">등록된 과정이 없습니다.</div>
-			</div>
-		</div>
-	</c:if>
-	
-	<c:if test="${count > 0}">
-		<div class="row card-text">
-			<c:forEach var="course" items="${list}">
-				<div class="col-3 mb-4">
-				<br><br><br>
-					<tr>
-						<td>과정번호 : ${course.course_num}<br></td>
-						<td>과정명 : ${course.course_name}<br></td>
-						<td>강사번호 : ${course.teacher_num}<br></td>
-						<td>수강료 : <fmt:formatNumber value="${course.tuition}" pattern="#,###"/> 원<br></td>
-					</tr>
-				<br><br><br>
+	<div class="card mt-3">
+		<div class="card-body object-center text-center">
+			<div id="menuinfo">과정 목록</div>
+			<c:if test='${count == 0}'>
+				<div class="card my-3">
+					<div class="card-body my-5 text-center">
+						<div class="text-danger" style="font-size: 18px; font-weight: bold;">등록된 과정이 없습니다.</div>
+					</div>
 				</div>
-			</c:forEach>
+			</c:if>
+	
+			<c:if test="${count > 0}">
+				<div class="row card-text">
+					<c:forEach var="course" items="${list}">
+						<div class="col-3 mb-4">
+						<br><br><br>
+						<tr>
+							<td>과정번호 : ${course.course_num}<br></td>
+							<td>과정명 : ${course.course_name}<br></td>
+							<td>강사번호 : ${course.teacher_num}<br></td>
+							<td>수강료 : <fmt:formatNumber value="${course.tuition}" pattern="#,###"/> 원<br></td>
+						</tr>
+						<br><br><br>
+						</div>
+					</c:forEach>
+				</div>
+			<div class="align-center">
+				${pagingHtml}
+			</div>
+		</c:if>
 		</div>
-		<div class="align-center">
-			${pagingHtml}
-		</div>
-	</c:if>
+	</div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>

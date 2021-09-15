@@ -15,6 +15,8 @@ public class UpdateAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		request.setCharacterEncoding("utf-8");
+		
 		int course_num = Integer.parseInt(request.getParameter("course_num"));
 		
 		CourseVO course = new CourseVO();
