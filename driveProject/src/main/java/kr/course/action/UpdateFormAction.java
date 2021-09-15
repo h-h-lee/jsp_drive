@@ -14,8 +14,9 @@ public class UpdateFormAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer admin_num = (Integer)session.getAttribute("admin_num");
+		request.setCharacterEncoding("utf-8");
 		
-		//¼¼¼Ç¿¡ ÀúÀåµÈ °ªÀÌ ¾øÀ¸¸é °ü¸®ÀÚ ·Î±×ÀÎ ÆäÀÌÁö È£Ãâ
+		//ì„¸ì…˜ì— ì €ì¥ëœ ê°’ì´ ì—†ìœ¼ë©´ ê´€ë¦¬ì ë¡œê·¸ì¸ í˜ì´ì§€ í˜¸ì¶œ
 		if(admin_num == null) {
 			return "redirect:/admin/adminLoginForm.do";
 		}

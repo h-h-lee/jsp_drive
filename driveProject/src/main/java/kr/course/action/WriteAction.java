@@ -15,6 +15,8 @@ public class WriteAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		request.setCharacterEncoding("utf-8");
+		
 		CourseVO course = new CourseVO();
 		course.setCourse_name(request.getParameter("course_name"));
 		course.setTeacher_num(Integer.parseInt(request.getParameter("teacher_num")));
