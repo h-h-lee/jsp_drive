@@ -58,11 +58,6 @@ h2{
 	<c:if test="${count > 0}">
 		<c:if test="${admin_num == null}">
 		</c:if>
-		<c:if test="${admin_num != null}">
-			<div align="right" style="margin-right: 390px;">
-				<input type="button" class="btn btn-primary pull-right" value="글쓰기" onclick="location.href='writeForm.do'"> 
-			</div>
-		</c:if>
 		<div class="container">
 		<div class="row">
 			<table class="table" style="text-align: center; border: 1px solid #dddddd">
@@ -84,6 +79,11 @@ h2{
 				</c:forEach>
 			</table>
 		</div>
+		<c:if test="${admin_num != null}">
+			<div align="right" style="margin-right: 390px;">
+				<input type="button" class="btn btn-primary pull-right" value="글쓰기" onclick="location.href='writeForm.do'"> 
+			</div>
+		</c:if>
 	</div>
   </c:if>
 </div>
