@@ -111,7 +111,7 @@ margin-left:600px;
 			</div>	
 	<div style="margin-left: 145px; margin-top: 15px;">
 	  <button type="submit" class="btn btn-danger">회원삭제</button>
-	  <input type="button" class="btn btn-primary" value="취소" onclick="location.href='memberMyPageForm.do'">
+	  <input type="button" class="btn btn-primary" value="취소" onclick="location.href='memberManageListForm.do'">
   </div>
   </form>
       </div>

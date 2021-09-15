@@ -10,7 +10,7 @@ public class NoticeVO {
 	private String filename;//파일명     
 	private int hit;		//조회수      
 	private int admin_num;  //관리자 번호
-	private String id; //관리자 아이디
+	private String admin_id; //관리자 아이디
 	
 	public int getNotice_num() {
 		return notice_num;
@@ -54,10 +54,11 @@ public class NoticeVO {
 	public void setAdmin_num(int admin_num) {
 		this.admin_num = admin_num;
 	}
-	public String getId() {
-		return id;
+	public String getAdmin_id() {
+		return admin_id;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setAdmin_id(String admin_id) {
+		this.admin_id = admin_id;
 	}
+	
 }

@@ -1,5 +1,7 @@
 package kr.course.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -7,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.course.dao.CourseDAO;
 import kr.course.vo.CourseVO;
+import kr.teacher.dao.TeacherDAO;
+import kr.teacher.vo.TeacherVO;
 
 public class UpdateFormAction implements Action{
 
@@ -25,7 +29,12 @@ public class UpdateFormAction implements Action{
 		CourseDAO dao = CourseDAO.getInstance();
 		CourseVO course = dao.getCourse(course_num);
 		
+		//강사 목록 불러오기
+		TeacherDAO Tdao = TeacherDAO.getInstance();
+		List<TeacherVO> list = Tdao.ListTeacher();
+		
 		request.setAttribute("course", course);
+		request.setAttribute("list", list);
 		return "/WEB-INF/views/course/updateForm.jsp";
 	}
 

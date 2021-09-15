@@ -22,9 +22,7 @@ public class ListAction implements Action{
 		NoticeDAO dao = NoticeDAO.getInstance();
 		int count = dao.getNoticeCount();
 		
-		//페이지 처리
-		//currentPage, count, rowCount, pageCount, url
-		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum),count,20,10,"list.do");
+		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum),count,10,10,"list.do");
 		
 		List<NoticeVO> list = null;
 		if(count > 0) {

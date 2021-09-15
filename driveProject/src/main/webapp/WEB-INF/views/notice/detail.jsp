@@ -40,29 +40,37 @@
 </div>
 </div>
 	<!-- 게시판 글 보기 양식 영역 시작 -->
-	<div class="container">
-		<div class="row">
-			<table class="table table-bordered" style=" border: 1px solid #dddddd; font-size: 17px;">
+	<div class="container" style="margin: 0 auto">
+		<div class="row" style="margin: 0 auto">
+			<table class="table table-bordered" style=" font-size: 17px;">
 					<tr>
-						<td style="text-align: center;">작성자 번호</td>
-						<td colspan="2">${notice.admin_num}</td>
+						<td style=" color:#666666;text-align: center; font-weight: bold;">게시글 번호</td>
+						<td>${notice.notice_num}</td>
+						<td style=" color:#666666; text-align: center; font-weight: bold;">조회수</td>
+						<td>${notice.hit}</td>
+						<td style=" color:#666666; text-align: center; font-weight: bold;">작성자</td>
+						<td>${notice.admin_id}</td>
 					</tr>
 					<tr>
-						<td style="width: 20%; text-align: center;">글 제목</td>
-						<td colspan="2" style="font-weight: 600;">${notice.title}</td>
+						<td style="color:#666666; width: 20%; text-align: center;font-weight: bold;">글 제목</td>
+						<td colspan="6">${notice.title}</td>
 					</tr>
 					<tr>
-						<td style="text-align: center;">내용</td>
-						<td colspan="2" style="height: 200px; text-align: left;">${notice.content}<br>
+						<td style="color:#666666; text-align: center;font-weight: bold;">내용</td>
+						<td colspan="6" style="height: 200px; text-align: left;">${notice.content}<br>
 							<img src="${pageContext.request.contextPath}/upload/${notice.filename}">
 						</td>
 					</tr>
 			</table>
-			
+			</div>
 			<div class="btn-div" align="right">
-			<a href="list.do" class="btn btn-primary">목록</a> &nbsp;
+			<c:if test="${admin_num != notice.admin_num}">
+				<a href="list.do" class="btn btn-primary">목록</a> &nbsp;
+			</c:if>
 			<!-- 해당 글의 작성자가 본인이라면 수정과 삭제가 가능하도록 코드 추가 -->
 			<c:if test="${admin_num == notice.admin_num}">
+
+			<a href="list.do" class="btn btn-primary">목록</a> &nbsp;
 				<a href="updateForm.do?notice_num=${notice.notice_num}" class="btn btn-primary">수정</a> &nbsp;
 				<a id="delete_btn" class="btn btn-primary">삭제</a>
 				<script type="text/javascript">
@@ -76,10 +84,11 @@
 					};
  			</script>	
 		</c:if>
-		</div><br><br><br><br>
 		</div>
-	</div>
+		</div><br><br><br><br>
+		
 	<!-- 게시판 글 보기 양식 영역 끝 -->
+	<div style="margin-bottom: 60px;"></div>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	<!-- Bootstrap JS -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>

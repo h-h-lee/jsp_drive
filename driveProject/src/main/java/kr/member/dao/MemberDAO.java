@@ -112,6 +112,7 @@ public class MemberDAO {
 				memberVO = new MemberVO();
 				
 				memberVO.setId(rs.getString("id"));
+				memberVO.setAuth(rs.getInt("auth"));
 			}
 			
 			
@@ -138,7 +139,8 @@ public class MemberDAO {
 		
 			conn = DBUtil.getConnection();
 			
-			sql = "SELECT * FROM member m LEFT OUTER JOIN member_detail d ON m.member_num = d.member_num WHERE m.id=?";
+			sql = "SELECT * FROM member m LEFT OUTER JOIN member_detail d "
+					+ "ON m.member_num = d.member_num WHERE m.id=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);

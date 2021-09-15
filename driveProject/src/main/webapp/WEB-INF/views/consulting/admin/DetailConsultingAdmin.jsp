@@ -10,6 +10,7 @@
 <title>예약 상세 정보</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/consultingStyle.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style-app.css" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 <style type="text/css">
@@ -51,48 +52,44 @@ table {
 				</div>
 			</div>
 		</div>
-		<div class="card my-3">
-			<div class="card-body my-2 text-center detail-info">
-				<div>상담 예약 회원 정보</div>
-			</div>
+		<div class="card mt-3">
+			<p class="card-header font-title">상담예약 회원 정보</p>
+	    	<div class="card-body object-half">
+	    		<table class="table table-borderless font-content">
+					<tbody>
+					<tr class="line-bottom">
+						<th>아이디</th>
+						<td>${consulting.id}</td>
+					</tr>
+					<tr class="line-bottom">
+						<th>이름</th>
+						<td>${consulting.name}</td>
+					</tr>
+					<tr class="line-bottom">
+						<th>생년월일</th>
+						<td>${consulting.birth}</td>
+					</tr>
+					<tr class="line-bottom">
+						<th>연락처</th>
+						<td>${consulting.phone}</td>
+					</tr>
+					<tr class="line-bottom">
+						<th>이메일주소</th>
+						<td>${consulting.email}</td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td colspan="3">${consulting.address1} ${consulting.address2}</td>
+					</tr>
+					</tbody>
+				</table>
+	    	</div>
+	    </div>
+    	<!-- 버튼 -->
+    	<div class="text-center mt-3">
+			<button class="btn btn-success" onclick="location.href='adminList.do'">목록으로</button>
 		</div>
-	
-		<div class="col-sm-5 table-align">
-		<table class="table">
-			<tr>
-				<td class="col-sm-4 text-center font-weight-bold">아이디</td>
-				<td class="col-sm-5">${consulting.id}</td>
-			</tr>
-			<tr>
-				<td class="text-center font-weight-bold">이름</td>
-				<td>${consulting.name}</td>
-			</tr>
-			<tr>
-				<td class="text-center font-weight-bold">연락처</td>
-				<td>${consulting.phone}</td>
-			</tr>
-			<tr>
-				<td class="text-center font-weight-bold">이메일주소</td>
-				<td>${consulting.email}</td>
-			</tr>
-			<tr>
-				<td class="text-center font-weight-bold">우편번호</td>
-				<td>${consulting.zipcode}</td>
-			</tr>
-			<tr>
-				<td class="text-center font-weight-bold">자택 주소</td>
-				<td>${consulting.address1}</td>
-			</tr>
-			<tr>
-				<td class="text-center font-weight-bold">상세 주소</td>
-				<td>${consulting.address2}</td>
-			</tr>
-		</table>
 	</div>
-	<div align="center" class="button-padding">
-		<button class="btn btn-success" onclick="location.href='adminList.do'">목록으로</button>
-	</div>
-</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

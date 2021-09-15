@@ -10,9 +10,6 @@
 h2{
 	text-align:center;
 }
-.paging{
-	text-align:center;
-}
 .notice-display{
 	font-size:20px;
 	text-align:center;
@@ -35,6 +32,8 @@ h2{
 </style>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<!-- header -->
@@ -80,16 +79,16 @@ h2{
 			</table>
 		</div>
 		<c:if test="${admin_num != null}">
-			<div align="right" style="margin-right: 390px;">
+			<div align="right">
 				<input type="button" class="btn btn-primary pull-right" value="글쓰기" onclick="location.href='writeForm.do'"> 
 			</div>
 		</c:if>
 	</div>
   </c:if>
+  <div align="center">
+ 	<div class="my-3">${pagingHtml}</div>
+  </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-<!-- Bootstrap JS -->
-    <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

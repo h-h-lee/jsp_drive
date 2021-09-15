@@ -47,10 +47,10 @@ margin-top:30px;
                      
 <!--                     <form action="MemberUpdateProc.jsp" method="post"> -->
                      
-                    <table class="table table-striped">
+                    <table class="table">
                     
                       <tr>
-                        <td>관리자 구분</td>
+                        <td style="font-weight: bold;">관리자 구분</td>
 					<c:if test="${adminVO.admin_auth==1}">
                         <td>일반관리자</td>
 					</c:if>
@@ -60,12 +60,12 @@ margin-top:30px;
                       </tr>
 
                       <tr>
-                        <td>아이디</td>
+                        <td style="font-weight: bold;">아이디</td>
                         <td>${adminVO.admin_id }</td>
                       </tr>
                       
                       <tr>
-                        <td>이름</td>
+                        <td style="font-weight: bold;">이름</td>
                         <td>${adminVO.admin_name }</td>
                       </tr>
                       

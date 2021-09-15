@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>과정 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/teacherCss/teacherStyle.css" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -19,39 +18,38 @@
 <!-- menu -->
 <jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 <div id="main-width">
-	<div class="card mt-3">
-		<div class="card-body object-center text-center">
-			<div id="menuinfo">과정 목록</div>
-			<c:if test='${count == 0}'>
-				<div class="card my-3">
-					<div class="card-body my-5 text-center">
-						<div class="text-danger" style="font-size: 18px; font-weight: bold;">등록된 과정이 없습니다.</div>
-					</div>
-				</div>
-			</c:if>
-	
-			<c:if test="${count > 0}">
-				<div class="row card-text">
+<div id="menuinfo">과정 목록</div>
+<div class="card mt-3">
+		    <div class="card-body object-center text-center">
+		    	<c:if test="${count==0}">
+				<div class="my-5 text-danger empty-card">등록된 과정이 없습니다.</div>
+				</c:if>
+				<c:if test="${count>0}">
+				<table class="table table-hover text-center line-bottom">
+					<thead>
+					<tr>
+						<th>과정번호</th>
+						<th width="30%">과정명</th>
+						<th>강사명</th>
+						<th>수강료</th>
+					</tr>
+					</thead>
+					<tbody>
 					<c:forEach var="course" items="${list}">
-						<div class="col-3 mb-4">
-						<br><br><br>
-						<tr>
-							<td>과정번호 : ${course.course_num}<br></td>
-							<td>과정명 : ${course.course_name}<br></td>
-							<td>강사번호 : ${course.teacher_num}<br></td>
-							<td>수강료 : <fmt:formatNumber value="${course.tuition}" pattern="#,###"/> 원<br></td>
-						</tr>
-						<br><br><br>
-						</div>
+					<tr>
+						<td>${course.course_num}</td>
+						<td>${course.course_name}</td>
+						<td>${course.teacher_name}</td>
+						<td><fmt:formatNumber value="${course.tuition}" type="number"/>원</td>
+					</tr>
 					</c:forEach>
-				</div>
-			<div class="align-center">
+					</tbody>
+				</table>
 				${pagingHtml}
+				</c:if>
 			</div>
-		</c:if>
 		</div>
 	</div>
-</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

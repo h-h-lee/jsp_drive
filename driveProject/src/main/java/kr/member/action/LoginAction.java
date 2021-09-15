@@ -1,5 +1,7 @@
 package kr.member.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,16 +26,15 @@ public class LoginAction implements Action {
 		
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
-//		int member_num = Integer.parseInt(request.getParameter("member_num"));
 		
 		
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		MemberVO memberVO = memberDAO.memberLogin(id);
-		
+				
 		boolean check = false;
 		
 			
-		if(passwd!=null) {//비밀번호 일치 여부 체크
+		if(memberVO!=null) {//비밀번호 일치 여부 체크
 			check = memberVO.isCheckPassword(passwd);
 		}
 		

@@ -48,6 +48,8 @@ $(document).ready(function() {
 <div id="menuinfo">
 	상담 신청 내역
 </div>
+<div class="card">
+	<div class="card-body object-center text-center">
 <c:if test='${count == 0}'>
 	<div class="card my-3">
 		<div class="card-body my-5 text-center">
@@ -56,7 +58,7 @@ $(document).ready(function() {
 	</div>
 </c:if>
 <c:if test='${count > 0}'>
-	<table class="table table-hover text-center">
+	<table class="table table-hover text-center line-bottom">
 		<thead>
 			<tr>
 				<th class="col-md-1">상담번호</th>
@@ -77,18 +79,18 @@ $(document).ready(function() {
 				<td>${consulting.consulting_time}</td>
 				<td><fmt:formatDate value="${consulting.con_date}" type="both" pattern = "yyyy-MM-dd HH:mm:ss"/></td>
 				<c:if test="${consulting.con_state==0}">
-					<td><span class="btn btn-secondary">접수완료</span></td>
+					<td><span class="btn btn-sm btn-secondary">접수완료</span></td>
 				</c:if>
 				<c:if test="${consulting.con_state==1}">
-					<td><span class="btn btn-warning">상담대기</span></td>
+					<td><span class="btn btn-sm btn-warning">상담대기</span></td>
 				</c:if>
 				<c:if test="${consulting.con_state==2}">
-					<td><span class="btn btn-success">상담완료</span></td>
+					<td><span class="btn btn-sm btn-success">상담완료</span></td>
 				</c:if>
 				
 				<td>
 					<div align="center">
-						<input type="button" class="btn btn-xs btn-info" value="상담대기"  id="update1${consulting.consulting_num}"
+						<input type="button" class="btn btn-sm btn-info" value="상담대기"  id="update1${consulting.consulting_num}"
 						<c:if test="${consulting.con_state==1}">
 							disabled="disabled"
 						</c:if>
@@ -96,7 +98,7 @@ $(document).ready(function() {
 							disabled="disabled"
 						</c:if>
 						>
-						<input type="button" class="btn btn-xs btn-danger" value="상담완료"  id="update2${consulting.consulting_num}"
+						<input type="button" class="btn btn-sm btn-danger" value="상담완료"  id="update2${consulting.consulting_num}"
 						<c:if test="${consulting.con_state==2}">
 							disabled="disabled"
 						</c:if>
@@ -110,6 +112,8 @@ $(document).ready(function() {
 	</table>
 		<div class="my-3">${pagingHtml}</div>
 	</c:if>
+	</div>
+	</div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>

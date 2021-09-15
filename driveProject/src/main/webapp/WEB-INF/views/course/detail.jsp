@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>과정 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/teacherCss/teacherStyle.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/consultingStyle.css" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
@@ -33,46 +33,48 @@ $(document).ready(function() {
 <!-- menu -->
 <jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 <div id="main-width">
-<div id="menuinfo">
-	과정 관리
-</div>
+<div id="menuinfo">과정 관리</div>
+
 <div class="btn-div" align="right">
-	<input type="button" class="btn btn-outline-primary btn-lg" value="과정 등록" onclick="location.href='writeForm.do'" class="btn btn-primary">
-	<br><br>
+	<input type="button" class="btn btn-outline-primary" value="과정 등록" onclick="location.href='writeForm.do'" class="btn btn-primary">
 </div>
-<c:if test='${count == 0}'>
-	<div class="card my-3">
-		<div class="card-body my-5 text-center">
-			<br><br><br><br><br><br><br><br>
-			<div class="text-danger" style="font-size: 18px; font-weight: bold;">등록된 과정이 없습니다.</div>
-			<br><br><br><br><br><br><br><br>
+<div class="card mt-3">
+		    <div class="card-body object-center text-center">
+		    	<c:if test="${count==0}">
+				<div class="my-5 text-danger empty-card">등록된 과정이 없습니다.</div>
+				</c:if>
+				<c:if test="${count>0}">
+				<table class="table table-hover text-center line-bottom">
+					<thead>
+					<tr>
+						<th>과정번호</th>
+						<th width="30%">과정명</th>
+						<th>강사명</th>
+						<th>수강료</th>
+						<th>수정/삭제</th>
+					</tr>
+					</thead>
+					<tbody>
+					<c:forEach var="course" items="${list}">
+					<tr>
+						<td>${course.course_num}</td>
+						<td>${course.course_name}</td>
+						<td>${course.teacher_name}</td>
+						<td><fmt:formatNumber value="${course.tuition}" type="number"/>원</td>
+						<td>
+							<input type="button" class="btn btn-info" value="수정" onclick="location.href='updateForm.do?course_num=${course.course_num}'">
+							<input type="button" class="btn btn-danger deleteBtn" value="삭제" id="delete_${course.course_num}">
+						</td>
+					</tr>
+					</c:forEach>
+					</tbody>
+				</table>
+				<div class="my-3">${pagingHtml}</div>
+				</c:if>
+				
+			</div>
 		</div>
 	</div>
-</c:if>
-
-<c:if test='${count > 0}'>
-	<div class="row card-text">
-		<c:forEach var="course" items="${list}">
-	 		<div class="col-3 mb-4" >
-				<div class="card card-width">
-	              	<br>
-	           		<p>과정번호: ${course.course_num}</p>
-	               	<p>과정명: ${course.course_name}</p>
-	              	<p>강사번호: ${course.teacher_num}</p>
-	              	<p>수강료: <fmt:formatNumber value="${course.tuition}" pattern="#,###"/> 원</p>
-	              	<br>
-	              	<input type="button" class="btn btn-info" value="수정" onclick="location.href='updateForm.do?course_num=${course.course_num}'">
-	              	<input type="button" class="btn btn-danger deleteBtn" value="삭제" id="delete_${course.course_num}">
-				</div>
-			</div>
-		</c:forEach>
-	</div>
-	<br><br><br>
-	<div align="center">
-		${pagingHtml}
-	</div>
-</c:if>
-</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

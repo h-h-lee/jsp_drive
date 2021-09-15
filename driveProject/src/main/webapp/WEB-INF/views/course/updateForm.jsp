@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>과정 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/teacherCss/teacherStyle.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style-app.css" type="text/css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
@@ -17,11 +17,6 @@
 			if($('#course_name').val().trim()==''){
 				alert('과정명을 입력하세요');
 				$('course_name').val('').focus();
-				return false;
-			}
-			if($('#teacher_num').val().trim()==''){
-				alert('강사번호를 입력하세요');
-				$('#teacher_num').val('').focus();
 				return false;
 			}
 			if($('#tuition').val().trim()==''){
@@ -45,38 +40,53 @@
 <!-- menu -->
 <jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 
-<div class="page-main">
-	<div class="container">
-		<div class="col-sm-15">
-			<div class="col-sm-5">
-				<br><br>
-				<h2 class="text-center">과정 수정</h2>
-				<br><br>
-				<form action="update.do" method="post" id="update_form">
-					<input type="hidden" name="course_num" value="${course.course_num}">
-					<ul>
-						<li>
-							<label for="course_name">과정명</label>
-							<input type="text" name="course_name" id="course_name" value="${course.course_name}" maxlength="30">
-						</li>
-						<li>
-							<label for="teacher_num">강사번호</label>
-							<input type="number" name="teacher_num" id="teacher_num" value="${course.teacher_num}" maxlength="10">
-						</li>
-						<li>
-							<label for="tuition">수강료</label>
-							<input type="number" name="tuition" id="tuition" value="${course.tuition}" maxlength="10">
-						</li>
-					</ul>
-					<div class="align-center">
-						<input type="submit" value="수정" class="btn btn-primary">
-						<input type="button" value="목록" onclick="location.href='detail.do'" class="btn btn-secondary">
-					</div>
-				</form>
-			</div>
+<div id="main-width">
+	<div id="menuinfo">과정 정보 수정</div>
+	<!-- 수강신청 정보 -->
+	<div class="card">
+		<p class="card-header font-title">과정 정보</p>
+	    <div class="card-body obejct-width">
+	    <form id="update_form" action="update.do" method="post" style="margin: 0px;">
+	    	<input type="hidden" id="course_num" name="course_num" value="${course.course_num}">
+	    	<table class="table table-borderless font-content" >
+				<tbody>
+					<tr class="line-bottom">
+						<th style="width: 40%; padding-left: 30%">과정명</th>
+						<td>
+							<input type="text" id="course_name" name="course_name" value="${course.course_name}">			
+						</td>
+					</tr>
+					<tr class="line-bottom">
+						<th style="width: 40%; padding-left: 30%">강사명</th>
+						<td>
+							<select name="teacher_num" style="width:63%;">
+								<c:forEach var="teacher" items="${list}">
+									<option value="${teacher.teacher_num}"
+									<c:if test="${course.teacher_num == teacher.teacher_num}">
+										selected="selected"
+									</c:if>>
+									${teacher.teacher_name}</option>
+								</c:forEach>
+							</select>
+						</td>
+					</tr>
+					<tr class="line-bottom">
+						<th style="width: 40%; padding-left: 30%">수강료</th>
+						<td>
+							<input type="number" id="tuition" name="tuition" value="${course.tuition}" maxlength="10"> 
+						</td>
+					</tr>
+				</tbody>
+				
+			</table>
+			<div class="card-button mt-3" align="center">
+				<button type="submit" class="btn btn-primary">정보수정</button>
+	         </div>
+			</form>
 		</div>
 	</div>
-</div>
+	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
 

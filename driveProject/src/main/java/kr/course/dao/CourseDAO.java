@@ -206,9 +206,12 @@ public class CourseDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-				+ "(SELECT * FROM course b JOIN teacher m ON b.teacher_num = m.teacher_num "
-				+ "ORDER BY b.course_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+			sql = "SELECT * FROM(SELECT a.*, "
+					+ "ROWNUM rnum FROM (SELECT * FROM teacher T "
+					+ "INNER JOIN Course C "
+					+ "ON t.teacher_num = c.teacher_num "
+					+ "ORDER BY c.course_num desc)a) "
+					+ "WHERE rnum>=? AND rnum<=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, start);
@@ -222,6 +225,7 @@ public class CourseDAO {
 				course.setCourse_name(rs.getString("course_name"));
 				course.setTeacher_num(rs.getInt("teacher_num"));
 				course.setTuition(rs.getInt("tuition"));
+				course.setTeacher_name(rs.getString("teacher_name"));
 				
 				list.add(course);
 			}

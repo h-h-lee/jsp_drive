@@ -116,7 +116,7 @@ margin-left:600px;
   		<br>
         <div class="bottomText" style="text-align: center;">
   <button type="submit" class="btn btn-danger">관리자 삭제</button>
-  <input type="button" class="btn btn-primary" value="취소" onclick="location.href='memberMyPageForm.do'">
+  <input type="button" class="btn btn-primary" value="취소" onclick="location.href='adminManageListForm.do'">
   
       </div>
 </div>

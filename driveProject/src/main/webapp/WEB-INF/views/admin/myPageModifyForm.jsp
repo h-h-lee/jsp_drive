@@ -56,7 +56,7 @@ margin-left:130px;
                      
                     <form action="myPageModify.do" method="post">
                      
-                    <table class="table table-striped">
+                    <table class="table">
                     
                       <tr>
                         <td>관리자 구분</td>

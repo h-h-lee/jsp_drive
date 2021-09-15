@@ -19,7 +19,7 @@
 				<li><a href="${pageContext.request.contextPath}/notice/list.do">공지사항</a></li>
 			</ul>
 		</li>
-		<li><a href="#">과정 안내</a>
+		<li><a href="${pageContext.request.contextPath}/course/list.do">과정 안내</a>
 			<ul class="sub">
 				<li><a href="${pageContext.request.contextPath}/course/list.do">과정 소개</a></li>
 			</ul>
@@ -54,7 +54,7 @@
 			</li>
 		</c:if>
 		<c:if test="${!empty admin_num && empty member_num}">
-			<li><a href="#">관리자 페이지</a>
+			<li><a href="${pageContext.request.contextPath}/admin/mainAdminPageForm.do">관리자 페이지</a>
 				<ul class="sub">
 					<li><a href="${pageContext.request.contextPath}/admin/mainAdminPageForm.do">관리자 관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/teacher/list.do">강사 관리</a></li>
