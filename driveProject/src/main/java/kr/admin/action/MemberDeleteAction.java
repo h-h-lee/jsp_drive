@@ -40,9 +40,10 @@ public class MemberDeleteAction implements Action{
 		
 		if(check) {
 			adminDAO.memberDelete(member_num2);
+			return "/WEB-INF/views/admin/adminMemberDeleteResult.jsp";
 		}
 		
 		
-		return "/WEB-INF/views/admin/adminMemberDeleteResult.jsp";
+		return "/WEB-INF/views/admin/adminDeleteFailedResult.jsp";
 	}
 }

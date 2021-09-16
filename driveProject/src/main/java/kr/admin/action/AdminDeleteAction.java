@@ -38,9 +38,10 @@ public class AdminDeleteAction implements Action{
 		
 		if(check) { //인증성공
 			adminDAO.adminDelete(admin_id2);
+			return "/WEB-INF/views/admin/adminDeleteResult.jsp";
 		}
 		
-		return "/WEB-INF/views/admin/adminDeleteResult.jsp";
+		return "/WEB-INF/views/admin/adminDeleteFailedResult.jsp";
 	}
 
 }
