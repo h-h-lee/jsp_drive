@@ -26,7 +26,7 @@ public class DetailAction implements Action{
 		CourseDAO dao = CourseDAO.getInstance();
 		int count = dao.getCourseCount();
 		
-		PaginationUtil page = new PaginationUtil(Integer.parseInt(pageNum),count,8,10,"detail.do");
+		PaginationUtil page = new PaginationUtil(Integer.parseInt(pageNum),count,5,10,"detail.do");
 		
 		List<CourseVO>list = null;
 		

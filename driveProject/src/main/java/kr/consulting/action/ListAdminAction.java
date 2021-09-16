@@ -31,7 +31,7 @@ public class ListAdminAction implements Action{
 		ConsultingDAO dao = ConsultingDAO.getIntance();
 		int count = dao.getConsultingCount();	//ÃÑ ·¹ÄÚµå ¼ö
 		
-		PaginationUtil page = new PaginationUtil(Integer.parseInt(pageNum), count, 10, 5, "adminList.do");
+		PaginationUtil page = new PaginationUtil(Integer.parseInt(pageNum), count, 5, 5, "adminList.do");
 		
 		List<ConsultingVO>list = null;
 		if(count > 0) {

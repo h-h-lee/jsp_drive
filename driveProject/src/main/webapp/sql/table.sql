@@ -11,8 +11,8 @@ CREATE TABLE member_detail(
     passwd        VARCHAR2(30)     NOT NULL, 
     name          VARCHAR2(20)     NOT NULL, 
     phone         VARCHAR2(20)     NOT NULL, 
-    email         VARCHAR2(20)     NOT NULL, 
-    birth         DATE             NOT NULL,
+    email         VARCHAR2(50)     NOT NULL, 
+    birth         VARCHAR2(8)             NOT NULL,
     zipcode	  VARCHAR2(10)	   NOT NULL, 
     address1      VARCHAR2(100)    NOT NULL, 
     address2      VARCHAR2(100)    NOT NULL, 
@@ -36,7 +36,7 @@ CREATE TABLE teacher(
     teacher_num        NUMBER           NOT NULL, 
     teacher_name       VARCHAR2(20)     NOT NULL, 
     teacher_phone      VARCHAR2(15)     NOT NULL, 
-    teacher_email      VARCHAR2(20)     NOT NULL, 
+    teacher_email      VARCHAR2(50)    NOT NULL, 
     teacher_profile    VARCHAR2(150),    
     CONSTRAINT teacher_pk PRIMARY KEY (teacher_num)
 )
@@ -44,7 +44,7 @@ CREATE TABLE teacher(
 --공지 테이블
 CREATE TABLE notice(
     notice_num    NUMBER           NOT NULL, 
-    title         VARCHAR2(50)     NOT NULL, 
+    title         VARCHAR2(100)     NOT NULL, 
     content       CLOB    		   NOT NULL, 
     reg_date      DATE		     DEFAULT SYSDATE NOT NULL, 
     filename      VARCHAR2(150)    NULL, 

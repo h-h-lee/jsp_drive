@@ -30,7 +30,7 @@ public class AdminManageListForm implements Action{
 		AdminDAO adminDAO = AdminDAO.getInstance();
 		int count = adminDAO.getAdminCount();
 		
-		PaginationUtil page = new PaginationUtil(Integer.parseInt(pageNum),count,10,5,"memberManageListForm.do");
+		PaginationUtil page = new PaginationUtil(Integer.parseInt(pageNum),count,5,5,"adminManageListForm.do");
 		
 		List<AdminVO> list = null;
 		if(count > 0) {

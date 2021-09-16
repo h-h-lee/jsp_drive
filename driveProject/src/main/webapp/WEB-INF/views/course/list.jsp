@@ -38,7 +38,7 @@
 					<c:forEach var="course" items="${list}">
 					<tr>
 						<td>${course.course_num}</td>
-						<td>${course.course_name}</td>
+						<td class="text-primary">${course.course_name}</td>
 						<td>${course.teacher_name}</td>
 						<td><fmt:formatNumber value="${course.tuition}" type="number"/>원</td>
 					</tr>

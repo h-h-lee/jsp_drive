@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,8 +54,11 @@
 					</tr>
 					<tr>
 						<td style="color:#666666; width: 20%; text-align: center;font-weight: bold;">글 제목</td>
-						<td colspan="6">${notice.title}</td>
+						<td colspan="3">${notice.title}</td>
+						<td style="color:#666666; text-align: center;font-weight: bold;">작성일</td>
+						<td>${notice.reg_date}</td>
 					</tr>
+					
 					<tr>
 						<td style="color:#666666; text-align: center;font-weight: bold;">내용</td>
 						<td colspan="6" style="height: 200px; text-align: left;">${notice.content}<br>

@@ -121,6 +121,7 @@
 	
 	var getPhone = RegExp(/01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/);
 
+
 	
 	
 	$('#member_joinForm').submit(function(){
@@ -224,8 +225,6 @@
 			$('#birth').val('');
 			return false;
 		}
-		
-
 
 		if($('#phone').val().trim()==''){
 			alert('휴대폰번호를 입력하세요!');
@@ -240,6 +239,7 @@
 			$('#phone').focus();
 			return false;
 		}
+		
 		
 		
 

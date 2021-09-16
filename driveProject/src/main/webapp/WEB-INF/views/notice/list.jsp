@@ -84,10 +84,11 @@ h2{
 			</div>
 		</c:if>
 	</div>
-  </c:if>
-  <div align="center">
+	<div align="center">
  	<div class="my-3">${pagingHtml}</div>
   </div>
+  </c:if>
+ 
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
