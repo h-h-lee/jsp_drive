@@ -25,6 +25,7 @@ public class ListMemberAction implements Action{
 			return "redirect:/member/memberLoginForm.do";
 		}
 		
+		
 		//페이징 처리
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum = "1";

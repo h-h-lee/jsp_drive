@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +42,9 @@ $(document).ready(function(){
 <div id="menuinfo">
 	상담 신청
 </div>
+
+
+
 <form id="consulting_register_form" action="register.do" method="post">
 <div align="center">
 	<div class="card my-3">
