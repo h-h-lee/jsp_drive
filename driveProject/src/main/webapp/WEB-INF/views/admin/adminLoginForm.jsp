@@ -66,7 +66,7 @@
     <input type="password" class="form-control" id="admin_passwd" name="admin_passwd" max="30">
   </div>
         <div class="bottomText">
-  <button type="submit" class="btn btn-primary">로그인</button><br><br>
+  <button type="submit" class="btn btn-primary">로그인</button><br><br><br>
       </div>
 </div>
   

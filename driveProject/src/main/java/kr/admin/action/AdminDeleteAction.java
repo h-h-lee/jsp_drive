@@ -40,8 +40,7 @@ public class AdminDeleteAction implements Action{
 			adminDAO.adminDelete(admin_id2);
 		}
 		
-//		return "/WEB-INF/views/admin/adminManageListForm.jsp";
-		return "redirect:/admin/adminManageListForm.do";
+		return "/WEB-INF/views/admin/adminDeleteResult.jsp";
 	}
 
 }

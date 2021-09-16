@@ -147,23 +147,23 @@ $(document).ready(function(){
 		
 	});
 	
-    $('#passwd2').focusout(function () {
-        var passwd1 = $('#passwd1').val();
-        var passwd2 = $('#passwd2').val();
-  
-        if ( passwd1 != '' && passwd2 == '' ) {
-            null;
-        } else if (passwd1 != '' || passwd2 != '') {
-            if (passwd1 == passwd2) {
-                $('#alert-success').css('display', 'inline-block');
-                $('#alert-danger').css('display', 'none');
-            } else {
-                alert('비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.');
-                $('#alert-success').css('display', 'none');
-                $('#alert-danger').css('display', 'inline-block');
-            }
-        }
-    });	
+	 $('#passwd2').focusout(function () {
+	        var passwd1 = $('#passwd1').val();
+	        var passwd2 = $('#passwd2').val();
+	  
+	        if ( passwd1 != '' && passwd2 == '' ) {
+	            null;
+	        } else if (passwd1 != '' || passwd2 != '') {
+	            if (passwd1 == passwd2) {
+	                $('#alert-success').css('display', 'inline-block');
+	                $('#alert-danger').css('display', 'none');
+	            } else {
+	                alert('비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.');
+	                $('#alert-success').css('display', 'none');
+	                $('#alert-danger').css('display', 'inline-block');
+	            }
+	        }
+	    });
 });
 
 </script>
@@ -185,7 +185,7 @@ $(document).ready(function(){
 			<div class="form-group" >
 				<b><label for="id" class="col-lg-2 control-label">아이디</label></b>
 				<div class="col-lg-10">
-					<input type="text" class="form-control" id="id" name="id"  placeholder="20자이내의 " maxlength="20" value="${member.id }" readonly="readonly">
+					<input type="text" class="form-control" id="id" name="id" maxlength="20" value="${member.id }" readonly="readonly">
 				</div>
 			</div>
 			
@@ -196,7 +196,7 @@ $(document).ready(function(){
 			<div class="form-group" id="divPassword">
 				<b><label for="passwd1" class="col-lg-2 control-label">패스워드</label></b>
 				<div class="col-lg-10">
-					<input type="password" class="form-control" id="passwd1" name="passwd1"  placeholder="패스워드" maxlength="30" value="${member.passwd }" >
+					<input type="password" class="form-control" id="passwd1" name="passwd1"  placeholder="패스워드" maxlength="30"  >
 				</div>
 			</div>
 			
@@ -205,7 +205,7 @@ $(document).ready(function(){
 			<div class="form-group" id="divPasswordCheck">
 				<b><label for="passwd2"class="col-lg-2 control-label">패스워드 확인</label></b>
 				<div class="col-lg-10">
-					<input type="password" class="form-control" id="passwd2" name="passwd2"  placeholder="패스워드 확인" maxlength="30" value="${member.passwd }">
+					<input type="password" class="form-control" id="passwd2" name="passwd2"  placeholder="패스워드 확인" maxlength="30" >
    					<span id="alert-success" style="display: none; color:blue">비밀번호가 일치합니다.</span>
     				<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
 

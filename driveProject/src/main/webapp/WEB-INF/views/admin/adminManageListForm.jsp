@@ -109,6 +109,9 @@ function btn(){
   </tbody>
   </c:forEach>
 </table>
+<div class="align-center" id="paging" align="center">
+	${pagingHtml} 
+</div>
 <!--                 </form>    -->
                      
                 </div>

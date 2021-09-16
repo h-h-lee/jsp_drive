@@ -11,6 +11,7 @@ import kr.course.dao.CourseDAO;
 import kr.course.vo.CourseVO;
 import kr.teacher.dao.TeacherDAO;
 import kr.teacher.vo.TeacherVO;
+import kr.util.PaginationUtil;
 import kr.util.PagingUtil;
 import kr.util.StringUtil;
 
@@ -25,7 +26,7 @@ public class DetailAction implements Action{
 		CourseDAO dao = CourseDAO.getInstance();
 		int count = dao.getCourseCount();
 		
-		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum),count,8,10,"detail.do");
+		PaginationUtil page = new PaginationUtil(Integer.parseInt(pageNum),count,8,10,"detail.do");
 		
 		List<CourseVO>list = null;
 		

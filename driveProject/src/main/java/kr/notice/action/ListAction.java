@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.notice.dao.NoticeDAO;
 import kr.notice.vo.NoticeVO;
+import kr.util.PaginationUtil;
 import kr.util.PagingUtil;
 
 public class ListAction implements Action{
@@ -22,7 +23,7 @@ public class ListAction implements Action{
 		NoticeDAO dao = NoticeDAO.getInstance();
 		int count = dao.getNoticeCount();
 		
-		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum),count,10,10,"list.do");
+		PaginationUtil page = new PaginationUtil(Integer.parseInt(pageNum),count,10,10,"list.do");
 		
 		List<NoticeVO> list = null;
 		if(count > 0) {

@@ -43,6 +43,6 @@ public class MemberDeleteAction implements Action{
 		}
 		
 		
-		return "redirect:/admin/memberManageListForm.do";
+		return "/WEB-INF/views/admin/adminMemberDeleteResult.jsp";
 	}
 }

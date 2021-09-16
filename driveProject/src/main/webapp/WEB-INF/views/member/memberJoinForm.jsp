@@ -33,7 +33,13 @@
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('zipcode').value = data.zonecode;
-                document.getElementById("address1").value = data.jibunAddress;
+                document.getElementById("address1").value = roadAddr;
+                
+                if(roadAddr !== ''){
+                    document.getElementById("address2").value = extraRoadAddr;
+                } else {
+                    document.getElementById("address2").value = '';
+                }
                 
 
                 var guideTextBox = document.getElementById("guide");

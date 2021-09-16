@@ -34,7 +34,7 @@ public class AdminAddAction implements Action{
 			AdminDAO adminDAO = AdminDAO.getInstance();
 			adminDAO.adminAdd(adminVO);
 			
-			return "redirect:/admin/adminManageListForm.do";
+			return "/WEB-INF/views/admin/adminRegisterResult.jsp";
 			
 		}
 		

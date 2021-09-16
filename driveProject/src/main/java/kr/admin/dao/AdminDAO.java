@@ -13,8 +13,8 @@ import kr.util.DBUtil;
 /**
  * FileName : AdminDAO.java
  * @date :2021. 9. 9.
- * @author: 최유정
- * @description : 1.관리자 로그인DAO
+ * @author: 筌ㅼ뮇��占쎌젟
+ * @description : 1.�꽴占썹뵳�딆쁽 嚥≪뮄�젃占쎌뵥DAO
  */
 public class AdminDAO {
 	
@@ -24,7 +24,7 @@ public class AdminDAO {
 		return instance;
 	}
 	
-	//로그인
+	//嚥≪뮄�젃占쎌뵥
 	public AdminVO adminLogin(String admin_id) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -63,7 +63,7 @@ public class AdminDAO {
 		return adminVO;
 	}
 	
-	//나의 정보 수정
+	//占쎄돌占쎌벥 占쎌젟癰귨옙 占쎈땾占쎌젟
 	public void myPageModify(AdminVO adminVO) throws Exception {
 		
 		Connection conn = null;
@@ -92,7 +92,7 @@ public class AdminDAO {
 	}
 	
 	
-	//일반관리자 추가
+	//占쎌뵬獄쏆꼵占썹뵳�딆쁽 �빊遺쏙옙
 	public void adminAdd(AdminVO adminVO) throws Exception{
 		
 		Connection conn = null;
@@ -120,9 +120,32 @@ public class AdminDAO {
 		}
 			
 	}
+	public int getAdminCount() throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 1;
+		
+		try {
+			conn =DBUtil.getConnection();
+			sql ="select count(*) from admin";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+
+	}
 	
-	//관리자 전체 리스트
-	public List<AdminVO> adminList() throws Exception{
+	//�꽴占썹뵳�딆쁽 占쎌읈筌ｏ옙 �뵳�딅뮞占쎈뱜
+	public List<AdminVO> adminList(int start, int end) throws Exception{
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -135,9 +158,14 @@ public class AdminDAO {
 			
 			conn = DBUtil.getConnection();
 			
-			sql = "SELECT * FROM admin ORDER BY admin_num DESC";
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM admin d "
+					+ "ORDER BY DECODE(d.admin_auth,2,1))a) "
+					+ "WHERE rnum >= ? AND rnum <= ?";
 			
 			pstmt =conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			
 			rs = pstmt.executeQuery();
 			
@@ -275,13 +303,17 @@ public class AdminDAO {
 			
 			conn.setAutoCommit(false);
 			
-			sql = "DELETE FROM member_detail WHERE member_num=?";
-			pstmt2 =conn.prepareStatement(sql);
+//			sql = "DELETE FROM member_detail WHERE member_num=?";
+//			pstmt2 =conn.prepareStatement(sql);
+//			pstmt2.setInt(1, member_num2);
+//			pstmt2.executeUpdate();
+//			
+			sql = "Update member SET auth=0 WHERE member_num=?";
+			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, member_num2);
 			pstmt2.executeUpdate();
-			
 
-			sql = "DELETE FROM member WHERE member_num=?";
+			sql = "DELETE FROM member_detail WHERE member_num=?";
 			pstmt1 = conn.prepareStatement(sql);
 			pstmt1.setInt(1, member_num2);
 			pstmt1.executeUpdate();

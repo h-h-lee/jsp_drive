@@ -9,6 +9,7 @@ import kr.admin.dao.AdminDAO;
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
+import kr.util.PaginationUtil;
 import kr.util.PagingUtil;
 
 public class MemberManageListFormAction implements Action{
@@ -22,7 +23,7 @@ public class MemberManageListFormAction implements Action{
 		AdminDAO dao = AdminDAO.getInstance();
 		int count = dao.getMemberCount();
 		
-		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum),count,10,10,"memberManageListForm.do");
+		PaginationUtil page = new PaginationUtil(Integer.parseInt(pageNum),count,10,5,"memberManageListForm.do");
 		
 		List<MemberVO> list = null;
 		if(count>0) {

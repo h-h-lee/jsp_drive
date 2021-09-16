@@ -95,7 +95,7 @@ margin-left:100px;
   </c:forEach>
 </c:if>
 </table>
-<div class="align-center" id="paging">
+<div class="align-center" id="paging" align="center">
 	${pagingHtml} 
 </div>
 <!--                 </form>    -->
