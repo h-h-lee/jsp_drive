@@ -66,7 +66,7 @@
 						</tr>
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용" name="content"  id="content"
-								style="width:1000px; height: 350px;">${notice.content}></textarea></td>
+								style="width:1000px; height: 350px;">${notice.content}</textarea></td>
 						</tr>
 						<tr>
 							<td><input type="file" class="form-control" placeholder="파일" name="filename" accept="image/gif,image/png,image/jpeg">

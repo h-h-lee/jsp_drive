@@ -58,7 +58,9 @@
 					<tr>
 						<td style="color:#666666; text-align: center;font-weight: bold;">내용</td>
 						<td colspan="6" style="height: 200px; text-align: left;">${notice.content}<br>
+							<c:if test="${!empty notice.filename}">
 							<img src="${pageContext.request.contextPath}/upload/${notice.filename}">
+							</c:if>
 						</td>
 					</tr>
 			</table>
