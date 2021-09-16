@@ -142,9 +142,13 @@ $(document).ready(function(){
 			$('#phone').focus();
 			$('#phone').val('');
 			return false;
-		}		
-		
-		
+		}
+		var passwd1 = $('#passwd1').val();
+        var passwd2 = $('#passwd2').val();
+        if(passwd1 !=  passwd2){
+        	alert('비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.');
+        	return false;
+        }
 	});
 	
 	 $('#passwd2').focusout(function () {
