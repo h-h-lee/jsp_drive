@@ -46,7 +46,7 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp"/>
 	<!-- 본문 시작 -->
 	<div id="main-width">
-		<div id="menuinfo">수강 신청 내역</div>
+		<div id="menuinfo">수강 신청 관리</div>
 		<div class="card">
 		    <div class="card-body object-center text-center">
 		    	<!-- 검색창 시작 -->

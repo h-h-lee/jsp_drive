@@ -14,11 +14,11 @@ public class ModifyAppResultAction implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 		
-		//¼¼¼Ç¿¡ ÀúÀåµÈ °ü¸®ÀÚ¹øÈ£ ÀĞ¾î¿À±â
+		//ì„¸ì…˜ì— ì €ì¥ëœ ê´€ë¦¬ìë²ˆí˜¸ ì½ì–´ì˜¤ê¸°
 		HttpSession session = request.getSession();
 		Integer admin_num = (Integer)session.getAttribute("admin_num");
 		
-		//·Î±×ÀÎµÇÁö ¾ÊÀº °æ¿ì, °ü¸®ÀÚ ·Î±×ÀÎ ÆäÀÌÁö È£Ãâ
+		//ë¡œê·¸ì¸ë˜ì§€ ì•Šì€ ê²½ìš°, ê´€ë¦¬ì ë¡œê·¸ì¸ í˜ì´ì§€ í˜¸ì¶œ
 		if(admin_num == null) {
 			return "redirect:/admin/adminLoginForm.do";
 		}
@@ -26,7 +26,7 @@ public class ModifyAppResultAction implements Action{
 		int app_num = Integer.parseInt(request.getParameter("app_num"));
 		int app_result = Integer.parseInt(request.getParameter("app_result"));
 		
-		//¼ö°­½ÅÃ» °á°ú º¯°æ
+		//ìˆ˜ê°•ì‹ ì²­ ê²°ê³¼ ë³€ê²½
 		ApplicationDAO dao = ApplicationDAO.getinstance();
 		dao.setAppResult(app_num, app_result);
 		

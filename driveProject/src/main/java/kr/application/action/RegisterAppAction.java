@@ -15,11 +15,11 @@ public class RegisterAppAction implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 		
-		//¼¼¼Ç¿¡ ÀúÀåµÈ È¸¿ø¹øÈ£ ÀĞ¾î¿À±â
+		//ì„¸ì…˜ì— ì €ì¥ëœ íšŒì›ë²ˆí˜¸ ì½ì–´ì˜¤ê¸°
 		HttpSession session = request.getSession();
 		Integer member_num = (Integer)session.getAttribute("member_num");
 		
-		//·Î±×ÀÎµÇÁö ¾ÊÀº °æ¿ì, È¸¿ø ·Î±×ÀÎ ÆäÀÌÁö È£Ãâ
+		//ë¡œê·¸ì¸ë˜ì§€ ì•Šì€ ê²½ìš°, íšŒì› ë¡œê·¸ì¸ í˜ì´ì§€ í˜¸ì¶œ
 		if(member_num == null) {
 			return "redirect:/member/memberLoginForm.do";
 		}
@@ -30,11 +30,11 @@ public class RegisterAppAction implements Action{
 		app.setMember_num(member_num);
 		app.setCourse_num(course_num);
 		
-		//¼ö°­½ÅÃ» Áßº¹ Ã¼Å©
+		//ìˆ˜ê°•ì‹ ì²­ ì¤‘ë³µ ì²´í¬
 		ApplicationDAO dao = ApplicationDAO.getinstance();
 		boolean check = dao.checkApp(app);
 		if(check) {
-			//¼ö°­½ÅÃ» µî·Ï
+			//ìˆ˜ê°•ì‹ ì²­ ë“±ë¡
 			dao.insertApp(app);
 		}
 		

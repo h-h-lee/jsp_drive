@@ -15,11 +15,11 @@ public class CancelAppAction implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 
-		//¼¼¼Ç¿¡ ÀúÀåµÈ È¸¿ø¹øÈ£ ÀĞ¾î¿À±â
+		//ì„¸ì…˜ì— ì €ì¥ëœ íšŒì›ë²ˆí˜¸ ì½ì–´ì˜¤ê¸°
 		HttpSession session = request.getSession();
 		Integer member_num = (Integer)session.getAttribute("member_num");
 		
-		//·Î±×ÀÎµÇÁö ¾ÊÀº °æ¿ì, È¸¿ø ·Î±×ÀÎ ÆäÀÌÁö È£Ãâ
+		//ë¡œê·¸ì¸ë˜ì§€ ì•Šì€ ê²½ìš°, íšŒì› ë¡œê·¸ì¸ í˜ì´ì§€ í˜¸ì¶œ
 		if(member_num == null) {
 			return "redirect:/member/memberLoginForm.do";
 		}
@@ -29,12 +29,12 @@ public class CancelAppAction implements Action{
 		ApplicationDAO dao = ApplicationDAO.getinstance();
 		ApplicationVO app = dao.getApp(app_num);
 		
-		//·Î±×ÀÎÇÑ È¸¿ø°ú ¼ö°­½ÅÃ» È¸¿ø ÀÏÄ¡ ¿©ºÎ È®ÀÎ
+		//ë¡œê·¸ì¸í•œ íšŒì›ê³¼ ìˆ˜ê°•ì‹ ì²­ íšŒì› ì¼ì¹˜ ì—¬ë¶€ í™•ì¸
 		if(member_num != app.getMember_num()) {
 			return "redirect:/application/listApp.do";
 		}
 		
-		//¼ö°­½ÅÃ» »èÁ¦
+		//ìˆ˜ê°•ì‹ ì²­ ì‚­ì œ
 		dao.deleteApp(app_num);
 		
 		return "/WEB-INF/views/application/cancelApp.jsp";

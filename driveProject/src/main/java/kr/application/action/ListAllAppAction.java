@@ -18,16 +18,16 @@ public class ListAllAppAction implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 		
-		//¼¼¼Ç¿¡ ÀúÀåµÈ °ü¸®ÀÚ¹øÈ£ ÀĞ¾î¿À±â
+		//ì„¸ì…˜ì— ì €ì¥ëœ ê´€ë¦¬ìë²ˆí˜¸ ì½ì–´ì˜¤ê¸°
 		HttpSession session = request.getSession();
 		Integer admin_num = (Integer)session.getAttribute("admin_num");
 		
-		//·Î±×ÀÎµÇÁö ¾ÊÀº °æ¿ì, °ü¸®ÀÚ ·Î±×ÀÎ ÆäÀÌÁö È£Ãâ
+		//ë¡œê·¸ì¸ë˜ì§€ ì•Šì€ ê²½ìš°, ê´€ë¦¬ì ë¡œê·¸ì¸ í˜ì´ì§€ í˜¸ì¶œ
 		if(admin_num == null) {
 			return "redirect:/admin/adminLoginForm.do";
 		}
 		
-		//ÆäÀÌÁö¹øÈ£ ÁöÁ¤
+		//í˜ì´ì§€ë²ˆí˜¸ ì§€ì •
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum = "1";
 		
@@ -42,14 +42,14 @@ public class ListAllAppAction implements Action{
 		}
 		if(keyword == null) keyword = "";
 		
-		//ÃÑ ·¹ÄÚµå ¼ö
+		//ì´ ë ˆì½”ë“œ ìˆ˜
 		ApplicationDAO dao = ApplicationDAO.getinstance();
 		int count = dao.getAppCountAll(keyfield, keyword);
 		
-		//ÆäÀÌÁö Ã³¸®
+		//í˜ì´ì§€ ì²˜ë¦¬
 		PaginationUtil page = new PaginationUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 5, 5, "listAllApp.do");
 		
-		//ÀüÃ¼ ¼ö°­½ÅÃ» ³»¿ª(°ü¸®ÀÚ)
+		//ì „ì²´ ìˆ˜ê°•ì‹ ì²­ ë‚´ì—­(ê´€ë¦¬ì)
 		List<ApplicationVO> list = null;
 		if(count>0) {
 			list = dao.getAppListAll(page.getStartCount(), page.getEndCount(), keyfield, keyword);

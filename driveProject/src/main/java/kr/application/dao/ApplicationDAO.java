@@ -12,14 +12,14 @@ import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 
 public class ApplicationDAO {
-	//½Ì±ÛÅÏ ÆĞÅÏ
+	//ì‹±ê¸€í„´ íŒ¨í„´
 	private static ApplicationDAO instance = new ApplicationDAO();
 	public static ApplicationDAO getinstance() {
 		return instance;
 	}
 	private ApplicationDAO() {}
 	
-	//¼ö°­½ÅÃ» µî·Ï
+	//ìˆ˜ê°•ì‹ ì²­ ë“±ë¡
 	public void insertApp(ApplicationVO app) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -39,12 +39,12 @@ public class ApplicationDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			//ÀÚ¿øÁ¤¸®
+			//ìì›ì •ë¦¬
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 	
-	//¼ö°­½ÅÃ» Áßº¹ Ã¼Å© - true: ¹ÌÁßº¹, false:Áßº¹
+	//ìˆ˜ê°•ì‹ ì²­ ì¤‘ë³µ ì²´í¬ - true: ë¯¸ì¤‘ë³µ, false:ì¤‘ë³µ
 	public boolean checkApp(ApplicationVO app) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -70,13 +70,13 @@ public class ApplicationDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			//ÀÚ¿øÁ¤¸®
+			//ìì›ì •ë¦¬
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return check;
 	}
 	
-	//¼ö°­½ÅÃ» Á¤º¸
+	//ìˆ˜ê°•ì‹ ì²­ ì •ë³´
 		public ApplicationVO getApp(int app_num) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -94,7 +94,7 @@ public class ApplicationDAO {
 				
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
-					//¼ö°­½ÅÃ» Á¤º¸
+					//ìˆ˜ê°•ì‹ ì²­ ì •ë³´
 					app = new ApplicationVO();
 					app.setApp_num(rs.getInt("app_num"));
 					app.setApp_date(rs.getDate("app_date"));
@@ -105,13 +105,13 @@ public class ApplicationDAO {
 			}catch(Exception e) {
 				throw new Exception(e);
 			}finally {
-				//ÀÚ¿øÁ¤¸®
+				//ìì›ì •ë¦¬
 				DBUtil.executeClose(rs, pstmt, conn);
 			}
 			return app;
 		}
 	
-	//ÃÑ ·¹ÄÚµå ¼ö - ÀÏ¹İÈ¸¿ø
+	//ì´ ë ˆì½”ë“œ ìˆ˜ - ì¼ë°˜íšŒì›
 	public int getAppCount(int member_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -134,13 +134,13 @@ public class ApplicationDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			//ÀÚ¿øÁ¤¸®
+			//ìì›ì •ë¦¬
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return count;
 	}
 	
-	//¼ö°­½ÅÃ» ¸ñ·Ï - ÀÏ¹İÈ¸¿ø
+	//ìˆ˜ê°•ì‹ ì²­ ëª©ë¡ - ì¼ë°˜íšŒì›
 	public List<ApplicationVO> getAppList(int member_num, int start, int end) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -179,13 +179,13 @@ public class ApplicationDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			//ÀÚ¿øÁ¤¸®
+			//ìì›ì •ë¦¬
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return list;
 	}
 
-	//¼ö°­½ÅÃ» »èÁ¦
+	//ìˆ˜ê°•ì‹ ì²­ ì‚­ì œ
 	public void deleteApp(int app_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -204,12 +204,12 @@ public class ApplicationDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			//ÀÚ¿øÁ¤¸®
+			//ìì›ì •ë¦¬
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 	
-	//ÃÑ ·¹ÄÚµå ¼ö - °ü¸®ÀÚ
+	//ì´ ë ˆì½”ë“œ ìˆ˜ - ê´€ë¦¬ì
 	public int getAppCountAll(String keyfield, String keyword) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -221,7 +221,7 @@ public class ApplicationDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			//°Ë»ö°ª ¾øÀ» ¶§
+			//ê²€ìƒ‰ê°’ ì—†ì„ ë•Œ
 			if(keyfield==null || keyword.equals("")) {
 				sql = "SELECT COUNT(*) FROM application A JOIN course C ON A.course_num=C.course_num "
 						+ "JOIN teacher T ON C.teacher_num=T.teacher_num JOIN member_detail D ON A.member_num=D.member_num ORDER BY app_num DESC";
@@ -245,7 +245,7 @@ public class ApplicationDAO {
 				}
 			}
 			
-			//SQL¹® ½ÇÇà
+			//SQLë¬¸ ì‹¤í–‰
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				count = rs.getInt(1);
@@ -253,13 +253,13 @@ public class ApplicationDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			//ÀÚ¿øÁ¤¸®
+			//ìì›ì •ë¦¬
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return count;
 	}
 	
-	//ÀüÃ¼ ¼ö°­½ÅÃ» ¸ñ·Ï - °ü¸®ÀÚ
+	//ì „ì²´ ìˆ˜ê°•ì‹ ì²­ ëª©ë¡ - ê´€ë¦¬ì
 	public List<ApplicationVO> getAppListAll(int start, int end, String keyfield, String keyword) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -271,7 +271,7 @@ public class ApplicationDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			//°Ë»ö°ª ¾øÀ» ¶§
+			//ê²€ìƒ‰ê°’ ì—†ì„ ë•Œ
 			if(keyfield==null || keyword.equals("")) {
 				sql = "SELECT * FROM (SELECT X.*, ROWNUM rnum FROM (SELECT * FROM application A "
 						+ "JOIN course C ON A.course_num=C.course_num "
@@ -304,7 +304,7 @@ public class ApplicationDAO {
 				pstmt.setInt(3, end);
 			}
 			
-			//SQL¹® ½ÇÇà
+			//SQLë¬¸ ì‹¤í–‰
 			rs = pstmt.executeQuery();
 			list = new ArrayList<ApplicationVO>();
 			while(rs.next()) {
@@ -322,13 +322,13 @@ public class ApplicationDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			//ÀÚ¿øÁ¤¸®
+			//ìì›ì •ë¦¬
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return list;
 	}
 	
-	//¼ö°­½ÅÃ» »ó¼¼(°úÁ¤¸í, °­»ç¸í, È¸¿ø¸í JOIN) - °ü¸®ÀÚ
+	//ìˆ˜ê°•ì‹ ì²­ ìƒì„¸(ê³¼ì •ëª…, ê°•ì‚¬ëª…, íšŒì›ëª… JOIN) - ê´€ë¦¬ì
 	public HashMap<String,Object> getAppDetail(int app_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -350,7 +350,7 @@ public class ApplicationDAO {
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				//¼ö°­½ÅÃ» Á¤º¸
+				//ìˆ˜ê°•ì‹ ì²­ ì •ë³´
 				ApplicationVO app = new ApplicationVO();
 				app.setApp_num(rs.getInt("app_num"));
 				app.setApp_date(rs.getDate("app_date"));
@@ -361,7 +361,7 @@ public class ApplicationDAO {
 				app.setCourse_name(rs.getString("course_name"));
 				app.setTeacher_name(rs.getString("teacher_name"));
 				
-				//È¸¿ø Á¤º¸
+				//íšŒì› ì •ë³´
 				MemberVO member = new MemberVO();
 				member.setMember_num(rs.getInt("member_num"));
 				member.setAuth(rs.getInt("auth"));
@@ -381,13 +381,13 @@ public class ApplicationDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			//ÀÚ¿øÁ¤¸®
+			//ìì›ì •ë¦¬
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return hmap;
 	}
 	
-	//¼ö°­½ÅÃ» °á°ú º¯°æ - °ü¸®ÀÚ
+	//ìˆ˜ê°•ì‹ ì²­ ê²°ê³¼ ë³€ê²½ - ê´€ë¦¬ì
 	public void setAppResult(int app_num, int app_result) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -407,12 +407,12 @@ public class ApplicationDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			//ÀÚ¿øÁ¤¸®
+			//ìì›ì •ë¦¬
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 	
-	//°­»ç ¸Ê : °­»ç¹øÈ£·Î °­»çÀÌ¸§ Ã£À» ¿ëµµ
+	//ê°•ì‚¬ ë§µ : ê°•ì‚¬ë²ˆí˜¸ë¡œ ê°•ì‚¬ì´ë¦„ ì°¾ì„ ìš©ë„
 	public HashMap<Integer,String> getTeacherMap() throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -436,7 +436,7 @@ public class ApplicationDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			//ÀÚ¿øÁ¤¸®
+			//ìì›ì •ë¦¬
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return map;

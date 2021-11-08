@@ -19,18 +19,18 @@ public class RegisterAppFormAction implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 		
-		//ÆäÀÌÁö¹øÈ£ ÁöÁ¤
+		//í˜ì´ì§€ë²ˆí˜¸ ì§€ì •
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum="1";
 		
-		//ÃÑ ·¹ÄÚµå ¼ö
+		//ì´ ë ˆì½”ë“œ ìˆ˜
 		CourseDAO dao = CourseDAO.getInstance();
 		int count = dao.getCourseCount();
 		
-		//ÆäÀÌÁö Ã³¸®
+		//í˜ì´ì§€ ì²˜ë¦¬
 		PaginationUtil page = new PaginationUtil(Integer.parseInt(pageNum), count, 5, 5, "registerAppForm.do");
 		
-		//°úÁ¤ ¸ñ·Ï
+		//ê³¼ì • ëª©ë¡
 		List<CourseVO> list = null;
 		HashMap<Integer,String> map = null;
 		if(count>0) {

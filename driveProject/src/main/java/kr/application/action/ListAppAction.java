@@ -18,27 +18,27 @@ public class ListAppAction implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 		
-		//¼¼¼Ç¿¡ ÀúÀåµÈ È¸¿ø¹øÈ£ ÀĞ¾î¿À±â
+		//ì„¸ì…˜ì— ì €ì¥ëœ íšŒì›ë²ˆí˜¸ ì½ì–´ì˜¤ê¸°
 		HttpSession session = request.getSession();
 		Integer member_num = (Integer)session.getAttribute("member_num");
 		
-		//·Î±×ÀÎµÇÁö ¾ÊÀº °æ¿ì, È¸¿ø ·Î±×ÀÎ ÆäÀÌÁö È£Ãâ
+		//ë¡œê·¸ì¸ë˜ì§€ ì•Šì€ ê²½ìš°, íšŒì› ë¡œê·¸ì¸ í˜ì´ì§€ í˜¸ì¶œ
 		if(member_num==null) {
 			return "redirect:/member/memberLoginForm.do";
 		}
 		
-		//ÆäÀÌÁö¹øÈ£ ÁöÁ¤
+		//í˜ì´ì§€ë²ˆí˜¸ ì§€ì •
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum = "1";
 		
-		//ÃÑ ·¹ÄÚµå ¼ö
+		//ì´ ë ˆì½”ë“œ ìˆ˜
 		ApplicationDAO dao = ApplicationDAO.getinstance();
 		int count = dao.getAppCount(member_num);
 		
-		//ÆäÀÌÁö Ã³¸®
+		//í˜ì´ì§€ ì²˜ë¦¬
 		PaginationUtil page = new PaginationUtil(Integer.parseInt(pageNum), count, 5, 5, "listApp.do");
 		
-		//¼ö°­½ÅÃ» ³»¿ª(È¸¿ø)
+		//ìˆ˜ê°•ì‹ ì²­ ë‚´ì—­(íšŒì›)
 		List<ApplicationVO> list = null;
 		if(count>0) {
 			list = dao.getAppList(member_num, page.getStartCount(), page.getEndCount());
